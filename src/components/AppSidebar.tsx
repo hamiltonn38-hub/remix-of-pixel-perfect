@@ -80,10 +80,7 @@ export default function AppSidebar() {
 
         {/* Footer */}
         <div className="p-4 border-t border-sidebar-border">
-          <button className="flex items-center gap-2 text-xs text-sidebar-foreground/50 hover:text-sidebar-foreground/80 transition-colors">
-            <Info size={14} />
-            <span>Sobre a Plataforma</span>
-          </button>
+          <SobreModal />
           <p className="text-[10px] text-sidebar-foreground/30 mt-2">Framework HAMILTON • FUNDECI/2025.0016</p>
         </div>
       </aside>
