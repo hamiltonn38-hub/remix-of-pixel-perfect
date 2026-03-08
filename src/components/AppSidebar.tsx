@@ -2,8 +2,9 @@ import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   LayoutDashboard, Leaf, Recycle, Users, BarChart3,
-  Gauge, SlidersHorizontal, FileText, Menu, X, Droplets, Info,
+  Gauge, SlidersHorizontal, FileText, Menu, X, Droplets,
 } from "lucide-react";
+import SobreModal from "@/components/SobreModal";
 
 const navItems = [
   { path: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -79,10 +80,7 @@ export default function AppSidebar() {
 
         {/* Footer */}
         <div className="p-4 border-t border-sidebar-border">
-          <button className="flex items-center gap-2 text-xs text-sidebar-foreground/50 hover:text-sidebar-foreground/80 transition-colors">
-            <Info size={14} />
-            <span>Sobre a Plataforma</span>
-          </button>
+          <SobreModal />
           <p className="text-[10px] text-sidebar-foreground/30 mt-2">Framework HAMILTON • FUNDECI/2025.0016</p>
         </div>
       </aside>
