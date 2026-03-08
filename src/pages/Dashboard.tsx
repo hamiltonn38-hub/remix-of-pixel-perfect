@@ -1,6 +1,7 @@
 import { usePits } from "@/context/PitsContext";
 import IPSEGauge from "@/components/IPSEGauge";
 import SubIndexCard from "@/components/SubIndexCard";
+import MapaCaatinga from "@/components/MapaCaatinga";
 import { ipseHistorico, getAlerts } from "@/data/mockData";
 import { Leaf, Users, Zap, Shield, AlertTriangle } from "lucide-react";
 import {
@@ -79,6 +80,9 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Map */}
+      <MapaCaatinga />
 
       {/* Quick stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
