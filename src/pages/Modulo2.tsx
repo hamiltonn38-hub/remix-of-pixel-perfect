@@ -80,6 +80,31 @@ export default function Modulo2() {
         <p className="text-xs text-muted-foreground mt-2">Fonte: Dados do Cariri paraibano — SAFs superam em 260% os sistemas tradicionais</p>
       </div>
 
+      {/* Plano Nacional de Bioeconomia */}
+      <div className="pits-card border-l-4 border-l-secondary">
+        <div className="flex items-center gap-2 mb-2">
+          <Recycle size={18} className="text-secondary" />
+          <h2 className="pits-section-title">Plano Nacional de Bioeconomia</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+          O <strong>PlanBio</strong> prioriza a transição de cadeias extrativistas lineares para modelos produtivos circulares baseados em bioeconomia, com ênfase em produtos florestais não-madeireiros e energia renovável.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            { title: "Eixo 3 — Cadeias Produtivas da Bioeconomia", desc: "Estruturação de cadeias de valor baseadas em biomassa sustentável, SAFs e produtos da sociobiodiversidade." },
+            { title: "Eixo 4 — Inovação e Tecnologia", desc: "Fomento à biorrefinarias, biodigestores comunitários e tecnologias de conversão energética para comunidades rurais." },
+          ].map((eixo) => (
+            <div key={eixo.title} className="p-3 bg-muted/40 rounded-lg">
+              <h4 className="text-xs font-semibold mb-1">{eixo.title}</h4>
+              <p className="text-xs text-muted-foreground">{eixo.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-muted-foreground mt-3 italic">
+          Alinhamento: o Módulo II implementa os eixos de cadeias produtivas e inovação do PlanBio através dos circuitos fechados de biomassa e sistemas agroflorestais.
+        </p>
+      </div>
+
       {/* Production systems */}
       <div className="space-y-3">
         <h2 className="pits-section-title">Sistemas Produtivos</h2>

@@ -91,6 +91,31 @@ export default function Modulo3() {
         </table>
       </div>
 
+      {/* Plano Nacional de Bioeconomia */}
+      <div className="pits-card border-l-4 border-l-secondary">
+        <div className="flex items-center gap-2 mb-2">
+          <Users size={18} className="text-secondary" />
+          <h2 className="pits-section-title">Plano Nacional de Bioeconomia</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+          O <strong>PlanBio</strong> reconhece a governança comunitária como pilar essencial para a bioeconomia sustentável, valorizando o protagonismo de povos e comunidades tradicionais na gestão dos recursos naturais.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            { title: "Eixo 5 — Governança e Marco Regulatório", desc: "Fortalecimento de arranjos institucionais multiescalares, conselhos territoriais e marcos regulatórios para repartição de benefícios." },
+            { title: "Eixo 6 — Inclusão Social e Repartição de Benefícios", desc: "PSA comunitário, acesso a mercados de carbono e mecanismos de compensação para comunidades tradicionais." },
+          ].map((eixo) => (
+            <div key={eixo.title} className="p-3 bg-muted/40 rounded-lg">
+              <h4 className="text-xs font-semibold mb-1">{eixo.title}</h4>
+              <p className="text-xs text-muted-foreground">{eixo.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-muted-foreground mt-3 italic">
+          Alinhamento: o Módulo III materializa os eixos de governança e inclusão do PlanBio, integrando os princípios de Ostrom aos mecanismos de PSA e acordos de manejo.
+        </p>
+      </div>
+
       {/* PSA + Ostrom */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* PSA Pie */}

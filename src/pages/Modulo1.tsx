@@ -68,6 +68,31 @@ export default function Modulo1() {
         </ResponsiveContainer>
       </div>
 
+      {/* Plano Nacional de Bioeconomia */}
+      <div className="pits-card border-l-4 border-l-secondary">
+        <div className="flex items-center gap-2 mb-2">
+          <Leaf size={18} className="text-secondary" />
+          <h2 className="pits-section-title">Plano Nacional de Bioeconomia</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+          O <strong>Plano Nacional de Bioeconomia (PlanBio)</strong> estabelece diretrizes estratégicas para a conservação e o uso sustentável da biodiversidade nos biomas brasileiros, incluindo a Caatinga.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            { title: "Eixo 1 — Conservação da Biodiversidade", desc: "Promoção de áreas protegidas, restauração ecológica e manutenção da integridade florestal em biomas ameaçados." },
+            { title: "Eixo 2 — Mapeamento de Ativos Biológicos", desc: "Inventário e monitoramento de estoques de biomassa, espécies nativas e serviços ecossistêmicos da Caatinga." },
+          ].map((eixo) => (
+            <div key={eixo.title} className="p-3 bg-muted/40 rounded-lg">
+              <h4 className="text-xs font-semibold mb-1">{eixo.title}</h4>
+              <p className="text-xs text-muted-foreground">{eixo.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-muted-foreground mt-3 italic">
+          Alinhamento: o Módulo I operacionaliza os eixos de conservação e mapeamento do PlanBio através do zoneamento territorial e monitoramento da integridade florestal.
+        </p>
+      </div>
+
       {/* Species table */}
       <div className="pits-card overflow-x-auto">
         <h2 className="pits-section-title mb-4">Espécies Nativas Monitoradas</h2>
