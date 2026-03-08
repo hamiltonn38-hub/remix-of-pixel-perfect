@@ -92,12 +92,18 @@ export default function MapaCaatinga() {
 
     mapInstance.current = map;
 
-    // Fix tile rendering when container becomes visible
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 200);
+    // Fix tile rendering — invalidate after layout settles
+    const timers = [100, 300, 800].map((ms) =>
+      setTimeout(() => map.invalidateSize(), ms)
+    );
+
+    // Also observe container resize
+    const observer = new ResizeObserver(() => map.invalidateSize());
+    observer.observe(mapRef.current);
 
     return () => {
+      timers.forEach(clearTimeout);
+      observer.disconnect();
       map.remove();
       mapInstance.current = null;
     };
