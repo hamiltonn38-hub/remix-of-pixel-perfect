@@ -2,8 +2,9 @@ import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   LayoutDashboard, Leaf, Recycle, Users, BarChart3,
-  Gauge, SlidersHorizontal, FileText, Menu, X, Droplets, Info,
+  Gauge, SlidersHorizontal, FileText, Menu, X, Droplets,
 } from "lucide-react";
+import SobreModal from "@/components/SobreModal";
 
 const navItems = [
   { path: "/", label: "Dashboard", icon: LayoutDashboard },
