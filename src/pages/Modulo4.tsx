@@ -69,6 +69,31 @@ export default function Modulo4() {
         </ResponsiveContainer>
       </div>
 
+      {/* Plano Nacional de Bioeconomia */}
+      <div className="pits-card border-l-4 border-l-secondary">
+        <div className="flex items-center gap-2 mb-2">
+          <BarChart3 size={18} className="text-secondary" />
+          <h2 className="pits-section-title">Plano Nacional de Bioeconomia</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+          O <strong>PlanBio</strong> prevê sistemas integrados de monitoramento e avaliação para acompanhar indicadores de desempenho da bioeconomia nos territórios, com dados abertos e participação social.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            { title: "Eixo 7 — Monitoramento e Indicadores", desc: "Desenvolvimento de painéis de indicadores socioecológicos para avaliação contínua dos impactos da bioeconomia territorial." },
+            { title: "Eixo 8 — Dados Abertos e Transparência", desc: "Integração de bases de dados públicas (IBGE, MapBiomas, ANA) com dados comunitários para tomada de decisão baseada em evidências." },
+          ].map((eixo) => (
+            <div key={eixo.title} className="p-3 bg-muted/40 rounded-lg">
+              <h4 className="text-xs font-semibold mb-1">{eixo.title}</h4>
+              <p className="text-xs text-muted-foreground">{eixo.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-muted-foreground mt-3 italic">
+          Alinhamento: o Módulo IV implementa os eixos de monitoramento e transparência do PlanBio, consolidando dados de múltiplas fontes com registros participativos.
+        </p>
+      </div>
+
       {/* Participatory monitoring */}
       <div className="pits-card overflow-x-auto">
         <h2 className="pits-section-title mb-4">Monitoramento Participativo — Últimos Registros</h2>
