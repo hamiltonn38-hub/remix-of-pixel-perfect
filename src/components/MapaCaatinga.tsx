@@ -92,6 +92,11 @@ export default function MapaCaatinga() {
 
     mapInstance.current = map;
 
+    // Fix tile rendering when container becomes visible
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 200);
+
     return () => {
       map.remove();
       mapInstance.current = null;
