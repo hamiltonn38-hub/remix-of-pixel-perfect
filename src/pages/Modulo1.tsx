@@ -15,7 +15,9 @@ const biomassaComparacao = [
 
 export default function Modulo1() {
   const { selectedMunicipio: m } = usePits();
-  const metaPct = Math.min((m.cobertura_arborea_pct / 40) * 100, 100);
+  const mb = getMapBiomasMunicipio(m.municipio);
+  const coberturaReal = mb?.vegetacao_nativa_pct ?? m.cobertura_arborea_pct;
+  const metaPct = Math.min((coberturaReal / 40) * 100, 100);
 
   return (
     <div className="space-y-6">
