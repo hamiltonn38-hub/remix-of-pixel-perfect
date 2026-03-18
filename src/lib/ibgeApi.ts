@@ -59,15 +59,21 @@ export async function getMunicipioPopulacao(municipioId: number): Promise<number
   }
 }
 
-export async function getMunicipioArea(municipioId: number): Promise<number | null> {
+export async function getMunicipioMetadados(municipioId: number): Promise<{ area: number | null, lat: number | null, lng: number | null }> {
   try {
     const data = await fetchWithCache<any[]>(
       `${IBGE_BASE}/v3/malhas/municipios/${municipioId}/metadados`
     );
-    if (!data || data.length === 0 || !data[0].area?.dimensao) return null;
-    return parseFloat(data[0].area.dimensao);
+    if (!data || data.length === 0) return { area: null, lat: null, lng: null };
+    
+    const meta = data[0];
+    const area = meta.area?.dimensao ? parseFloat(meta.area.dimensao) : null;
+    const lat = meta.centroide?.latitude ?? null;
+    const lng = meta.centroide?.longitude ?? null;
+    
+    return { area, lat, lng };
   } catch {
-    return null;
+    return { area: null, lat: null, lng: null };
   }
 }
 
@@ -78,9 +84,9 @@ export async function getMunicipioIBGE(nome: string, uf: string) {
   );
   if (!found) return null;
 
-  const [populacao, area] = await Promise.all([
+  const [populacao, metadados] = await Promise.all([
     getMunicipioPopulacao(found.id),
-    getMunicipioArea(found.id),
+    getMunicipioMetadados(found.id),
   ]);
 
   return {
@@ -88,6 +94,8 @@ export async function getMunicipioIBGE(nome: string, uf: string) {
     nome: found.nome,
     mesorregiao: found.microrregiao.mesorregiao.nome,
     populacao,
-    area_km2: area,
+    area_km2: metadados.area,
+    latitude: metadados.lat,
+    longitude: metadados.lng,
   };
 }

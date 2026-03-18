@@ -1,21 +1,21 @@
 import { usePits } from "@/context/PitsContext";
-import { Database, CheckCircle, BarChart3, Calendar } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { Database, CheckCircle, BarChart3, Calendar, Loader2 } from "lucide-react";
+import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 const fontes = [
   { nome: "IBGE", desc: "Dados socioeconômicos e territoriais", variaveis: 42, atualizado: "2024-11-15" },
   { nome: "MapBiomas", desc: "Cobertura e uso do solo", variaveis: 28, atualizado: "2024-10-20" },
   { nome: "ANA", desc: "Recursos hídricos", variaveis: 15, atualizado: "2024-12-01" },
-  { nome: "INMET", desc: "Dados climatológicos", variaveis: 22, atualizado: "2024-12-10" },
+  { nome: "INMET", desc: "Dados climatológicos", variaveis: 22, atualizado: "Real-time" },
 ];
 
-const serieData = [
-  { ano: 2019, cobertura: 30.1, biomassa: 15.2, precipitacao: 680, ipse: 0.35 },
-  { ano: 2020, cobertura: 31.2, biomassa: 16.1, precipitacao: 720, ipse: 0.38 },
-  { ano: 2021, cobertura: 32.5, biomassa: 17.0, precipitacao: 690, ipse: 0.42 },
-  { ano: 2022, cobertura: 33.1, biomassa: 17.8, precipitacao: 750, ipse: 0.47 },
-  { ano: 2023, cobertura: 33.8, biomassa: 18.3, precipitacao: 710, ipse: 0.51 },
-  { ano: 2024, cobertura: 34.2, biomassa: 18.7, precipitacao: 730, ipse: 0.54 },
+const mockSerieData = [
+  { ano: 2019, cobertura: 30.1, biomassa: 15.2, precipitacaoBase: 680, ipse: 0.35 },
+  { ano: 2020, cobertura: 31.2, biomassa: 16.1, precipitacaoBase: 720, ipse: 0.38 },
+  { ano: 2021, cobertura: 32.5, biomassa: 17.0, precipitacaoBase: 690, ipse: 0.42 },
+  { ano: 2022, cobertura: 33.1, biomassa: 17.8, precipitacaoBase: 750, ipse: 0.47 },
+  { ano: 2023, cobertura: 33.8, biomassa: 18.3, precipitacaoBase: 710, ipse: 0.51 },
+  { ano: 2024, cobertura: 34.2, biomassa: 18.7, precipitacaoBase: 730, ipse: 0.54 },
 ];
 
 const registros = [
@@ -25,6 +25,19 @@ const registros = [
 ];
 
 export default function Modulo4() {
+  const { selectedMunicipio, inmetData, inmetLoading } = usePits();
+  const m = selectedMunicipio;
+  const inmet = inmetData[m.municipio];
+
+  // Mesclar dados mock com dados reais do INMET
+  const serieData = mockSerieData.map((item) => {
+    const inmetAno = inmet?.historico?.find((h) => h.ano === item.ano);
+    return {
+      ...item,
+      precipitacao: inmetAno ? inmetAno.precipitacaoTotal : item.precipitacaoBase,
+    };
+  });
+
   return (
     <div className="space-y-6">
       <div>
@@ -46,7 +59,7 @@ export default function Modulo4() {
             <p className="text-xs text-muted-foreground mb-2">{f.desc}</p>
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>{f.variaveis} variáveis</span>
-              <span>{f.atualizado}</span>
+              <span className={f.nome === "INMET" ? "text-hydro font-medium" : ""}>{f.atualizado}</span>
             </div>
           </div>
         ))}
@@ -54,18 +67,41 @@ export default function Modulo4() {
 
       {/* Time series */}
       <div className="pits-card">
-        <h2 className="pits-section-title mb-4">Série Temporal (2019–2024)</h2>
+        <div className="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-2">
+          <div>
+            <h2 className="pits-section-title">Série Temporal (2019–2024)</h2>
+            {inmet?.estacao && inmet.historico && inmet.historico.length > 0 ? (
+              <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                📍 Dados climáticos extraídos da Estação INMET <strong>{inmet.estacao.DC_NOME}</strong> 
+                ({inmet.estacao.CD_ESTACAO}) — a {inmet.estacao.distanciaKm?.toFixed(1)} km
+              </p>
+            ) : inmet?.estacao && (!inmet.historico || inmet.historico.length === 0) ? (
+              <p className="text-xs text-muted-foreground mt-1 flex flex-col gap-1">
+                <span>📍 Estação INMET mais próxima: <strong>{inmet.estacao.DC_NOME}</strong> ({inmet.estacao.CD_ESTACAO}) — a {inmet.estacao.distanciaKm?.toFixed(1)} km.</span>
+                <span className="text-amber-600 dark:text-amber-400">⚠️ Sem dados de chuva disponíveis na API (usando dados extrapolados).</span>
+              </p>
+            ) : inmetLoading ? (
+              <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                <Loader2 size={12} className="animate-spin" /> Buscando estação climática mais próxima...
+              </p>
+            ) : (
+              <p className="text-xs text-muted-foreground mt-1">📍 Dados climáticos extrapolados (sem estação próxima)</p>
+            )}
+          </div>
+        </div>
         <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={serieData}>
+          <ComposedChart data={serieData}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
             <XAxis dataKey="ano" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-            <YAxis tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
+            <YAxis yAxisId="left" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
+            <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 11 }} stroke="hsl(var(--hydro))" />
             <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px" }} />
             <Legend />
-            <Line type="monotone" dataKey="cobertura" stroke="hsl(var(--secondary))" strokeWidth={2} name="Cobertura (%)" dot={{ r: 3 }} />
-            <Line type="monotone" dataKey="biomassa" stroke="hsl(var(--primary))" strokeWidth={2} name="Biomassa (t/ha)" dot={{ r: 3 }} />
-            <Line type="monotone" dataKey="ipse" stroke="hsl(var(--accent))" strokeWidth={2} name="IPSE" dot={{ r: 3 }} />
-          </LineChart>
+            <Bar yAxisId="right" dataKey="precipitacao" fill="hsl(var(--hydro))" name="Precipitação INMET (mm)" opacity={0.5} radius={[2, 2, 0, 0]} />
+            <Line yAxisId="left" type="monotone" dataKey="cobertura" stroke="hsl(var(--secondary))" strokeWidth={2} name="Cobertura (%)" dot={{ r: 3 }} />
+            <Line yAxisId="left" type="monotone" dataKey="biomassa" stroke="hsl(var(--primary))" strokeWidth={2} name="Biomassa (t/ha)" dot={{ r: 3 }} />
+            <Line yAxisId="left" type="monotone" dataKey="ipse" stroke="hsl(var(--accent))" strokeWidth={2} name="IPSE" dot={{ r: 3 }} />
+          </ComposedChart>
         </ResponsiveContainer>
       </div>
 
