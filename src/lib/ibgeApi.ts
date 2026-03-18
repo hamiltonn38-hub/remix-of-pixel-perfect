@@ -61,13 +61,11 @@ export async function getMunicipioPopulacao(municipioId: number): Promise<number
 
 export async function getMunicipioArea(municipioId: number): Promise<number | null> {
   try {
-    const data = await fetchWithCache<IBGEPopulacao[]>(
-      `${IBGE_BASE}/v3/agregados/8418/periodos/-1/variaveis/6318?localidades=N6[${municipioId}]`
+    const data = await fetchWithCache<any[]>(
+      `${IBGE_BASE}/v3/malhas/municipios/${municipioId}/metadados`
     );
-    const series = data?.[0]?.resultados?.[0]?.series?.[0]?.serie;
-    if (!series) return null;
-    const lastYear = Object.keys(series).sort().pop();
-    return lastYear ? parseFloat(series[lastYear]) : null;
+    if (!data || data.length === 0 || !data[0].area?.dimensao) return null;
+    return parseFloat(data[0].area.dimensao);
   } catch {
     return null;
   }
