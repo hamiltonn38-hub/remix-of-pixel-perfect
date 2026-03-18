@@ -1,5 +1,7 @@
 import { usePits } from "@/context/PitsContext";
 import { especiesNativas } from "@/data/mockData";
+import { getMapBiomasMunicipio } from "@/data/mapbiomas";
+import MapBiomasChart from "@/components/MapBiomasChart";
 import { Leaf, TreePine, Droplets, Mountain } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
@@ -13,7 +15,9 @@ const biomassaComparacao = [
 
 export default function Modulo1() {
   const { selectedMunicipio: m } = usePits();
-  const metaPct = Math.min((m.cobertura_arborea_pct / 40) * 100, 100);
+  const mb = getMapBiomasMunicipio(m.municipio);
+  const coberturaReal = mb?.vegetacao_nativa_pct ?? m.cobertura_arborea_pct;
+  const metaPct = Math.min((coberturaReal / 40) * 100, 100);
 
   return (
     <div className="space-y-6">
@@ -27,7 +31,7 @@ export default function Modulo1() {
         {[
           { label: "Integridade Florestal (IFL)", value: m.IB.toFixed(2), icon: TreePine },
           { label: "Estoque de Biomassa", value: `${m.estoque_biomassa_t_ha} t/ha`, icon: Leaf },
-          { label: "Cobertura Arbórea", value: `${m.cobertura_arborea_pct}%`, icon: Mountain },
+          { label: "Cobertura Vegetal Nativa", value: `${coberturaReal}%`, icon: Mountain },
           { label: "Regeneração", value: `${m.taxa_regeneracao_pct_ano}%/ano`, icon: Droplets },
         ].map((ind) => (
           <div key={ind.label} className="pits-card text-center">
@@ -50,9 +54,12 @@ export default function Modulo1() {
               />
             </div>
           </div>
-          <span className="text-sm font-semibold">{m.cobertura_arborea_pct}% / 40%</span>
+          <span className="text-sm font-semibold">{coberturaReal}% / 40%</span>
         </div>
       </div>
+
+      {/* MapBiomas data */}
+      <MapBiomasChart />
 
       {/* Chart */}
       <div className="pits-card">

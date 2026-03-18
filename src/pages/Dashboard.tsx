@@ -3,7 +3,8 @@ import IPSEGauge from "@/components/IPSEGauge";
 import SubIndexCard from "@/components/SubIndexCard";
 import MapaCaatinga from "@/components/MapaCaatinga";
 import { ipseHistorico, getAlerts } from "@/data/mockData";
-import { Leaf, Users, Zap, Shield, AlertTriangle } from "lucide-react";
+import { getMapBiomasMunicipio } from "@/data/mapbiomas";
+import { Leaf, Users, Zap, Shield, AlertTriangle, Satellite } from "lucide-react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
@@ -12,6 +13,7 @@ export default function Dashboard() {
   const { selectedMunicipio: m, ibgeData, ibgeLoading } = usePits();
   const alerts = getAlerts(m);
   const ibge = ibgeData[m.municipio];
+  const mb = getMapBiomasMunicipio(m.municipio);
   const pop = ibge?.populacao ?? m.populacao;
   const area = ibge?.area_km2 ?? m.area_km2;
 
@@ -23,7 +25,8 @@ export default function Dashboard() {
         <p className="text-sm text-muted-foreground">
           {m.estado}{ibge?.mesorregiao ? ` • ${ibge.mesorregiao}` : ""} • {area.toLocaleString("pt-BR")} km² • {pop.toLocaleString("pt-BR")} hab.
           {ibgeLoading && <span className="ml-2 text-xs text-accent animate-pulse">Atualizando IBGE...</span>}
-          {ibge && <span className="ml-2 text-xs text-success">✓ Dados IBGE</span>}
+          {ibge && <span className="ml-2 text-xs text-success">✓ IBGE</span>}
+          {mb && <span className="ml-1 text-xs text-success">✓ MapBiomas</span>}
         </p>
       </div>
 
@@ -92,7 +95,7 @@ export default function Dashboard() {
       {/* Quick stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Cobertura Arbórea", value: `${m.cobertura_arborea_pct}%`, sub: "Meta: ≥40%" },
+          { label: "Vegetação Nativa", value: `${mb?.vegetacao_nativa_pct ?? m.cobertura_arborea_pct}%`, sub: mb ? "MapBiomas Col. 9" : "Meta: ≥40%" },
           { label: "Biomassa", value: `${m.estoque_biomassa_t_ha} t/ha`, sub: "Estoque atual" },
           { label: "Biodigestores", value: m.biodigestores.toString(), sub: "Unidades instaladas" },
           { label: "PSA Distribuído", value: `R$ ${(m.psa_recursos_ano_reais / 1000).toFixed(0)}k`, sub: "Anual" },
