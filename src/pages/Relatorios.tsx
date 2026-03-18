@@ -28,11 +28,11 @@ export default function Relatorios() {
           Gere um relatório semestral completo para <strong>{m.municipio}</strong> com diagnóstico, indicadores, recomendações e próximas ações.
         </p>
         <div className="flex gap-3">
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => { generateRelatorioPDF(m); toast.success("PDF gerado com sucesso!"); }}>
             <FileText size={16} className="mr-2" />
             Gerar Relatório PDF
           </Button>
-          <Button variant="outline">
+          <Button variant="outline" onClick={() => { exportCSV(m); toast.success("CSV exportado!"); }}>
             <Download size={16} className="mr-2" />
             Exportar CSV
           </Button>
