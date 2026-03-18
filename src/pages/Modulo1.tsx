@@ -1,5 +1,7 @@
 import { usePits } from "@/context/PitsContext";
 import { especiesNativas } from "@/data/mockData";
+import { getMapBiomasMunicipio } from "@/data/mapbiomas";
+import MapBiomasChart from "@/components/MapBiomasChart";
 import { Leaf, TreePine, Droplets, Mountain } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
