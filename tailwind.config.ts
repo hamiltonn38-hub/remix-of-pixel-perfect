@@ -70,6 +70,15 @@ export default {
           yellow: "hsl(var(--gauge-yellow))",
           green: "hsl(var(--gauge-green))",
         },
+        "pits-terra": "#8B5E3C",
+        "pits-caatinga": "#5A7A3A",
+        "pits-seco": "#C8A96E",
+        "pits-agua": "#2E6E8E",
+        "pits-alerta": "#C0392B",
+        "pits-neutro": "#F5F0E8",
+      },
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
