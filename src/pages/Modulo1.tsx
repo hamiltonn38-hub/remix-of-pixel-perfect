@@ -31,7 +31,7 @@ export default function Modulo1() {
         {[
           { label: "Integridade Florestal (IFL)", value: m.IB.toFixed(2), icon: TreePine },
           { label: "Estoque de Biomassa", value: `${m.estoque_biomassa_t_ha} t/ha`, icon: Leaf },
-          { label: "Cobertura Arbórea", value: `${m.cobertura_arborea_pct}%`, icon: Mountain },
+          { label: "Cobertura Vegetal Nativa", value: `${coberturaReal}%`, icon: Mountain },
           { label: "Regeneração", value: `${m.taxa_regeneracao_pct_ano}%/ano`, icon: Droplets },
         ].map((ind) => (
           <div key={ind.label} className="pits-card text-center">
