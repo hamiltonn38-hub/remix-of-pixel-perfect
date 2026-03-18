@@ -2,6 +2,7 @@ import { usePits } from "@/context/PitsContext";
 import { especiesNativas } from "@/data/mockData";
 import { getMapBiomasMunicipio } from "@/data/mapbiomas";
 import MapBiomasChart from "@/components/MapBiomasChart";
+import AlertasDesmatamento from "@/components/AlertasDesmatamento";
 import { Leaf, TreePine, Droplets, Mountain } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
@@ -60,6 +61,9 @@ export default function Modulo1() {
 
       {/* MapBiomas data */}
       <MapBiomasChart />
+
+      {/* Alertas de Desmatamento — MapBiomas Alerta */}
+      <AlertasDesmatamento />
 
       {/* Chart */}
       <div className="pits-card">

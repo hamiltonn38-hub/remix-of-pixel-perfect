@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react";
 import { usePits } from "@/context/PitsContext";
 import IPSEGauge from "@/components/IPSEGauge";
 import SubIndexCard from "@/components/SubIndexCard";
 import MapaCaatinga from "@/components/MapaCaatinga";
 import { ipseHistorico, getAlerts } from "@/data/mockData";
 import { getMapBiomasMunicipio } from "@/data/mapbiomas";
-import { Leaf, Users, Zap, Shield, AlertTriangle, Satellite } from "lucide-react";
+import { fetchAlertasMunicipio, MapBiomasAlerta } from "@/lib/mapbiomasAlertaApi";
+import { Leaf, Users, Zap, Shield, AlertTriangle, Satellite, Flame } from "lucide-react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
@@ -16,6 +18,18 @@ export default function Dashboard() {
   const mb = getMapBiomasMunicipio(m.municipio);
   const pop = ibge?.populacao ?? m.populacao;
   const area = ibge?.area_km2 ?? m.area_km2;
+
+  // MapBiomas Alerta real data
+  const [desmatAlerts, setDesmatAlerts] = useState<MapBiomasAlerta[]>([]);
+  useEffect(() => {
+    if (!mb?.codigoIBGE) return;
+    let cancelled = false;
+    fetchAlertasMunicipio(mb.codigoIBGE)
+      .then((data) => { if (!cancelled) setDesmatAlerts(data); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [mb?.codigoIBGE]);
+  const desmatTotalHa = desmatAlerts.reduce((s, a) => s + a.areaHa, 0);
 
   return (
     <div className="space-y-6">
@@ -93,16 +107,17 @@ export default function Dashboard() {
       <MapaCaatinga />
 
       {/* Quick stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {[
-          { label: "Vegetação Nativa", value: `${mb?.vegetacao_nativa_pct ?? m.cobertura_arborea_pct}%`, sub: mb ? "MapBiomas Col. 9" : "Meta: ≥40%" },
-          { label: "Biomassa", value: `${m.estoque_biomassa_t_ha} t/ha`, sub: "Estoque atual" },
-          { label: "Biodigestores", value: m.biodigestores.toString(), sub: "Unidades instaladas" },
-          { label: "PSA Distribuído", value: `R$ ${(m.psa_recursos_ano_reais / 1000).toFixed(0)}k`, sub: "Anual" },
+          { label: "Vegetação Nativa", value: `${mb?.vegetacao_nativa_pct ?? m.cobertura_arborea_pct}%`, sub: mb ? "MapBiomas Col. 9" : "Meta: ≥40%", color: "" },
+          { label: "Biomassa", value: `${m.estoque_biomassa_t_ha} t/ha`, sub: "Estoque atual", color: "" },
+          { label: "Biodigestores", value: m.biodigestores.toString(), sub: "Unidades instaladas", color: "" },
+          { label: "PSA Distribuído", value: `R$ ${(m.psa_recursos_ano_reais / 1000).toFixed(0)}k`, sub: "Anual", color: "" },
+          { label: "🔥 Desmatamento", value: `${desmatAlerts.length} alertas`, sub: desmatAlerts.length > 0 ? `${desmatTotalHa.toLocaleString("pt-BR", { maximumFractionDigits: 1 })} ha • MapBiomas` : "MapBiomas Alerta", color: "text-pits-alerta" },
         ].map((stat) => (
           <div key={stat.label} className="pits-card text-center">
             <p className="pits-label text-[11px]">{stat.label}</p>
-            <p className="pits-metric text-xl mt-1">{stat.value}</p>
+            <p className={`pits-metric text-xl mt-1 ${stat.color}`}>{stat.value}</p>
             <p className="text-xs text-muted-foreground">{stat.sub}</p>
           </div>
         ))}

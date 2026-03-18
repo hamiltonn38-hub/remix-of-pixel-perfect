@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import { MapPin } from "lucide-react";
+import { usePits } from "@/context/PitsContext";
+import { getMapBiomasMunicipio } from "@/data/mapbiomas";
+import { fetchAlertasMunicipio, MapBiomasAlerta } from "@/lib/mapbiomasAlertaApi";
 
 // Approximate polygons for thematic zones around Quixadá region
 const layers: {
@@ -60,10 +63,31 @@ export default function MapaCaatinga() {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
   const layerRefs = useRef<Record<string, L.Polygon>>({});
+  const alertLayerGroup = useRef<L.LayerGroup | null>(null);
   const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>(
-    Object.fromEntries(layers.map((l) => [l.id, true]))
+    { ...Object.fromEntries(layers.map((l) => [l.id, true])), desmatamento: true }
   );
+  const [alertas, setAlertas] = useState<MapBiomasAlerta[]>([]);
+  const [alertasLoading, setAlertasLoading] = useState(false);
 
+  const { selectedMunicipio } = usePits();
+  const mb = getMapBiomasMunicipio(selectedMunicipio.municipio);
+
+  // Fetch deforestation alerts
+  useEffect(() => {
+    if (!mb?.codigoIBGE) return;
+    let cancelled = false;
+    setAlertasLoading(true);
+
+    fetchAlertasMunicipio(mb.codigoIBGE)
+      .then((data) => { if (!cancelled) setAlertas(data); })
+      .catch(() => { if (!cancelled) setAlertas([]); })
+      .finally(() => { if (!cancelled) setAlertasLoading(false); });
+
+    return () => { cancelled = true; };
+  }, [mb?.codigoIBGE]);
+
+  // Init map
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
 
@@ -90,14 +114,16 @@ export default function MapaCaatinga() {
       layerRefs.current[layer.id] = polygon;
     });
 
+    // Create layer group for alert markers
+    alertLayerGroup.current = L.layerGroup().addTo(map);
+
     mapInstance.current = map;
 
-    // Fix tile rendering — invalidate after layout settles
+    // Fix tile rendering
     const timers = [100, 300, 800].map((ms) =>
       setTimeout(() => map.invalidateSize(), ms)
     );
 
-    // Also observe container resize
     const observer = new ResizeObserver(() => map.invalidateSize());
     observer.observe(mapRef.current);
 
@@ -109,10 +135,58 @@ export default function MapaCaatinga() {
     };
   }, []);
 
+  // Update alert markers when alertas change
+  useEffect(() => {
+    const group = alertLayerGroup.current;
+    if (!group) return;
+
+    group.clearLayers();
+
+    if (!activeLayers.desmatamento) return;
+
+    alertas.forEach((alerta) => {
+      if (!alerta.centroid) return;
+
+      const marker = L.circleMarker([alerta.centroid.lat, alerta.centroid.lng], {
+        radius: Math.min(Math.max(alerta.areaHa / 5, 5), 18),
+        color: "#C0392B",
+        fillColor: "#C0392B",
+        fillOpacity: 0.5,
+        weight: 2,
+      });
+
+      const date = new Date(alerta.detectedAt).toLocaleDateString("pt-BR");
+      marker.bindTooltip(
+        `<div style="font-size:11px">
+          <strong>🔥 Alerta ${alerta.alertCode}</strong><br/>
+          Data: ${date}<br/>
+          Área: ${alerta.areaHa.toLocaleString("pt-BR", { maximumFractionDigits: 2 })} ha<br/>
+          Fonte: ${alerta.source}
+        </div>`,
+        { sticky: true }
+      );
+
+      marker.addTo(group);
+    });
+  }, [alertas, activeLayers.desmatamento]);
+
   const toggleLayer = (id: string) => {
     const map = mapInstance.current;
+    if (!map) return;
+
+    if (id === "desmatamento") {
+      const newState = !activeLayers.desmatamento;
+      if (newState && alertLayerGroup.current) {
+        alertLayerGroup.current.addTo(map);
+      } else if (alertLayerGroup.current) {
+        alertLayerGroup.current.removeFrom(map);
+      }
+      setActiveLayers((prev) => ({ ...prev, desmatamento: newState }));
+      return;
+    }
+
     const polygon = layerRefs.current[id];
-    if (!map || !polygon) return;
+    if (!polygon) return;
 
     const newState = !activeLayers[id];
     if (newState) {
@@ -123,6 +197,11 @@ export default function MapaCaatinga() {
     setActiveLayers((prev) => ({ ...prev, [id]: newState }));
   };
 
+  const allLayers = [
+    ...layers,
+    { id: "desmatamento", label: `Alertas Desmatamento${alertasLoading ? " ⏳" : ` (${alertas.length})`}`, color: "#C0392B" },
+  ];
+
   return (
     <div className="pits-card">
       <h2 className="pits-section-title mb-3 flex items-center gap-2">
@@ -130,7 +209,7 @@ export default function MapaCaatinga() {
         Mapa Territorial
       </h2>
       <div className="flex flex-wrap gap-2 mb-3">
-        {layers.map((layer) => (
+        {allLayers.map((layer) => (
           <button
             key={layer.id}
             onClick={() => toggleLayer(layer.id)}
