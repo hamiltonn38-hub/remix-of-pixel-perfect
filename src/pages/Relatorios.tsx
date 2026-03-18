@@ -1,6 +1,8 @@
 import { usePits } from "@/context/PitsContext";
 import { FileText, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { generateRelatorioPDF, exportCSV } from "@/lib/generatePDF";
+import { toast } from "sonner";
 
 const historico = [
   { id: 1, periodo: "2024-S2", municipio: "Quixadá", gerado: "2024-12-15", tipo: "Semestral" },
