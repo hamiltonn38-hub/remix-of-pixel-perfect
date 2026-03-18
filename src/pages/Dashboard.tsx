@@ -13,6 +13,7 @@ export default function Dashboard() {
   const { selectedMunicipio: m, ibgeData, ibgeLoading } = usePits();
   const alerts = getAlerts(m);
   const ibge = ibgeData[m.municipio];
+  const mb = getMapBiomasMunicipio(m.municipio);
   const pop = ibge?.populacao ?? m.populacao;
   const area = ibge?.area_km2 ?? m.area_km2;
 
