@@ -9,8 +9,11 @@ import {
 } from "recharts";
 
 export default function Dashboard() {
-  const { selectedMunicipio: m } = usePits();
+  const { selectedMunicipio: m, ibgeData, ibgeLoading } = usePits();
   const alerts = getAlerts(m);
+  const ibge = ibgeData[m.municipio];
+  const pop = ibge?.populacao ?? m.populacao;
+  const area = ibge?.area_km2 ?? m.area_km2;
 
   return (
     <div className="space-y-6">
@@ -18,7 +21,9 @@ export default function Dashboard() {
       <div>
         <h1 className="text-2xl font-bold">Dashboard — {m.municipio}</h1>
         <p className="text-sm text-muted-foreground">
-          {m.estado} • {m.area_km2.toLocaleString("pt-BR")} km² • {m.populacao.toLocaleString("pt-BR")} hab.
+          {m.estado}{ibge?.mesorregiao ? ` • ${ibge.mesorregiao}` : ""} • {area.toLocaleString("pt-BR")} km² • {pop.toLocaleString("pt-BR")} hab.
+          {ibgeLoading && <span className="ml-2 text-xs text-accent animate-pulse">Atualizando IBGE...</span>}
+          {ibge && <span className="ml-2 text-xs text-success">✓ Dados IBGE</span>}
         </p>
       </div>
 
