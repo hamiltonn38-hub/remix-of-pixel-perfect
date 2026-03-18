@@ -58,6 +58,9 @@ export default function Modulo1() {
         </div>
       </div>
 
+      {/* MapBiomas data */}
+      <MapBiomasChart />
+
       {/* Chart */}
       <div className="pits-card">
         <h2 className="pits-section-title mb-4">Biomassa por Faixa de Cobertura Arbórea</h2>

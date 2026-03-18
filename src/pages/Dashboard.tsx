@@ -95,7 +95,7 @@ export default function Dashboard() {
       {/* Quick stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Cobertura Arbórea", value: `${m.cobertura_arborea_pct}%`, sub: "Meta: ≥40%" },
+          { label: "Vegetação Nativa", value: `${mb?.vegetacao_nativa_pct ?? m.cobertura_arborea_pct}%`, sub: mb ? "MapBiomas Col. 9" : "Meta: ≥40%" },
           { label: "Biomassa", value: `${m.estoque_biomassa_t_ha} t/ha`, sub: "Estoque atual" },
           { label: "Biodigestores", value: m.biodigestores.toString(), sub: "Unidades instaladas" },
           { label: "PSA Distribuído", value: `R$ ${(m.psa_recursos_ano_reais / 1000).toFixed(0)}k`, sub: "Anual" },
