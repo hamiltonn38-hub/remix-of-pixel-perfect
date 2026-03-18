@@ -54,7 +54,7 @@ export default function Modulo1() {
               />
             </div>
           </div>
-          <span className="text-sm font-semibold">{m.cobertura_arborea_pct}% / 40%</span>
+          <span className="text-sm font-semibold">{coberturaReal}% / 40%</span>
         </div>
       </div>
 
