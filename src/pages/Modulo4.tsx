@@ -145,13 +145,13 @@ export default function Modulo4() {
           </thead>
           <tbody>
             {registros.map((r, i) => (
-              <tr key={i} className="border-b border-border/50">
+              <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                 <td className="py-2.5 px-3 text-muted-foreground">{r.data}</td>
                 <td className="py-2.5 px-3">{r.comunidade}</td>
                 <td className="py-2.5 px-3">{r.indicador}</td>
                 <td className="py-2.5 px-3 font-medium">{r.valor}</td>
                 <td className="py-2.5 px-3">
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${r.status === "Validado" ? "bg-success/20 text-success" : "bg-accent/20 text-accent-foreground"}`}>
+                  <span className={`pits-badge ${r.status === "Validado" ? "pits-badge-success" : "pits-badge-warning"}`}>
                     {r.status}
                   </span>
                 </td>

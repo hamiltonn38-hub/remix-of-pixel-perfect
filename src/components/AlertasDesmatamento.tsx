@@ -130,7 +130,7 @@ export default function AlertasDesmatamento() {
                       const sev = severidade(a.areaHa);
                       const detDate = new Date(a.detectedAt);
                       return (
-                        <tr key={a.alertCode} className="border-b border-border/40 hover:bg-muted/30">
+                        <tr key={a.alertCode} className="border-b border-border/40 hover:bg-muted/30 transition-colors">
                           <td className="py-2 px-2 font-mono text-[11px]">
                             <div className="flex items-center gap-1.5">
                               <Flame size={12} className="text-pits-alerta shrink-0" />
@@ -144,13 +144,13 @@ export default function AlertasDesmatamento() {
                             {a.areaHa.toLocaleString("pt-BR", { maximumFractionDigits: 2 })}
                           </td>
                           <td className="py-2 px-2">
-                            <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-medium ${sev.class}`}>
+                            <span className={sev.class}>
                               {sev.label}
                             </span>
                           </td>
                           <td className="py-2 px-2 text-muted-foreground">{a.source}</td>
                           <td className="py-2 px-2">
-                            <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-medium bg-pits-caatinga/20 text-pits-caatinga">
+                            <span className="pits-badge pits-badge-success">
                               {a.statusLabel}
                             </span>
                           </td>
