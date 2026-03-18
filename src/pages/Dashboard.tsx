@@ -25,7 +25,8 @@ export default function Dashboard() {
         <p className="text-sm text-muted-foreground">
           {m.estado}{ibge?.mesorregiao ? ` • ${ibge.mesorregiao}` : ""} • {area.toLocaleString("pt-BR")} km² • {pop.toLocaleString("pt-BR")} hab.
           {ibgeLoading && <span className="ml-2 text-xs text-accent animate-pulse">Atualizando IBGE...</span>}
-          {ibge && <span className="ml-2 text-xs text-success">✓ Dados IBGE</span>}
+          {ibge && <span className="ml-2 text-xs text-success">✓ IBGE</span>}
+          {mb && <span className="ml-1 text-xs text-success">✓ MapBiomas</span>}
         </p>
       </div>
 
