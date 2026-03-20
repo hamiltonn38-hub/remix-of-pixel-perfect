@@ -3,17 +3,19 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import { PitsProvider } from "@/context/PitsContext";
 import AppLayout from "@/components/AppLayout";
-import Dashboard from "@/pages/Dashboard";
-import Modulo1 from "@/pages/Modulo1";
-import Modulo2 from "@/pages/Modulo2";
-import Modulo3 from "@/pages/Modulo3";
-import Modulo4 from "@/pages/Modulo4";
-import IPSEPage from "@/pages/IPSEPage";
-import Simulador from "@/pages/Simulador";
-import Relatorios from "@/pages/Relatorios";
-import NotFound from "@/pages/NotFound";
+
+const Dashboard = lazy(() => import("@/pages/Dashboard"));
+const Modulo1 = lazy(() => import("@/pages/Modulo1"));
+const Modulo2 = lazy(() => import("@/pages/Modulo2"));
+const Modulo3 = lazy(() => import("@/pages/Modulo3"));
+const Modulo4 = lazy(() => import("@/pages/Modulo4"));
+const IPSEPage = lazy(() => import("@/pages/IPSEPage"));
+const Simulador = lazy(() => import("@/pages/Simulador"));
+const Relatorios = lazy(() => import("@/pages/Relatorios"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <Suspense fallback={<div className="flex h-screen w-full items-center justify-center p-12 text-muted-foreground">Carregando aplicação...</div>}>
           <Routes>
             <Route element={<AppLayout />}>
               <Route path="/" element={<Dashboard />} />
@@ -37,6 +40,7 @@ const App = () => (
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </BrowserRouter>
       </PitsProvider>
     </TooltipProvider>

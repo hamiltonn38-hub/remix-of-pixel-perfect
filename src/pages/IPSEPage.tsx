@@ -1,8 +1,10 @@
 import { usePits } from "@/context/PitsContext";
 import { calcIPSE } from "@/data/mockData";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Tooltip } from "recharts";
 import { Slider } from "@/components/ui/slider";
+import { gaugeColorForIPSE } from "@/lib/constants";
+import { PitsRadarChart } from "@/components/charts/PitsCharts";
 
 export default function IPSEPage() {
   const { selectedMunicipio: m, allMunicipios } = usePits();
@@ -32,10 +34,12 @@ export default function IPSEPage() {
 
   const labels = ["IB — Biomassa", "IVS — Vulnerabilidade", "IIE — Infraestrutura", "IGL — Governança"];
 
-  const ranking = [...allMunicipios].map((mu) => ({
-    ...mu,
-    ipseCustom: calcIPSE(mu.IB, mu.IVS, mu.IIE, mu.IGL, weights),
-  })).sort((a, b) => b.ipseCustom - a.ipseCustom);
+  const ranking = useMemo(() => {
+    return [...allMunicipios].map((mu) => ({
+      ...mu,
+      ipseCustom: calcIPSE(mu.IB, mu.IVS, mu.IIE, mu.IGL, weights),
+    })).sort((a, b) => b.ipseCustom - a.ipseCustom);
+  }, [allMunicipios, weights]);
 
   return (
     <div className="space-y-6">
@@ -50,7 +54,7 @@ export default function IPSEPage() {
         <p className="text-lg font-mono font-semibold">
           IPSE = w₁·IB + w₂·IVS + w₃·IIE + w₄·IGL
         </p>
-        <p className="pits-metric text-3xl mt-3" style={{ color: customIPSE < 0.3 ? "hsl(var(--gauge-red))" : customIPSE < 0.6 ? "hsl(var(--gauge-yellow))" : "hsl(var(--gauge-green))" }}>
+        <p className="pits-metric text-3xl mt-3" style={{ color: gaugeColorForIPSE(customIPSE) }}>
           {customIPSE.toFixed(3)}
         </p>
       </div>
@@ -84,14 +88,12 @@ export default function IPSEPage() {
         {/* Radar */}
         <div className="pits-card">
           <h2 className="pits-section-title mb-4">Gráfico Radar — {m.municipio}</h2>
-          <ResponsiveContainer width="100%" height={280}>
-            <RadarChart data={radarData}>
-              <PolarGrid stroke="hsl(var(--border))" />
-              <PolarAngleAxis dataKey="sub" tick={{ fontSize: 12, fill: "hsl(var(--foreground))" }} />
-              <PolarRadiusAxis domain={[0, 1]} tick={{ fontSize: 10 }} />
-              <Radar dataKey="value" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" fillOpacity={0.3} strokeWidth={2} />
-            </RadarChart>
-          </ResponsiveContainer>
+          <PitsRadarChart
+            data={radarData}
+            dataKey="value"
+            angleKey="sub"
+            height={280}
+          />
         </div>
       </div>
 

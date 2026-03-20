@@ -4,7 +4,8 @@ import { getMapBiomasMunicipio } from "@/data/mapbiomas";
 import MapBiomasChart from "@/components/MapBiomasChart";
 import AlertasDesmatamento from "@/components/AlertasDesmatamento";
 import { Leaf, TreePine, Droplets, Mountain } from "lucide-react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { COBERTURA_META_PCT } from "@/lib/constants";
+import { PitsBarChart } from "@/components/charts/PitsCharts";
 
 const biomassaComparacao = [
   { faixa: "0–10%", biomassa: 5.2 },
@@ -18,7 +19,7 @@ export default function Modulo1() {
   const { selectedMunicipio: m } = usePits();
   const mb = getMapBiomasMunicipio(m.municipio);
   const coberturaReal = mb?.vegetacao_nativa_pct ?? m.cobertura_arborea_pct;
-  const metaPct = Math.min((coberturaReal / 40) * 100, 100);
+  const metaPct = Math.min((coberturaReal / COBERTURA_META_PCT) * 100, 100);
 
   return (
     <div className="space-y-6">
@@ -45,7 +46,7 @@ export default function Modulo1() {
 
       {/* Meta de cobertura */}
       <div className="pits-card">
-        <h2 className="pits-section-title mb-2">Meta de Cobertura Arbórea (≥ 40%)</h2>
+        <h2 className="pits-section-title mb-2">Meta de Cobertura Arbórea (≥ {COBERTURA_META_PCT}%)</h2>
         <div className="flex items-center gap-4">
           <div className="flex-1">
             <div className="w-full h-4 bg-muted rounded-full overflow-hidden">
@@ -55,7 +56,7 @@ export default function Modulo1() {
               />
             </div>
           </div>
-          <span className="text-sm font-semibold">{coberturaReal}% / 40%</span>
+          <span className="text-sm font-semibold">{coberturaReal}% / {COBERTURA_META_PCT}%</span>
         </div>
       </div>
 
@@ -68,15 +69,12 @@ export default function Modulo1() {
       {/* Chart */}
       <div className="pits-card">
         <h2 className="pits-section-title mb-4">Biomassa por Faixa de Cobertura Arbórea</h2>
-        <ResponsiveContainer width="100%" height={250}>
-          <BarChart data={biomassaComparacao}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-            <XAxis dataKey="faixa" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-            <YAxis tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-            <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px" }} />
-            <Bar dataKey="biomassa" fill="hsl(var(--secondary))" radius={[6, 6, 0, 0]} name="Biomassa (t/ha)" />
-          </BarChart>
-        </ResponsiveContainer>
+        <PitsBarChart
+          data={biomassaComparacao}
+          xKey="faixa"
+          height={250}
+          bars={[{ key: "biomassa", name: "Biomassa (t/ha)", color: "hsl(var(--secondary))" }]}
+        />
       </div>
 
       {/* Plano Nacional de Bioeconomia */}

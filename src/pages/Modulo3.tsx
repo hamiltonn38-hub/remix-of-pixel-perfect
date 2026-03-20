@@ -1,6 +1,6 @@
 import { usePits } from "@/context/PitsContext";
 import { Users, FileCheck, Coins, CheckCircle, AlertCircle, XCircle } from "lucide-react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { PitsPieChart } from "@/components/charts/PitsCharts";
 
 const acordos = [
   { comunidade: "Assentamento Aroeira", tipo: "Manejo florestal", data: "2024-03-15", status: "Ativo", area: 320 },
@@ -121,24 +121,7 @@ export default function Modulo3() {
         {/* PSA Pie */}
         <div className="pits-card">
           <h2 className="pits-section-title mb-4">PSA — Distribuição por Serviço</h2>
-          <ResponsiveContainer width="100%" height={220}>
-            <PieChart>
-              <Pie data={psaDistribuicao} dataKey="valor" nameKey="nome" cx="50%" cy="50%" innerRadius={50} outerRadius={80} paddingAngle={3}>
-                {psaDistribuicao.map((entry, i) => (
-                  <Cell key={i} fill={entry.cor} />
-                ))}
-              </Pie>
-              <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px" }} />
-            </PieChart>
-          </ResponsiveContainer>
-          <div className="flex flex-wrap gap-2 justify-center mt-2">
-            {psaDistribuicao.map((p, i) => (
-              <span key={i} className="flex items-center gap-1 text-xs">
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: p.cor }} />
-                {p.nome} ({p.valor}%)
-              </span>
-            ))}
-          </div>
+          <PitsPieChart data={psaDistribuicao} height={220} />
         </div>
 
         {/* Ostrom */}

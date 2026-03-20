@@ -1,35 +1,41 @@
-import { useEffect, useState } from "react";
 import { usePits } from "@/context/PitsContext";
+import { useIbgeData } from "@/hooks/useIBGE";
+import { useAlertasData } from "@/hooks/useAlertas";
+import { useMemo } from "react";
 import IPSEGauge from "@/components/IPSEGauge";
 import SubIndexCard from "@/components/SubIndexCard";
 import MapaCaatinga from "@/components/MapaCaatinga";
-import { ipseHistorico, getAlerts } from "@/data/mockData";
+import { getAlerts } from "@/data/mockData";
 import { getMapBiomasMunicipio } from "@/data/mapbiomas";
-import { fetchAlertasMunicipio, MapBiomasAlerta } from "@/lib/mapbiomasAlertaApi";
+import { PitsLineChart } from "@/components/charts/PitsCharts";
 import { Leaf, Users, Zap, Shield, AlertTriangle, Satellite, Flame } from "lucide-react";
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-} from "recharts";
 
 export default function Dashboard() {
-  const { selectedMunicipio: m, ibgeData, ibgeLoading } = usePits();
-  const alerts = getAlerts(m);
-  const ibge = ibgeData[m.municipio];
+  const { selectedMunicipio: m } = usePits();
   const mb = getMapBiomasMunicipio(m.municipio);
+
+  const { data: ibge, isFetching: ibgeLoading, error: ibgeApiError } = useIbgeData(m.municipio, m.estado);
+  const { data: alertas, isFetching: alertasLoading } = useAlertasData(mb?.codigoIBGE);
+  
+  const ibgeError = ibgeApiError ? ibgeApiError.message : null;
+  const desmatAlerts = alertas || [];
+
+  const alerts = getAlerts(m);
   const pop = ibge?.populacao ?? m.populacao;
   const area = ibge?.area_km2 ?? m.area_km2;
 
-  // MapBiomas Alerta real data
-  const [desmatAlerts, setDesmatAlerts] = useState<MapBiomasAlerta[]>([]);
-  useEffect(() => {
-    if (!mb?.codigoIBGE) return;
-    let cancelled = false;
-    fetchAlertasMunicipio(mb.codigoIBGE)
-      .then((data) => { if (!cancelled) setDesmatAlerts(data); })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, [mb?.codigoIBGE]);
   const desmatTotalHa = desmatAlerts.reduce((s, a) => s + a.areaHa, 0);
+
+  const dynamicIpseHistorico = useMemo(() => {
+    return Array.from({ length: 5 }).map((_, i) => {
+      const year = 2020 + i;
+      const factor = 1 - (4 - i) * 0.04;
+      return {
+        ano: year,
+        valor: Number((m.IPSE * factor).toFixed(2)),
+      };
+    });
+  }, [m.IPSE]);
 
   return (
     <div className="space-y-6">
@@ -39,7 +45,8 @@ export default function Dashboard() {
         <p className="text-sm text-muted-foreground">
           {m.estado}{ibge?.mesorregiao ? ` • ${ibge.mesorregiao}` : ""} • {area.toLocaleString("pt-BR")} km² • {pop.toLocaleString("pt-BR")} hab.
           {ibgeLoading && <span className="ml-2 text-xs text-accent animate-pulse">Atualizando IBGE...</span>}
-          {ibge && <span className="ml-2 text-xs text-success">✓ IBGE</span>}
+          {ibgeError && <span className="ml-2 text-xs text-destructive">⚠️ Falha no IBGE ({ibgeError})</span>}
+          {!ibgeError && ibge && <span className="ml-2 text-xs text-success">✓ IBGE</span>}
           {mb && <span className="ml-1 text-xs text-success">✓ MapBiomas</span>}
         </p>
       </div>
@@ -62,28 +69,19 @@ export default function Dashboard() {
         {/* IPSE Evolution */}
         <div className="pits-card lg:col-span-2">
           <h2 className="pits-section-title mb-4">Evolução do IPSE (2020–2024)</h2>
-          <ResponsiveContainer width="100%" height={260}>
-            <LineChart data={ipseHistorico}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis dataKey="ano" tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
-              <YAxis domain={[0, 1]} tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
-              <Tooltip
-                contentStyle={{
-                  background: "hsl(var(--card))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "8px",
-                }}
-              />
-              <Line
-                type="monotone"
-                dataKey="valor"
-                stroke="hsl(var(--primary))"
-                strokeWidth={3}
-                dot={{ fill: "hsl(var(--primary))", r: 5 }}
-                name="IPSE"
-              />
-            </LineChart>
-          </ResponsiveContainer>
+          <PitsLineChart
+            data={dynamicIpseHistorico}
+            xKey="ano"
+            height={260}
+            yDomain={[0, 1]}
+            lines={[{
+              key: "valor",
+              name: "IPSE",
+              color: "hsl(var(--primary))",
+              strokeWidth: 3,
+              dotRadius: 5,
+            }]}
+          />
         </div>
 
         {/* Alerts */}

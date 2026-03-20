@@ -1,18 +1,51 @@
+import { useState, useEffect } from "react";
 import { usePits } from "@/context/PitsContext";
 import { FileText, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { generateRelatorioPDF, exportCSV } from "@/lib/generatePDF";
 import { toast } from "sonner";
+import { municipios } from "@/data/mockData";
+import { classifyIPSE } from "@/lib/constants";
 
-const historico = [
-  { id: 1, periodo: "2024-S2", municipio: "Quixadá", gerado: "2024-12-15", tipo: "Semestral" },
-  { id: 2, periodo: "2024-S1", municipio: "Quixadá", gerado: "2024-06-20", tipo: "Semestral" },
-  { id: 3, periodo: "2023-S2", municipio: "Quixadá", gerado: "2023-12-18", tipo: "Semestral" },
-  { id: 4, periodo: "2024-S2", municipio: "Sobral", gerado: "2024-12-10", tipo: "Semestral" },
-];
+interface RelatorioHistorico {
+  id: string;
+  periodo: string;
+  municipio: string;
+  gerado: string;
+  tipo: string;
+}
 
 export default function Relatorios() {
   const { selectedMunicipio: m } = usePits();
+
+  const [historico, setHistorico] = useState<RelatorioHistorico[]>(() => {
+    try {
+      const stored = localStorage.getItem("pits_relatorios");
+      if (stored) return JSON.parse(stored);
+    } catch {}
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("pits_relatorios", JSON.stringify(historico));
+  }, [historico]);
+
+  const handleGenerate = () => {
+    generateRelatorioPDF(m);
+    
+    const now = new Date();
+    const semestre = now.getMonth() < 6 ? "S1" : "S2";
+    const newRelatorio: RelatorioHistorico = {
+      id: Math.random().toString(36).substring(7),
+      periodo: `${now.getFullYear()}-${semestre}`,
+      municipio: m.municipio,
+      gerado: now.toLocaleDateString("pt-BR"),
+      tipo: "Semestral",
+    };
+    
+    setHistorico(prev => [newRelatorio, ...prev]);
+    toast.success("PDF gerado e salvo no histórico!");
+  };
 
   return (
     <div className="space-y-6">
@@ -28,7 +61,7 @@ export default function Relatorios() {
           Gere um relatório semestral completo para <strong>{m.municipio}</strong> com diagnóstico, indicadores, recomendações e próximas ações.
         </p>
         <div className="flex gap-3">
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => { generateRelatorioPDF(m); toast.success("PDF gerado com sucesso!"); }}>
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleGenerate}>
             <FileText size={16} className="mr-2" />
             Gerar Relatório PDF
           </Button>
@@ -45,7 +78,7 @@ export default function Relatorios() {
         <div className="space-y-4 text-sm">
           <div className="p-4 bg-muted/30 rounded-lg">
             <h3 className="font-semibold mb-2">1. Diagnóstico Territorial</h3>
-            <p>O município de {m.municipio} ({m.estado}) possui área de {m.area_km2.toLocaleString("pt-BR")} km² e população estimada de {m.populacao.toLocaleString("pt-BR")} habitantes. O IPSE atual é de <strong>{m.IPSE.toFixed(2)}</strong>, classificado como {m.IPSE < 0.3 ? "baixo" : m.IPSE < 0.6 ? "moderado" : "alto"}.</p>
+            <p>O município de {m.municipio} ({m.estado}) possui área de {m.area_km2.toLocaleString("pt-BR")} km² e população estimada de {m.populacao.toLocaleString("pt-BR")} habitantes. O IPSE atual é de <strong>{m.IPSE.toFixed(2)}</strong>, classificado como {classifyIPSE(m.IPSE)}.</p>
           </div>
           <div className="p-4 bg-muted/30 rounded-lg">
             <h3 className="font-semibold mb-2">2. Indicadores Principais</h3>
@@ -89,7 +122,16 @@ export default function Relatorios() {
                 <td className="py-2.5 px-3">{r.tipo}</td>
                 <td className="py-2.5 px-3 text-muted-foreground">{r.gerado}</td>
                 <td className="py-2.5 px-3 text-right">
-                  <button className="text-xs text-primary hover:underline">Baixar PDF</button>
+                  <button 
+                    className="text-xs text-primary hover:underline"
+                    onClick={() => {
+                      const target = municipios.find(mu => mu.municipio === r.municipio) || m;
+                      generateRelatorioPDF(target);
+                      toast.success("PDF baixado!");
+                    }}
+                  >
+                    Baixar PDF
+                  </button>
                 </td>
               </tr>
             ))}

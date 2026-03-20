@@ -1,91 +1,96 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import L from "leaflet";
 import { MapPin } from "lucide-react";
 import { usePits } from "@/context/PitsContext";
 import { getMapBiomasMunicipio } from "@/data/mapbiomas";
-import { fetchAlertasMunicipio, MapBiomasAlerta } from "@/lib/mapbiomasAlertaApi";
+import { useAlertasData } from "@/hooks/useAlertas";
+import { useIbgeData } from "@/hooks/useIBGE";
 
-// Approximate polygons for thematic zones around Quixadá region
-const layers: {
-  id: string;
-  label: string;
-  color: string;
-  positions: [number, number][];
-}[] = [
-  {
-    id: "vegetacao",
-    label: "Cobertura vegetal nativa",
-    color: "#4A7C59",
-    positions: [
-      [-5.35, -39.15], [-5.30, -39.05], [-5.38, -38.95],
-      [-5.45, -39.00], [-5.42, -39.12],
-    ],
-  },
-  {
-    id: "conservacao",
-    label: "Conservação prioritária",
-    color: "#2d5a3a",
-    positions: [
-      [-5.50, -39.20], [-5.45, -39.10], [-5.52, -39.02],
-      [-5.58, -39.08], [-5.55, -39.18],
-    ],
-  },
-  {
-    id: "producao",
-    label: "Produção sustentável",
-    color: "#D4A843",
-    positions: [
-      [-5.25, -39.25], [-5.20, -39.15], [-5.28, -39.08],
-      [-5.33, -39.15], [-5.30, -39.22],
-    ],
-  },
-  {
-    id: "restauracao",
-    label: "Restauração biocultural",
-    color: "#C0772B",
-    positions: [
-      [-5.60, -38.90], [-5.55, -38.82], [-5.62, -38.75],
-      [-5.68, -38.80], [-5.65, -38.88],
-    ],
-  },
-  {
-    id: "recarga",
-    label: "Zonas de recarga hídrica",
-    color: "#2E6B8A",
-    positions: [
-      [-5.40, -38.85], [-5.35, -38.78], [-5.42, -38.70],
-      [-5.48, -38.75], [-5.45, -38.82],
-    ],
-  },
-];
+function generateThematicLayers(centerLat: number, centerLng: number) {
+  return [
+    {
+      id: "vegetacao",
+      label: "Cobertura vegetal nativa",
+      color: "#4A7C59",
+      positions: [
+        [centerLat + 0.15, centerLng - 0.15],
+        [centerLat + 0.20, centerLng - 0.05],
+        [centerLat + 0.12, centerLng + 0.05],
+        [centerLat + 0.05, centerLng + 0.00],
+        [centerLat + 0.08, centerLng - 0.12],
+      ] as [number, number][],
+    },
+    {
+      id: "conservacao",
+      label: "Conservação prioritária",
+      color: "#2d5a3a",
+      positions: [
+        [centerLat + 0.00, centerLng - 0.20],
+        [centerLat + 0.05, centerLng - 0.10],
+        [centerLat - 0.02, centerLng - 0.02],
+        [centerLat - 0.08, centerLng - 0.08],
+        [centerLat - 0.05, centerLng - 0.18],
+      ] as [number, number][],
+    },
+    {
+      id: "producao",
+      label: "Produção sustentável",
+      color: "#D4A843",
+      positions: [
+        [centerLat + 0.25, centerLng + 0.25],
+        [centerLat + 0.30, centerLng + 0.15],
+        [centerLat + 0.22, centerLng + 0.08],
+        [centerLat + 0.17, centerLng + 0.15],
+        [centerLat + 0.20, centerLng + 0.22],
+      ] as [number, number][],
+    },
+    {
+      id: "restauracao",
+      label: "Restauração biocultural",
+      color: "#C0772B",
+      positions: [
+        [centerLat - 0.10, centerLng + 0.10],
+        [centerLat - 0.05, centerLng + 0.18],
+        [centerLat - 0.12, centerLng + 0.25],
+        [centerLat - 0.18, centerLng + 0.20],
+        [centerLat - 0.15, centerLng + 0.12],
+      ] as [number, number][],
+    },
+    {
+      id: "recarga",
+      label: "Zonas de recarga hídrica",
+      color: "#2E6B8A",
+      positions: [
+        [centerLat + 0.10, centerLng + 0.15],
+        [centerLat + 0.15, centerLng + 0.22],
+        [centerLat + 0.08, centerLng + 0.30],
+        [centerLat + 0.02, centerLng + 0.25],
+        [centerLat + 0.05, centerLng + 0.18],
+      ] as [number, number][],
+    },
+  ];
+}
 
 export default function MapaCaatinga() {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
   const layerRefs = useRef<Record<string, L.Polygon>>({});
   const alertLayerGroup = useRef<L.LayerGroup | null>(null);
-  const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>(
-    { ...Object.fromEntries(layers.map((l) => [l.id, true])), desmatamento: true }
-  );
-  const [alertas, setAlertas] = useState<MapBiomasAlerta[]>([]);
-  const [alertasLoading, setAlertasLoading] = useState(false);
-
   const { selectedMunicipio } = usePits();
   const mb = getMapBiomasMunicipio(selectedMunicipio.municipio);
+  
+  const { data: ibge } = useIbgeData(selectedMunicipio.municipio, selectedMunicipio.estado);
+  const lat = ibge?.latitude ?? -5.5;
+  const lng = ibge?.longitude ?? -39.0;
+  
+  const currentLayers = useMemo(() => generateThematicLayers(lat, lng), [lat, lng]);
 
-  // Fetch deforestation alerts
-  useEffect(() => {
-    if (!mb?.codigoIBGE) return;
-    let cancelled = false;
-    setAlertasLoading(true);
+  const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>(
+    { ...Object.fromEntries(currentLayers.map((l) => [l.id, true])), desmatamento: true }
+  );
 
-    fetchAlertasMunicipio(mb.codigoIBGE)
-      .then((data) => { if (!cancelled) setAlertas(data); })
-      .catch(() => { if (!cancelled) setAlertas([]); })
-      .finally(() => { if (!cancelled) setAlertasLoading(false); });
-
-    return () => { cancelled = true; };
-  }, [mb?.codigoIBGE]);
+  const { data: alertasRaw, isFetching: alertasLoading } = useAlertasData(mb?.codigoIBGE);
+  const alertas = alertasRaw || [];
 
   // Init map
   useEffect(() => {
@@ -103,17 +108,8 @@ export default function MapaCaatinga() {
       maxZoom: 18,
     }).addTo(map);
 
-    layers.forEach((layer) => {
-      const polygon = L.polygon(layer.positions, {
-        color: layer.color,
-        fillColor: layer.color,
-        fillOpacity: 0.3,
-        weight: 2,
-      }).addTo(map);
-      polygon.bindTooltip(layer.label, { sticky: true });
-      layerRefs.current[layer.id] = polygon;
-    });
-
+    // Polygons will be added by the effect below that watches coordinates
+    
     // Create layer group for alert markers
     alertLayerGroup.current = L.layerGroup().addTo(map);
 
@@ -134,6 +130,35 @@ export default function MapaCaatinga() {
       mapInstance.current = null;
     };
   }, []);
+
+  // Sync map center and thematic layers with municipality
+  useEffect(() => {
+    const map = mapInstance.current;
+    if (!map) return;
+    
+    // Pan smoothly to new center
+    map.flyTo([lat, lng], 9, { duration: 1 });
+
+    // Remove old polygons
+    Object.values(layerRefs.current).forEach(p => p.removeFrom(map));
+    layerRefs.current = {};
+
+    // Restore polygons with new coordinates
+    currentLayers.forEach((layer) => {
+      const polygon = L.polygon(layer.positions, {
+        color: layer.color,
+        fillColor: layer.color,
+        fillOpacity: 0.3,
+        weight: 2,
+      });
+      polygon.bindTooltip(layer.label, { sticky: true });
+      layerRefs.current[layer.id] = polygon;
+      
+      if (activeLayers[layer.id] !== false) {
+        polygon.addTo(map);
+      }
+    });
+  }, [lat, lng, currentLayers, activeLayers]);
 
   // Update alert markers when alertas change
   useEffect(() => {
@@ -198,7 +223,7 @@ export default function MapaCaatinga() {
   };
 
   const allLayers = [
-    ...layers,
+    ...currentLayers,
     { id: "desmatamento", label: `Alertas Desmatamento${alertasLoading ? " ⏳" : ` (${alertas.length})`}`, color: "#C0392B" },
   ];
 

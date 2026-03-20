@@ -1,38 +1,17 @@
-import { useEffect, useState } from "react";
 import { usePits } from "@/context/PitsContext";
-import { fetchAlertasMunicipio, MapBiomasAlerta } from "@/lib/mapbiomasAlertaApi";
+import { useAlertasData } from "@/hooks/useAlertas";
 import { getMapBiomasMunicipio } from "@/data/mapbiomas";
 import { Satellite, AlertTriangle, Loader2, TreePine, Flame } from "lucide-react";
+import { DESMAT_SEVERITY } from "@/lib/constants";
 
 export default function AlertasDesmatamento() {
   const { selectedMunicipio } = usePits();
   const mb = getMapBiomasMunicipio(selectedMunicipio.municipio);
   const codigoIBGE = mb?.codigoIBGE;
+  const { data: alertsList, isFetching: loading, error: apiError } = useAlertasData(codigoIBGE);
 
-  const [alerts, setAlerts] = useState<MapBiomasAlerta[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!codigoIBGE) return;
-
-    let cancelled = false;
-    setLoading(true);
-    setError(null);
-
-    fetchAlertasMunicipio(codigoIBGE)
-      .then((data) => {
-        if (!cancelled) setAlerts(data);
-      })
-      .catch((err) => {
-        if (!cancelled) setError(err.message);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-
-    return () => { cancelled = true; };
-  }, [codigoIBGE]);
+  const error = apiError ? apiError.message : null;
+  const alerts = alertsList || [];
 
   if (!codigoIBGE) {
     return (
@@ -50,8 +29,8 @@ export default function AlertasDesmatamento() {
   });
 
   const severidade = (ha: number) => {
-    if (ha >= 50) return { label: "Alta", class: "bg-pits-alerta/20 text-pits-alerta" };
-    if (ha >= 10) return { label: "Média", class: "bg-pits-seco/20 text-pits-terra" };
+    if (ha >= DESMAT_SEVERITY.high) return { label: "Alta", class: "bg-pits-alerta/20 text-pits-alerta" };
+    if (ha >= DESMAT_SEVERITY.medium) return { label: "Média", class: "bg-pits-seco/20 text-pits-terra" };
     return { label: "Baixa", class: "bg-pits-caatinga/20 text-pits-caatinga" };
   };
 

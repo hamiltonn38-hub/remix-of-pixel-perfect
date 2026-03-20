@@ -1,6 +1,9 @@
+import { useMemo } from "react";
 import { usePits } from "@/context/PitsContext";
+import { useIbgeData } from "@/hooks/useIBGE";
+import { useInmetData } from "@/hooks/useINMET";
 import { Database, CheckCircle, BarChart3, Calendar, Loader2 } from "lucide-react";
-import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { PitsComposedChart } from "@/components/charts/PitsCharts";
 
 const fontes = [
   { nome: "IBGE", desc: "Dados socioeconômicos e territoriais", variaveis: 42, atualizado: "2024-11-15" },
@@ -9,14 +12,7 @@ const fontes = [
   { nome: "INMET", desc: "Dados climatológicos", variaveis: 22, atualizado: "Real-time" },
 ];
 
-const mockSerieData = [
-  { ano: 2019, cobertura: 30.1, biomassa: 15.2, precipitacaoBase: 680, ipse: 0.35 },
-  { ano: 2020, cobertura: 31.2, biomassa: 16.1, precipitacaoBase: 720, ipse: 0.38 },
-  { ano: 2021, cobertura: 32.5, biomassa: 17.0, precipitacaoBase: 690, ipse: 0.42 },
-  { ano: 2022, cobertura: 33.1, biomassa: 17.8, precipitacaoBase: 750, ipse: 0.47 },
-  { ano: 2023, cobertura: 33.8, biomassa: 18.3, precipitacaoBase: 710, ipse: 0.51 },
-  { ano: 2024, cobertura: 34.2, biomassa: 18.7, precipitacaoBase: 730, ipse: 0.54 },
-];
+// mockSerieData has been replaced by dynamic calculation in the component
 
 const registros = [
   { data: "2024-12-08", comunidade: "Aroeira", indicador: "Cobertura arbórea", valor: "35.1%", status: "Validado" },
@@ -25,18 +21,29 @@ const registros = [
 ];
 
 export default function Modulo4() {
-  const { selectedMunicipio, inmetData, inmetLoading } = usePits();
+  const { selectedMunicipio } = usePits();
   const m = selectedMunicipio;
-  const inmet = inmetData[m.municipio];
+  const { data: ibge } = useIbgeData(m.municipio, m.estado);
+  const { data: inmet, isFetching: inmetLoading } = useInmetData(ibge?.latitude, ibge?.longitude, m.estado);
 
-  // Mesclar dados mock com dados reais do INMET
-  const serieData = mockSerieData.map((item) => {
-    const inmetAno = inmet?.historico?.find((h) => h.ano === item.ano);
-    return {
-      ...item,
-      precipitacao: inmetAno ? inmetAno.precipitacaoTotal : item.precipitacaoBase,
-    };
-  });
+  // Gerar dados dinamicamente com base no município selecionado
+  const serieData = useMemo(() => {
+    return Array.from({ length: 6 }).map((_, i) => {
+      const year = 2019 + i;
+      // Fator retroativo (ex: 2024 = 100%, 2019 = 85%) para simulação visual de tendência
+      const factor = 1 - (5 - i) * 0.03; 
+      
+      const inmetAno = inmet?.historico?.find((h) => h.ano === year);
+      
+      return {
+        ano: year,
+        cobertura: Number((m.cobertura_arborea_pct * factor).toFixed(1)),
+        biomassa: Number((m.estoque_biomassa_t_ha * factor).toFixed(1)),
+        ipse: Number((m.IPSE * factor).toFixed(2)),
+        precipitacao: inmetAno ? inmetAno.precipitacaoTotal : 680 + (i * 15),
+      };
+    });
+  }, [m, inmet]);
 
   return (
     <div className="space-y-6">
@@ -89,20 +96,17 @@ export default function Modulo4() {
             )}
           </div>
         </div>
-        <ResponsiveContainer width="100%" height={300}>
-          <ComposedChart data={serieData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-            <XAxis dataKey="ano" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-            <YAxis yAxisId="left" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-            <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 11 }} stroke="hsl(var(--hydro))" />
-            <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px" }} />
-            <Legend />
-            <Bar yAxisId="right" dataKey="precipitacao" fill="hsl(var(--hydro))" name="Precipitação INMET (mm)" opacity={0.5} radius={[2, 2, 0, 0]} />
-            <Line yAxisId="left" type="monotone" dataKey="cobertura" stroke="hsl(var(--secondary))" strokeWidth={2} name="Cobertura (%)" dot={{ r: 3 }} />
-            <Line yAxisId="left" type="monotone" dataKey="biomassa" stroke="hsl(var(--primary))" strokeWidth={2} name="Biomassa (t/ha)" dot={{ r: 3 }} />
-            <Line yAxisId="left" type="monotone" dataKey="ipse" stroke="hsl(var(--accent))" strokeWidth={2} name="IPSE" dot={{ r: 3 }} />
-          </ComposedChart>
-        </ResponsiveContainer>
+        <PitsComposedChart
+          data={serieData}
+          xKey="ano"
+          height={300}
+          bars={[{ key: "precipitacao", name: "Precipitação INMET (mm)", color: "hsl(var(--hydro))", yAxisId: "right" }]}
+          lines={[
+            { key: "cobertura", name: "Cobertura (%)",  color: "hsl(var(--secondary))", yAxisId: "left" },
+            { key: "biomassa",  name: "Biomassa (t/ha)", color: "hsl(var(--primary))",   yAxisId: "left" },
+            { key: "ipse",     name: "IPSE",            color: "hsl(var(--accent))",    yAxisId: "left" },
+          ]}
+        />
       </div>
 
       {/* Plano Nacional de Bioeconomia */}

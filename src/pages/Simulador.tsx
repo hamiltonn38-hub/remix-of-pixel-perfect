@@ -1,7 +1,8 @@
 import { usePits } from "@/context/PitsContext";
-import { useState, useMemo, useCallback } from "react";
+import { SIM_WEIGHTS } from "@/lib/constants";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { Slider } from "@/components/ui/slider";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { PitsLineChart } from "@/components/charts/PitsCharts";
 import { ArrowUp, ArrowDown, Save, Trash2, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -28,7 +29,7 @@ function calcProjecao(ipse: number, vars: CenarioVars, horizonte: number) {
   const years = [];
   for (let i = 0; i <= horizonte; i++) {
     const t = i / horizonte;
-    const boost = (vars.agroflorestal / 100 * 0.08 + vars.biodigestores / 50 * 0.05 + vars.acordos / 100 * 0.06 + vars.reflorestamento / 100 * 0.07 + vars.reducaoLenha / 100 * 0.04) * t;
+    const boost = (vars.agroflorestal / 100 * SIM_WEIGHTS.agroflorestal + vars.biodigestores / 50 * SIM_WEIGHTS.biodigestores + vars.acordos / 100 * SIM_WEIGHTS.acordos + vars.reflorestamento / 100 * SIM_WEIGHTS.reflorestamento + vars.reducaoLenha / 100 * SIM_WEIGHTS.reducaoLenha) * t;
     years.push({
       ano: 2024 + i,
       base: Math.min(1, ipse + i * 0.005),
@@ -37,6 +38,14 @@ function calcProjecao(ipse: number, vars: CenarioVars, horizonte: number) {
     });
   }
   return years;
+}
+
+interface ChartPoint {
+  ano: number;
+  base: number;
+  simulado: number;
+  meta: number;
+  [key: string]: number;
 }
 
 export default function Simulador() {
@@ -50,8 +59,18 @@ export default function Simulador() {
     reflorestamento: 50,
     reducaoLenha: 40,
   });
-  const [cenariosSalvos, setCenariosSalvos] = useState<CenarioSalvo[]>([]);
+  const [cenariosSalvos, setCenariosSalvos] = useState<CenarioSalvo[]>(() => {
+    try {
+      const stored = localStorage.getItem("pits_cenariosSalvos");
+      if (stored) return JSON.parse(stored);
+    } catch {}
+    return [];
+  });
   const [comparando, setComparando] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("pits_cenariosSalvos", JSON.stringify(cenariosSalvos));
+  }, [cenariosSalvos]);
 
   const setVar = (key: keyof CenarioVars, val: number) => setVars((p) => ({ ...p, [key]: val }));
 
@@ -60,11 +79,11 @@ export default function Simulador() {
   // Merge saved scenarios into chart data
   const chartData = useMemo(() => {
     if (!comparando || cenariosSalvos.length === 0) return projecao;
-    const base = projecao.map((p) => ({ ...p }));
+    const base: ChartPoint[] = projecao.map((p) => ({ ...p }));
     cenariosSalvos.forEach((c, idx) => {
       const proj = calcProjecao(m.IPSE, c.vars, horizonte);
       proj.forEach((p, i) => {
-        (base[i] as any)[`cenario_${idx}`] = p.simulado;
+        base[i][`cenario_${idx}`] = p.simulado;
       });
     });
     return base;
@@ -156,21 +175,25 @@ export default function Simulador() {
               </Button>
             )}
           </div>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis dataKey="ano" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-              <YAxis domain={[0, 1]} tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-              <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px" }} />
-              <Legend />
-              <Line type="monotone" dataKey="base" stroke="hsl(var(--muted-foreground))" strokeDasharray="5 5" strokeWidth={2} name="Cenário Base" dot={false} />
-              <Line type="monotone" dataKey="simulado" stroke="hsl(var(--secondary))" strokeWidth={3} name="Atual" dot={false} />
-              <Line type="monotone" dataKey="meta" stroke="hsl(var(--accent))" strokeDasharray="3 3" strokeWidth={2} name="Meta HAMILTON" dot={false} />
-              {comparando && cenariosSalvos.map((c, idx) => (
-                <Line key={idx} type="monotone" dataKey={`cenario_${idx}`} stroke={c.cor} strokeWidth={2} name={c.nome} dot={false} strokeDasharray={idx === 1 ? "8 4" : idx === 2 ? "2 2" : undefined} />
-              ))}
-            </LineChart>
-          </ResponsiveContainer>
+          <PitsLineChart
+            data={chartData}
+            xKey="ano"
+            height={300}
+            yDomain={[0, 1]}
+            showLegend
+            lines={[
+              { key: "base",     name: "Cenário Base",    color: "hsl(var(--muted-foreground))" },
+              { key: "simulado", name: "Atual",           color: "hsl(var(--secondary))", strokeWidth: 3 },
+              { key: "meta",     name: "Meta HAMILTON",   color: "hsl(var(--accent))" },
+              ...(comparando
+                ? cenariosSalvos.map((c, idx) => ({
+                    key: `cenario_${idx}`,
+                    name: c.nome,
+                    color: c.cor,
+                  }))
+                : []),
+            ]}
+          />
           <p className="text-xs text-muted-foreground mt-2">Projeto FUNDECI/2025.0016 — Projeções estimativas para o semiárido cearense</p>
         </div>
       </div>

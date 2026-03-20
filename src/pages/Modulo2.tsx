@@ -1,6 +1,6 @@
 import { usePits } from "@/context/PitsContext";
 import { Recycle, Zap, Flame, TreePine } from "lucide-react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { PitsBarChart } from "@/components/charts/PitsCharts";
 import { useState } from "react";
 
 const produtividadeData = [
@@ -68,15 +68,14 @@ export default function Modulo2() {
       {/* Productivity chart */}
       <div className="pits-card">
         <h2 className="pits-section-title mb-4">Produtividade: SAFs vs Tradicional</h2>
-        <ResponsiveContainer width="100%" height={200}>
-          <BarChart data={produtividadeData} layout="vertical">
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-            <XAxis type="number" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-            <YAxis dataKey="sistema" type="category" tick={{ fontSize: 12 }} width={80} stroke="hsl(var(--muted-foreground))" />
-            <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px" }} />
-            <Bar dataKey="produtividade" fill="hsl(var(--secondary))" radius={[0, 6, 6, 0]} name="t/ha" />
-          </BarChart>
-        </ResponsiveContainer>
+        <PitsBarChart
+          data={produtividadeData}
+          xKey="sistema"
+          height={200}
+          layout="vertical"
+          yLabelWidth={90}
+          bars={[{ key: "produtividade", name: "t/ha", color: "hsl(var(--secondary))" }]}
+        />
         <p className="text-xs text-muted-foreground mt-2">Fonte: Dados do Cariri paraibano — SAFs superam em 260% os sistemas tradicionais</p>
       </div>
 

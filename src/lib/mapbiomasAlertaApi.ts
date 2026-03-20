@@ -1,20 +1,18 @@
 /**
- * MapBiomas Alerta API v2 — GraphQL Client
- * Fonte: https://plataforma.alerta.mapbiomas.org/api/v2/graphql
- *
- * Autentica via signIn mutation e consulta alertas de desmatamento
- * filtrados por código IBGE do município (territoryIds).
- *
- * Schema fields discovered via introspection:
- *   Query.alerts(territoryIds, limit, page, startDate, endDate, ...)
- *   Alert { alertCode, areaHa, detectedAt, publishedAt, sources,
- *           coordinates { latitude, longitude }, alertStatus { status } }
+ * MapBiomas Alerta API v2 — Secure Client
+ * 
+ * This client NEVER handles credentials directly.
+ * Authentication is handled by the proxy server (server/proxy.mjs).
+ * 
+ * In development: requests go through Vite proxy → local proxy server
+ * In production:  requests go through the deployed proxy server
+ * 
+ * The proxy server authenticates with MapBiomas and forwards
+ * the GraphQL query with the server-side token.
  */
 
-const DIRECT_API_URL = "https://plataforma.alerta.mapbiomas.org/api/v2/graphql";
-
-// In development, route through the Vite proxy to avoid CORS.
-const API_URL = import.meta.env.DEV ? "/api/mapbiomas" : DIRECT_API_URL;
+// The proxy endpoint handles auth server-side
+const PROXY_URL = "/api/proxy/mapbiomas/query";
 
 // ---- Types ----
 
@@ -27,11 +25,6 @@ export interface MapBiomasAlerta {
   statusLabel: string;
   biome: string;
   centroid: { lat: number; lng: number } | null;
-}
-
-interface SignInResponse {
-  data?: { signIn: { token: string } };
-  errors?: Array<{ message: string }>;
 }
 
 interface RawAlert {
@@ -49,52 +42,6 @@ interface AlertsQueryResponse {
   errors?: Array<{ message: string }>;
 }
 
-// ---- Auth ----
-
-let cachedToken: string | null = null;
-let retryCount = 0;
-
-async function getToken(): Promise<string> {
-  if (cachedToken) return cachedToken;
-
-  const email = import.meta.env.VITE_MAPBIOMAS_EMAIL;
-  const password = import.meta.env.VITE_MAPBIOMAS_PASSWORD;
-
-  if (!email || !password) {
-    throw new Error("MapBiomas credentials not configured. Set VITE_MAPBIOMAS_EMAIL and VITE_MAPBIOMAS_PASSWORD in .env");
-  }
-
-  const signInQuery = `
-    mutation SignIn($email: String!, $password: String!) {
-      signIn(email: $email, password: $password) {
-        token
-      }
-    }
-  `;
-
-  const res = await fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: signInQuery,
-      variables: { email, password },
-    }),
-  });
-
-  const json: SignInResponse = await res.json();
-
-  if (json.errors?.length) {
-    throw new Error(`MapBiomas signIn failed: ${json.errors[0].message}`);
-  }
-
-  const token = json.data?.signIn?.token;
-  if (!token) throw new Error("MapBiomas signIn: no token returned");
-
-  cachedToken = token;
-  retryCount = 0;
-  return token;
-}
-
 // ---- Cache ----
 
 const alertsCache = new Map<string, { data: MapBiomasAlerta[]; ts: number }>();
@@ -104,7 +51,7 @@ const CACHE_TTL_MS = 10 * 60 * 1000; // 10 min
 
 /**
  * Busca alertas de desmatamento publicados para um município pelo código IBGE.
- * Usa a query `alerts` com filtro `territoryIds`.
+ * A autenticação é feita inteiramente pelo servidor proxy.
  */
 export async function fetchAlertasMunicipio(
   codigoIBGE: string,
@@ -114,8 +61,6 @@ export async function fetchAlertasMunicipio(
   if (cached && Date.now() - cached.ts < CACHE_TTL_MS) {
     return cached.data;
   }
-
-  const token = await getToken();
 
   const alertsQuery = `
     query Alerts($territoryIds: [Int!], $limit: Int) {
@@ -136,32 +81,22 @@ export async function fetchAlertasMunicipio(
     }
   `;
 
-  const res = await fetch(API_URL, {
+  const res = await fetch(PROXY_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       query: alertsQuery,
       variables: { territoryIds: [parseInt(codigoIBGE)], limit: 50 },
     }),
   });
 
+  if (!res.ok) {
+    throw new Error(`Proxy server error: ${res.status} ${res.statusText}`);
+  }
+
   const json: AlertsQueryResponse = await res.json();
 
   if (json.errors?.length) {
-    // If token expired, retry once
-    if (
-      retryCount < 1 &&
-      (json.errors[0].message.toLowerCase().includes("auth") ||
-        json.errors[0].message.toLowerCase().includes("token") ||
-        json.errors[0].message.toLowerCase().includes("unauthorized"))
-    ) {
-      cachedToken = null;
-      retryCount++;
-      return fetchAlertasMunicipio(codigoIBGE);
-    }
     throw new Error(`MapBiomas Alerta query error: ${json.errors[0].message}`);
   }
 
@@ -186,12 +121,8 @@ export async function fetchAlertasMunicipio(
 }
 
 /**
- * Limpa o cache e token (para testes ou logout).
+ * Limpa o cache (para testes ou logout).
  */
 export function clearMapBiomasCache() {
   alertsCache.clear();
-  cachedToken = null;
-  retryCount = 0;
 }
-
-

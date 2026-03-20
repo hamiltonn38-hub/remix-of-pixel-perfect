@@ -12,6 +12,12 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
     proxy: {
+      // Proxy to our secure backend server (credentials never leave the server)
+      "/api/proxy": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+      },
+      // Fallback: direct CORS bypass for MapBiomas GraphQL (used only if proxy server is down)
       "/api/mapbiomas": {
         target: "https://plataforma.alerta.mapbiomas.org",
         changeOrigin: true,
