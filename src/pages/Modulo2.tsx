@@ -102,6 +102,14 @@ export default function Modulo2() {
         <p className="text-xs text-muted-foreground mt-3 italic">
           Alinhamento: o Módulo II implementa os eixos de cadeias produtivas e inovação do PlanBio através dos circuitos fechados de biomassa e sistemas agroflorestais.
         </p>
+        <div className="flex flex-wrap gap-3 mt-3">
+          <a href="https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2024/07/plano-nacional-de-bioeconomia-planbio" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> PlanBio — Portal MCTI
+          </a>
+          <a href="https://www.embrapa.br/tema-integracao-lavoura-pecuaria-floresta-ilpf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> ILPF — Embrapa
+          </a>
+        </div>
       </div>
 
       {/* Production systems */}

@@ -100,6 +100,17 @@ export default function Modulo1() {
         <p className="text-xs text-muted-foreground mt-3 italic">
           Alinhamento: o Módulo I operacionaliza os eixos de conservação e mapeamento do PlanBio através do zoneamento territorial e monitoramento da integridade florestal.
         </p>
+        <div className="flex flex-wrap gap-3 mt-3">
+          <a href="https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2024/07/plano-nacional-de-bioeconomia-planbio" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> PlanBio — Portal MCTI
+          </a>
+          <a href="https://www.gov.br/mcti/pt-br/composicao/secretarias/secretaria-de-politicas-e-programas-estrategicos/bioeconomia" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> Bioeconomia — MCTI
+          </a>
+          <a href="https://plataforma.brasil.mapbiomas.org/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> MapBiomas
+          </a>
+        </div>
       </div>
 
       {/* Species table */}
