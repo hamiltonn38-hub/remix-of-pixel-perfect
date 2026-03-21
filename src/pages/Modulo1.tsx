@@ -3,7 +3,7 @@ import { especiesNativas } from "@/data/mockData";
 import { getMapBiomasMunicipio } from "@/data/mapbiomas";
 import MapBiomasChart from "@/components/MapBiomasChart";
 import AlertasDesmatamento from "@/components/AlertasDesmatamento";
-import { Leaf, TreePine, Droplets, Mountain } from "lucide-react";
+import { Leaf, TreePine, Droplets, Mountain, ExternalLink } from "lucide-react";
 import { COBERTURA_META_PCT } from "@/lib/constants";
 import { PitsBarChart } from "@/components/charts/PitsCharts";
 
