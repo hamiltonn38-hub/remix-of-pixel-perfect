@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { usePits } from "@/context/PitsContext";
 import { useIbgeData } from "@/hooks/useIBGE";
 import { useInmetData } from "@/hooks/useINMET";
-import { Database, CheckCircle, BarChart3, Calendar, Loader2 } from "lucide-react";
+import { Database, CheckCircle, BarChart3, Calendar, Loader2, ExternalLink } from "lucide-react";
 import { PitsComposedChart } from "@/components/charts/PitsCharts";
 
 const fontes = [
@@ -132,6 +132,17 @@ export default function Modulo4() {
         <p className="text-xs text-muted-foreground mt-3 italic">
           Alinhamento: o Módulo IV implementa os eixos de monitoramento e transparência do PlanBio, consolidando dados de múltiplas fontes com registros participativos.
         </p>
+        <div className="flex flex-wrap gap-3 mt-3">
+          <a href="https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2024/07/plano-nacional-de-bioeconomia-planbio" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> PlanBio — Portal MCTI
+          </a>
+          <a href="https://www.ibge.gov.br/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> IBGE
+          </a>
+          <a href="https://plataforma.brasil.mapbiomas.org/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> MapBiomas
+          </a>
+        </div>
       </div>
 
       {/* Participatory monitoring */}
