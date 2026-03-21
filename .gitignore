@@ -28,3 +28,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.vercel
+
+# Sensitive files
+pass.txt
+email.txt
+origins.txt
+
+# Bun binary
+bun-windows-x64/
+

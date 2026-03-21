@@ -25,15 +25,43 @@ export interface IBGEPopulacao {
 
 const IBGE_BASE = "https://servicodados.ibge.gov.br/api";
 
-// Cache to avoid repeated fetches
-const cache = new Map<string, any>();
+// ---- Cache with TTL and max size (LRU-style eviction) ----
+const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
+const CACHE_MAX_ENTRIES = 200;
+
+interface CacheEntry<T = unknown> {
+  data: T;
+  ts: number;
+}
+
+const cache = new Map<string, CacheEntry>();
+
+function cacheGet<T>(key: string): T | undefined {
+  const entry = cache.get(key);
+  if (!entry) return undefined;
+  if (Date.now() - entry.ts > CACHE_TTL_MS) {
+    cache.delete(key);
+    return undefined;
+  }
+  return entry.data as T;
+}
+
+function cacheSet<T>(key: string, data: T): void {
+  // Evict oldest entries if at capacity
+  if (cache.size >= CACHE_MAX_ENTRIES) {
+    const firstKey = cache.keys().next().value;
+    if (firstKey !== undefined) cache.delete(firstKey);
+  }
+  cache.set(key, { data, ts: Date.now() });
+}
 
 async function fetchWithCache<T>(url: string): Promise<T> {
-  if (cache.has(url)) return cache.get(url);
+  const cached = cacheGet<T>(url);
+  if (cached !== undefined) return cached;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`IBGE API error: ${res.status}`);
   const data = await res.json();
-  cache.set(url, data);
+  cacheSet(url, data);
   return data;
 }
 

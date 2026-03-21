@@ -7,6 +7,7 @@
  * Configure as variáveis de ambiente no painel do Vercel:
  *   MAPBIOMAS_EMAIL
  *   MAPBIOMAS_PASSWORD
+ *   ALLOWED_ORIGINS  — comma-separated list of allowed CORS origins
  */
 
 import type { VercelRequest, VercelResponse } from "@vercel/node";
@@ -14,15 +15,64 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 const MAPBIOMAS_API = "https://plataforma.alerta.mapbiomas.org/api/v2/graphql";
 const TOKEN_TTL = 55 * 60 * 1000;
 
-// Cache de token em memória (por instância de função — suficiente para produção)
+// ---- CORS ----
+const ALLOWED_ORIGINS_RAW = process.env.ALLOWED_ORIGINS || "";
+const ALLOWED_ORIGINS = new Set(
+  ALLOWED_ORIGINS_RAW.split(",").map((s) => s.trim()).filter(Boolean)
+);
+
+function getAllowedOrigin(req: VercelRequest): string | null {
+  const origin = (req.headers.origin as string) || "";
+  if (ALLOWED_ORIGINS.has(origin)) return origin;
+  return null;
+}
+
+function setCorsHeaders(req: VercelRequest, res: VercelResponse): boolean {
+  const origin = getAllowedOrigin(req);
+  res.setHeader("Vary", "Origin");
+
+  if (origin) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Max-Age", "86400");
+    return true;
+  }
+  return false;
+}
+
+// ---- Rate Limiting (per-instance in-memory) ----
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX = 30;
+const rateLimitMap = new Map<string, { windowStart: number; count: number }>();
+
+function isRateLimited(req: VercelRequest): boolean {
+  const ip =
+    ((req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim()) ||
+    req.socket?.remoteAddress ||
+    "unknown";
+  const now = Date.now();
+  let entry = rateLimitMap.get(ip);
+
+  if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW_MS) {
+    entry = { windowStart: now, count: 1 };
+    rateLimitMap.set(ip, entry);
+    return false;
+  }
+
+  entry.count++;
+  return entry.count > RATE_LIMIT_MAX;
+}
+
+// ---- Token management ----
 let cachedToken: string | null = null;
 let tokenExpiry = 0;
 
 async function getToken(): Promise<string> {
   if (cachedToken && Date.now() < tokenExpiry) return cachedToken;
 
-  const email = process.env.MAPBIOMAS_EMAIL;
-  const password = process.env.MAPBIOMAS_PASSWORD;
+  const email = process.env.MAPBIOMAS_EMAIL?.trim();
+  const password = process.env.MAPBIOMAS_PASSWORD?.trim();
 
   if (!email || !password) {
     throw new Error(
@@ -74,17 +124,26 @@ async function queryMapBiomas(query: string, variables: unknown, token: string) 
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS headers
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  const corsAllowed = setCorsHeaders(req, res);
 
+  // CORS preflight
   if (req.method === "OPTIONS") {
+    if (!corsAllowed) return res.status(403).end("Forbidden");
     return res.status(204).end();
   }
 
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  // Reject non-allowed origins
+  if (!corsAllowed) {
+    return res.status(403).json({ error: "Origin not allowed" });
+  }
+
+  // Rate limiting
+  if (isRateLimited(req)) {
+    return res.status(429).json({ error: "Too many requests. Try again later." });
   }
 
   try {
@@ -110,6 +169,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json(data);
   } catch (err: any) {
     console.error("[proxy/mapbiomas/query]", err);
-    return res.status(500).json({ errors: [{ message: err.message }] });
+    return res.status(500).json({ errors: [{ message: "Internal server error" }] });
   }
 }

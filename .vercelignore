@@ -1,0 +1,10 @@
+node_modules
+.git
+bun-windows-x64
+bun.zip
+bun.lock
+bun.lockb
+*.local
+.env
+.env.local
+.env.*.local
