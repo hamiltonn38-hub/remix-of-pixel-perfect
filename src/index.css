@@ -58,6 +58,43 @@
     --gauge-yellow: 42 62% 55%;
     --gauge-green: 145 61% 42%;
   }
+
+  .dark {
+    --background: 30 20% 8%; /* Very dark espresso/brown */
+    --foreground: 36 33% 93%; /* Light areia */
+
+    --card: 30 20% 12%;
+    --card-foreground: 36 33% 93%;
+
+    --popover: 30 20% 12%;
+    --popover-foreground: 36 33% 93%;
+
+    /* Keep vibrant colors mostly the same but ensure text is white */
+    --primary: 24 41% 45%; 
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 145 26% 45%; 
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 30 20% 18%;
+    --muted-foreground: 36 20% 70%;
+
+    --accent: 42 62% 55%; 
+    --accent-foreground: 30 30% 12%; /* Keep dark text on bright yellow */
+
+    --border: 30 20% 20%;
+    --input: 30 20% 20%;
+    --ring: 24 41% 45%;
+
+    --sidebar-background: 30 20% 10%;
+    --sidebar-foreground: 36 33% 90%;
+    --sidebar-primary: 42 62% 55%;
+    --sidebar-primary-foreground: 30 30% 12%;
+    --sidebar-accent: 30 25% 18%;
+    --sidebar-accent-foreground: 36 33% 90%;
+    --sidebar-border: 30 20% 20%;
+    --sidebar-ring: 42 62% 55%;
+  }
 }
 
 @layer base {

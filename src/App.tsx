@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { PitsProvider } from "@/context/PitsContext";
 import AppLayout from "@/components/AppLayout";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
 const Modulo1 = lazy(() => import("@/pages/Modulo1"));
@@ -20,31 +21,33 @@ const NotFound = lazy(() => import("@/pages/NotFound"));
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <PitsProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Suspense fallback={<div className="flex h-screen w-full items-center justify-center p-12 text-muted-foreground">Carregando aplicação...</div>}>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/modulo-1" element={<Modulo1 />} />
-              <Route path="/modulo-2" element={<Modulo2 />} />
-              <Route path="/modulo-3" element={<Modulo3 />} />
-              <Route path="/modulo-4" element={<Modulo4 />} />
-              <Route path="/ipse" element={<IPSEPage />} />
-              <Route path="/simulador" element={<Simulador />} />
-              <Route path="/relatorios" element={<Relatorios />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </PitsProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ThemeProvider defaultTheme="system" storageKey="pits-ui-theme">
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <PitsProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Suspense fallback={<div className="flex h-screen w-full items-center justify-center p-12 text-muted-foreground">Carregando aplicação...</div>}>
+              <Routes>
+                <Route element={<AppLayout />}>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/modulo-1" element={<Modulo1 />} />
+                  <Route path="/modulo-2" element={<Modulo2 />} />
+                  <Route path="/modulo-3" element={<Modulo3 />} />
+                  <Route path="/modulo-4" element={<Modulo4 />} />
+                  <Route path="/ipse" element={<IPSEPage />} />
+                  <Route path="/simulador" element={<Simulador />} />
+                  <Route path="/relatorios" element={<Relatorios />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </PitsProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;
