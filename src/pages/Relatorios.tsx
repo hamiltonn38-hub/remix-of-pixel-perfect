@@ -31,20 +31,25 @@ export default function Relatorios() {
   }, [historico]);
 
   const handleGenerate = () => {
-    generateRelatorioPDF(m);
-    
-    const now = new Date();
-    const semestre = now.getMonth() < 6 ? "S1" : "S2";
-    const newRelatorio: RelatorioHistorico = {
-      id: Math.random().toString(36).substring(7),
-      periodo: `${now.getFullYear()}-${semestre}`,
-      municipio: m.municipio,
-      gerado: now.toLocaleDateString("pt-BR"),
-      tipo: "Semestral",
-    };
-    
-    setHistorico(prev => [newRelatorio, ...prev]);
-    toast.success("PDF gerado e salvo no histórico!");
+    const loadingId = toast.loading("Gerando PDF...");
+    try {
+      generateRelatorioPDF(m);
+
+      const now = new Date();
+      const semestre = now.getMonth() < 6 ? "S1" : "S2";
+      const newRelatorio: RelatorioHistorico = {
+        id: Math.random().toString(36).substring(7),
+        periodo: `${now.getFullYear()}-${semestre}`,
+        municipio: m.municipio,
+        gerado: now.toLocaleDateString("pt-BR"),
+        tipo: "Semestral",
+      };
+      setHistorico(prev => [newRelatorio, ...prev]);
+      toast.success("PDF gerado com sucesso!", { id: loadingId });
+    } catch (err) {
+      console.error("[Relatórios] Erro ao gerar PDF:", err);
+      toast.error("Erro ao gerar o PDF. Verifique o console.", { id: loadingId });
+    }
   };
 
   return (
