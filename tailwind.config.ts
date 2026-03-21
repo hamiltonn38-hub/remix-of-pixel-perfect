@@ -78,7 +78,7 @@ export default {
         "pits-neutro": "#F5F0E8",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Outfit", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
