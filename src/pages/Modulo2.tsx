@@ -1,5 +1,5 @@
 import { usePits } from "@/context/PitsContext";
-import { Recycle, Zap, Flame, TreePine } from "lucide-react";
+import { Recycle, Zap, Flame, TreePine, ExternalLink } from "lucide-react";
 import { PitsBarChart } from "@/components/charts/PitsCharts";
 import { useState } from "react";
 
