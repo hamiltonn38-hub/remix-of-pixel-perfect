@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { usePits } from "@/context/PitsContext";
 import { useIbgeData } from "@/hooks/useIBGE";
 import { useInmetData } from "@/hooks/useINMET";
-import { Database, CheckCircle, BarChart3, Calendar, Loader2 } from "lucide-react";
+import { Database, CheckCircle, BarChart3, Calendar, Loader2, ExternalLink } from "lucide-react";
 import { PitsComposedChart } from "@/components/charts/PitsCharts";
 
 const fontes = [
