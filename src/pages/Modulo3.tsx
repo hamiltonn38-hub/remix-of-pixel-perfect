@@ -115,10 +115,10 @@ export default function Modulo3() {
           Alinhamento: o Módulo III materializa os eixos de governança e inclusão do PlanBio, integrando os princípios de Ostrom aos mecanismos de PSA e acordos de manejo.
         </p>
         <div className="flex flex-wrap gap-3 mt-3">
-          <a href="https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2024/07/plano-nacional-de-bioeconomia-planbio" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
-            <ExternalLink size={12} /> PlanBio — Portal MCTI
+          <a href="https://www.gov.br/mma/pt-br/noticias/governo-federal-abre-consulta-publica-sobre-o-plano-nacional-de-desenvolvimento-da-bioeconomia" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> PlanBio — MMA
           </a>
-          <a href="https://www.gov.br/mma/pt-br/assuntos/servicosambientais/pagamento-por-servicos-ambientais" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+          <a href="https://www.gov.br/mma/pt-br/composicao/sbc/dpeb/politica-nacional-de-pagamento-por-servicos-ambientais/pagamentos-por-servicos-ambientais" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
             <ExternalLink size={12} /> PSA — MMA
           </a>
         </div>

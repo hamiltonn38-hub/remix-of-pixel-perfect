@@ -101,11 +101,11 @@ export default function Modulo1() {
           Alinhamento: o Módulo I operacionaliza os eixos de conservação e mapeamento do PlanBio através do zoneamento territorial e monitoramento da integridade florestal.
         </p>
         <div className="flex flex-wrap gap-3 mt-3">
-          <a href="https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2024/07/plano-nacional-de-bioeconomia-planbio" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
-            <ExternalLink size={12} /> PlanBio — Portal MCTI
+          <a href="https://www.gov.br/mma/pt-br/noticias/governo-federal-abre-consulta-publica-sobre-o-plano-nacional-de-desenvolvimento-da-bioeconomia" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> PlanBio — MMA
           </a>
-          <a href="https://www.gov.br/mcti/pt-br/composicao/secretarias/secretaria-de-politicas-e-programas-estrategicos/bioeconomia" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
-            <ExternalLink size={12} /> Bioeconomia — MCTI
+          <a href="https://www.gov.br/mma/pt-br/assuntos/noticias/governo-federal-cria-estrategia-nacional-de-bioeconomia" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+            <ExternalLink size={12} /> Estratégia Nacional de Bioeconomia
           </a>
           <a href="https://plataforma.brasil.mapbiomas.org/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
             <ExternalLink size={12} /> MapBiomas
