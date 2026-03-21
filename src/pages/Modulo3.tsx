@@ -1,5 +1,5 @@
 import { usePits } from "@/context/PitsContext";
-import { Users, FileCheck, Coins, CheckCircle, AlertCircle, XCircle } from "lucide-react";
+import { Users, FileCheck, Coins, CheckCircle, AlertCircle, XCircle, ExternalLink } from "lucide-react";
 import { PitsPieChart } from "@/components/charts/PitsCharts";
 
 const acordos = [
