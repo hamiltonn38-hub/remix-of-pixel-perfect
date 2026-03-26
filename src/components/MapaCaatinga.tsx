@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import { MapPin } from "lucide-react";
 import { usePits } from "@/context/PitsContext";
 import { getMapBiomasMunicipio } from "@/data/mapbiomas";
