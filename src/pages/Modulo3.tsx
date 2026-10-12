@@ -1,31 +1,23 @@
 import { usePits } from "@/context/PitsContext";
-import { Users, FileCheck, Coins, CheckCircle, AlertCircle, XCircle, ExternalLink } from "lucide-react";
+import { Users, Coins, CheckCircle, AlertCircle, ExternalLink, ShieldCheck, Scale } from "lucide-react";
 import { PitsPieChart } from "@/components/charts/PitsCharts";
 
-const acordos = [
-  { comunidade: "Assentamento Aroeira", tipo: "Manejo florestal", data: "2024-03-15", status: "Ativo", area: 320 },
-  { comunidade: "Quilombo Serra Preta", tipo: "Conservação hídrica", data: "2024-01-20", status: "Ativo", area: 185 },
-  { comunidade: "Vila São José", tipo: "Extrativismo sustentável", data: "2023-11-10", status: "Ativo", area: 450 },
-  { comunidade: "Distrito Cedro", tipo: "Reflorestamento", data: "2024-06-01", status: "Em revisão", area: 210 },
-  { comunidade: "Sítio Boa Vista", tipo: "PSA Carbono", data: "2023-08-22", status: "Ativo", area: 145 },
-];
-
-const psaDistribuicao = [
-  { nome: "Conservação florestal", valor: 42, cor: "hsl(var(--secondary))" },
-  { nome: "Recarga hídrica", valor: 25, cor: "hsl(var(--hydro))" },
-  { nome: "Sequestro de carbono", valor: 20, cor: "hsl(var(--primary))" },
-  { nome: "Biodiversidade", valor: 13, cor: "hsl(var(--accent))" },
+const psaDistribuicaoTipologia = [
+  { nome: "Conservação da Vegetação Nativa", valor: 40, cor: "hsl(var(--secondary))" },
+  { nome: "Proteção de Recursos Hídricos", valor: 25, cor: "hsl(var(--hydro))" },
+  { nome: "Sequestro de Carbono e Manejo", valor: 20, cor: "hsl(var(--primary))" },
+  { nome: "Biodiversidade e Polinizadores", valor: 15, cor: "hsl(var(--accent))" },
 ];
 
 const ostromPrincipios = [
-  { nome: "Limites claramente definidos", status: "cumprido" },
-  { nome: "Regras de uso adaptadas", status: "cumprido" },
-  { nome: "Arranjos de escolha coletiva", status: "parcial" },
-  { nome: "Monitoramento efetivo", status: "parcial" },
-  { nome: "Sanções graduais", status: "cumprido" },
-  { nome: "Mecanismos de resolução de conflitos", status: "parcial" },
-  { nome: "Reconhecimento mínimo de direitos", status: "cumprido" },
-  { nome: "Governança em múltiplas camadas", status: "nao" },
+  { numero: 1, nome: "Limites claramente definidos dos recursos e usuários", foco: "Delimitação dos territórios comunitários" },
+  { numero: 2, nome: "Congruência entre regras de apropriação e condições locais", foco: "Respeito aos ciclos de estiagem da Caatinga" },
+  { numero: 3, nome: "Arranjos de escolha coletiva participativos", foco: "Assembleias e consultas prévias" },
+  { numero: 4, nome: "Monitoramento comunitário das regras e estoques", foco: "Fiscalização participativa de queimadas e corte" },
+  { numero: 5, nome: "Sanções graduadas para infrações", foco: "Advertências e mediação comunitária" },
+  { numero: 6, nome: "Mecanismos acessíveis de resolução de conflitos", foco: "Comitês locais e mediação de vizinhança" },
+  { numero: 7, nome: "Reconhecimento mínimo de direitos de auto-organização", foco: "Validação institucional pelo poder público" },
+  { numero: 8, nome: "Empresas aninhadas (governança em múltiplos níveis)", foco: "Articulação município-estado-comunidade" },
 ];
 
 export default function Modulo3() {
@@ -35,116 +27,148 @@ export default function Modulo3() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold">Módulo III — Governança Participativa</h1>
-        <p className="text-sm text-muted-foreground">Instrumentos de governança multiescalar — Princípios de Ostrom</p>
+        <p className="text-sm text-muted-foreground">
+          Instrumentos de governança territorial multiescalar e arranjos institucionais — Ostrom (1990)
+        </p>
       </div>
 
-      {/* Indicators */}
+      {/* Indicadores Auditados de Governança */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="pits-card text-center">
-          <p className="pits-label text-[11px]">Acordos de Manejo</p>
-          <p className="pits-metric text-xl mt-1">{m.acordos_manejo_ativos}</p>
-          <p className="text-xs text-muted-foreground">ativos</p>
+          <p className="pits-label text-[11px]">Índice de Governança (IGL)</p>
+          <p className="pits-metric text-xl mt-1">{m.IGL.toFixed(2)}</p>
+          <p className="text-[10px] text-muted-foreground mt-0.5">IQM e Associativismo</p>
         </div>
         <div className="pits-card text-center">
-          <p className="pits-label text-[11px]">Participação Comunitária</p>
-          <p className="pits-metric text-xl mt-1">{m.participacao_comunitaria_pct}%</p>
+          <p className="pits-label text-[11px]">ICMS Socioambiental (IQM)</p>
+          <p className="pits-metric text-xl mt-1">{m.iqm_residuos.toFixed(1)}</p>
+          <p className="text-[10px] text-muted-foreground mt-0.5">Gestão Resíduos (SEMA 2026)</p>
         </div>
         <div className="pits-card text-center">
-          <p className="pits-label text-[11px]">Recursos PSA</p>
-          <p className="pits-metric text-xl mt-1">R$ {(m.psa_recursos_ano_reais / 1000).toFixed(0)}k</p>
-          <p className="text-xs text-muted-foreground">anual</p>
+          <p className="pits-label text-[11px]">Acordos de Manejo FUNDECI</p>
+          <p className="text-sm font-semibold text-muted-foreground mt-2 italic">Dados indisponíveis</p>
+          <p className="text-[10px] text-muted-foreground mt-0.5">Em estruturação (Regra 2c)</p>
         </div>
         <div className="pits-card text-center">
-          <p className="pits-label text-[11px]">Plano Territorial</p>
-          <span className="inline-block mt-2 px-3 py-1 bg-accent/20 text-accent-foreground text-xs font-medium rounded-full">Em execução</span>
+          <p className="pits-label text-[11px]">Plano Municipal Socioambiental</p>
+          <span className="inline-block mt-2 px-3 py-1 bg-secondary/15 text-secondary text-xs font-medium rounded-full">
+            Em estruturação
+          </span>
+          <p className="text-[10px] text-muted-foreground mt-0.5">Framework HAMILTON</p>
         </div>
       </div>
 
-      {/* Agreements table */}
-      <div className="pits-card overflow-x-auto">
-        <h2 className="pits-section-title mb-4">Acordos Locais de Manejo</h2>
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-border">
-              <th className="text-left py-2 px-3 text-muted-foreground font-medium">Comunidade</th>
-              <th className="text-left py-2 px-3 text-muted-foreground font-medium">Tipo</th>
-              <th className="text-left py-2 px-3 text-muted-foreground font-medium">Data</th>
-              <th className="text-left py-2 px-3 text-muted-foreground font-medium">Status</th>
-              <th className="text-right py-2 px-3 text-muted-foreground font-medium">Área (ha)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {acordos.map((a, i) => (
-              <tr key={i} className="border-b border-border/50 hover:bg-muted/50">
-                <td className="py-2.5 px-3 font-medium">{a.comunidade}</td>
-                <td className="py-2.5 px-3">{a.tipo}</td>
-                <td className="py-2.5 px-3 text-muted-foreground">{a.data}</td>
-                <td className="py-2.5 px-3">
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${a.status === "Ativo" ? "bg-success/20 text-success" : "bg-accent/20 text-accent-foreground"}`}>
-                    {a.status}
-                  </span>
-                </td>
-                <td className="py-2.5 px-3 text-right">{a.area}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Tabela de Acordos de Manejo — Estado Vazio Conforme Regra 2c */}
+      <div className="pits-card">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div>
+            <h2 className="pits-section-title">Acordos Comunitários de Manejo e Conservação</h2>
+            <p className="text-xs text-muted-foreground">
+              Cadastro de áreas sob compromisso formal de manejo sustentável da Caatinga
+            </p>
+          </div>
+          <span className="text-xs px-2.5 py-0.5 rounded bg-muted text-muted-foreground">
+            Status: Dados indisponíveis (Regra 2c)
+          </span>
+        </div>
+
+        <div className="p-8 border border-dashed border-border rounded-xl text-center bg-muted/10 space-y-2">
+          <ShieldCheck size={32} className="mx-auto text-muted-foreground/60" />
+          <h3 className="text-sm font-semibold text-foreground">
+            Nenhum acordo formalizado registrado em base pública no momento
+          </h3>
+          <p className="text-xs text-muted-foreground max-w-lg mx-auto leading-relaxed">
+            Conforme documentado em <code>docs/PENDENCIAS_MANUAIS.md</code> e <code>REGRAS.md</code>, o projeto <strong>FUNDECI/2025.0016</strong> encontra-se em fase de estruturação metodológica no território de {m.municipio}. Para preservar a estrita veracidade dos dados, não são exibidas comunidades fictícias.
+          </p>
+        </div>
       </div>
 
-      {/* Plano Nacional de Bioeconomia */}
-      <div className="pits-card border-l-4 border-l-secondary">
+      {/* Estrutura Metodológica de Alocação de PSA (Lei 14.119/2021) */}
+      <div className="pits-card">
         <div className="flex items-center gap-2 mb-2">
-          <Users size={18} className="text-secondary" />
-          <h2 className="pits-section-title">Plano Nacional de Bioeconomia</h2>
+          <Coins size={18} className="text-primary" />
+          <h2 className="pits-section-title">
+            Estrutura Teórico-Metodológica de Alocação de Serviços Ambientais
+          </h2>
         </div>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-          O <strong>PlanBio</strong> reconhece a governança comunitária como pilar essencial para a bioeconomia sustentável, valorizando o protagonismo de povos e comunidades tradicionais na gestão dos recursos naturais.
+        <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
+          Tipologia conceitual de modalidades de Serviços Ambientais prevista nos Arts. 3º e 4º da <strong>Lei Federal nº 14.119/2021 (Política Nacional de Pagamento por Serviços Ambientais - PNPSA)</strong> para orientar fundos territoriais na Caatinga.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {[
-            { title: "Eixo 5 — Governança e Marco Regulatório", desc: "Fortalecimento de arranjos institucionais multiescalares, conselhos territoriais e marcos regulatórios para repartição de benefícios." },
-            { title: "Eixo 6 — Inclusão Social e Repartição de Benefícios", desc: "PSA comunitário, acesso a mercados de carbono e mecanismos de compensação para comunidades tradicionais." },
-          ].map((eixo) => (
-            <div key={eixo.title} className="p-3 bg-muted/40 rounded-lg">
-              <h4 className="text-xs font-semibold mb-1">{eixo.title}</h4>
-              <p className="text-xs text-muted-foreground">{eixo.desc}</p>
-            </div>
-          ))}
-        </div>
-        <p className="text-xs text-muted-foreground mt-3 italic">
-          Alinhamento: o Módulo III materializa os eixos de governança e inclusão do PlanBio, integrando os princípios de Ostrom aos mecanismos de PSA e acordos de manejo.
-        </p>
-        <div className="flex flex-wrap gap-3 mt-3">
-          <a href="https://www.gov.br/mma/pt-br/noticias/governo-federal-abre-consulta-publica-sobre-o-plano-nacional-de-desenvolvimento-da-bioeconomia" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
-            <ExternalLink size={12} /> PlanBio — MMA
-          </a>
-          <a href="https://www.gov.br/mma/pt-br/composicao/sbc/dpeb/politica-nacional-de-pagamento-por-servicos-ambientais/pagamentos-por-servicos-ambientais" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
-            <ExternalLink size={12} /> PSA — MMA
-          </a>
-        </div>
-      </div>
 
-      {/* PSA + Ostrom */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* PSA Pie */}
-        <div className="pits-card">
-          <h2 className="pits-section-title mb-4">PSA — Distribuição por Serviço</h2>
-          <PitsPieChart data={psaDistribuicao} height={220} />
-        </div>
-
-        {/* Ostrom */}
-        <div className="pits-card">
-          <h2 className="pits-section-title mb-4">Princípios de Ostrom</h2>
-          <div className="grid grid-cols-1 gap-2">
-            {ostromPrincipios.map((p, i) => (
-              <div key={i} className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg text-sm">
-                {p.status === "cumprido" && <CheckCircle size={16} className="text-success shrink-0" />}
-                {p.status === "parcial" && <AlertCircle size={16} className="text-accent shrink-0" />}
-                {p.status === "nao" && <XCircle size={16} className="text-destructive shrink-0" />}
-                <span>{p.nome}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
+          <PitsPieChart
+            data={psaDistribuicaoTipologia}
+            dataKey="valor"
+            nameKey="nome"
+            height={240}
+          />
+          <div className="space-y-2 text-xs">
+            {psaDistribuicaoTipologia.map((item) => (
+              <div key={item.nome} className="p-2.5 bg-muted/30 rounded-lg flex items-center justify-between border border-border/40">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full" style={{ background: item.cor }} />
+                  <span className="font-medium">{item.nome}</span>
+                </div>
+                <span className="font-mono font-bold">{item.valor}% sugerido</span>
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Princípios de Ostrom para Gestão dos Bens Comuns */}
+      <div className="pits-card">
+        <div className="flex items-center gap-2 mb-2">
+          <Scale size={18} className="text-primary" />
+          <h2 className="pits-section-title">
+            Princípios de Ostrom (1990) para Governança de Recursos Comuns
+          </h2>
+        </div>
+        <p className="text-xs text-muted-foreground mb-4">
+          Framework referencial de Elinor Ostrom (Prêmio Nobel de Economia de 2009) para a autogestão sustentável de recursos de uso comum (<em>common-pool resources</em>) no semiárido.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {ostromPrincipios.map((p) => (
+            <div key={p.numero} className="p-3 bg-muted/30 rounded-lg border border-border/40 space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-mono font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary">
+                  #{p.numero}
+                </span>
+                <h4 className="text-xs font-semibold leading-tight">{p.nome}</h4>
+              </div>
+              <p className="text-[11px] text-muted-foreground pl-7">{p.foco}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Alinhamento ao PNDBio */}
+      <div className="pits-card border-l-4 border-l-secondary">
+        <div className="flex items-center gap-2 mb-2">
+          <Users size={18} className="text-secondary" />
+          <h2 className="pits-section-title">Estratégia Nacional de Bioeconomia — Governança</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+          O <strong>PNDBio</strong> (Decreto Federal nº 12.044/2024, Eixo 1) fomenta a governança compartilhada e o protagonismo de povos e comunidades tradicionais e agricultores familiares na gestão dos ativos da sociobiodiversidade.
+        </p>
+        <div className="flex gap-3">
+          <a
+            href="https://www.gov.br/mma/pt-br/assuntos/bioeconomia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-xs text-secondary hover:underline font-medium"
+          >
+            <ExternalLink size={12} /> Portal Oficial PNDBio
+          </a>
+          <a
+            href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14119.htm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-xs text-secondary hover:underline font-medium"
+          >
+            <ExternalLink size={12} /> Lei Federal nº 14.119/2021 (PNPSA)
+          </a>
         </div>
       </div>
     </div>

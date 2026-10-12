@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { Municipio, municipios } from "@/data/mockData";
+import { MunicipioPits as Municipio, municipiosReais as municipios } from "@/data/municipiosData";
 
 interface PitsContextType {
   selectedMunicipio: Municipio;

@@ -21,8 +21,8 @@ export const DESMAT_SEVERITY = {
   medium: 10,
 } as const;
 
-// --- Cobertura arbórea ---
-export const COBERTURA_META_PCT = 40;
+// --- Referência legal da Reserva Legal na Caatinga (Lei Federal 12.651/2012, art. 12, II) ---
+export const COBERTURA_META_PCT = 20;
 
 // --- Simulador: pesos de impacto das variáveis de intervenção ---
 export const SIM_WEIGHTS = {

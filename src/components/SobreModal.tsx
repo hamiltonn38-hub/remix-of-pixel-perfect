@@ -54,15 +54,15 @@ export default function SobreModal() {
             </div>
           </div>
 
-          {/* IPSE */}
+          {/* IPSE Oficial */}
           <div className="p-4 bg-primary/5 rounded-xl border border-primary/10">
-            <h3 className="font-semibold mb-2">Índice IPSE</h3>
+            <h3 className="font-semibold mb-2">Modelo Oficial do IPSE (Artigo Científico)</h3>
             <p className="text-muted-foreground text-xs leading-relaxed">
-              O <strong>Índice de Potencial Socioenergético (IPSE)</strong> é o indicador composto central da plataforma, calculado a partir de quatro sub-índices: Biomassa Disponível (IB), Vulnerabilidade Socioeconômica (IVS), Infraestrutura Energética (IIE) e Governança Local (IGL). Os pesos são personalizáveis pelo usuário, garantindo transparência e adaptabilidade metodológica.
+              O <strong>Índice de Potencial Socioenergético (IPSE)</strong> é o indicador oficial do artigo (Seção 3.1), definido como a razão entre o Potencial Energético Local de biomassa (PEL) e o Índice de Vulnerabilidade Social com penalidade climática (IVS*). Os subíndices Biomassa (IB), Infraestrutura (IIE) e Governança (IGL) constituem <em>indicadores setoriais de apoio</em>.
             </p>
-            <p className="font-mono text-xs mt-2 text-center text-foreground/70">
-              IPSE = w₁·IB + w₂·IVS + w₃·IIE + w₄·IGL
-            </p>
+            <div className="font-mono text-xs mt-2 text-center text-foreground font-bold p-2 bg-background/60 rounded border border-border/50">
+              IPSE = PEL / IVS* &nbsp;•&nbsp; PEL = A_i · Y_i · PCI · η &nbsp;•&nbsp; IVS = 1 − Σ w_k·X_k
+            </div>
           </div>
 
           {/* FUNDECI */}
