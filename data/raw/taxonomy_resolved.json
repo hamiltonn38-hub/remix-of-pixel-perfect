@@ -1,0 +1,57 @@
+[
+  {
+    "nomePopular": "Sabiá",
+    "nomeAnterior": "Mimosa caesalpiniifolia",
+    "nomeCientificoAceito": "Mimosa caesalpiniifolia",
+    "statusTaxonomico": "ACCEPTED",
+    "familia": "Fabaceae",
+    "autoria": "",
+    "usoTradicional": "Manejo florestal, forragem, estacas",
+    "fonte": "Flora e Funga do Brasil (JBRJ) / GBIF Taxonomic Backbone",
+    "url": "https://floradobrasil.jbrj.gov.br/"
+  },
+  {
+    "nomePopular": "Catingueira",
+    "nomeAnterior": "Poincianella pyramidalis",
+    "nomeCientificoAceito": "Cenostigma pyramidale",
+    "statusTaxonomico": "SYNONYM",
+    "familia": "Fabaceae",
+    "autoria": "",
+    "usoTradicional": "Lenha, regeneração, cerca viva",
+    "fonte": "Flora e Funga do Brasil (JBRJ) / GBIF Taxonomic Backbone",
+    "url": "https://floradobrasil.jbrj.gov.br/"
+  },
+  {
+    "nomePopular": "Juazeiro",
+    "nomeAnterior": "Ziziphus joazeiro",
+    "nomeCientificoAceito": "Sarcomphalus joazeiro",
+    "statusTaxonomico": "SYNONYM",
+    "familia": "Rhamnaceae",
+    "autoria": "",
+    "usoTradicional": "Conservação permanente, sombra, forragem na seca",
+    "fonte": "Flora e Funga do Brasil (JBRJ) / GBIF Taxonomic Backbone",
+    "url": "https://floradobrasil.jbrj.gov.br/"
+  },
+  {
+    "nomePopular": "Angico",
+    "nomeAnterior": "Anadenanthera colubrina",
+    "nomeCientificoAceito": "Anadenanthera colubrina",
+    "statusTaxonomico": "ACCEPTED",
+    "familia": "Fabaceae",
+    "autoria": "",
+    "usoTradicional": "Manejo madereiro, tanino, apicultura",
+    "fonte": "Flora e Funga do Brasil (JBRJ) / GBIF Taxonomic Backbone",
+    "url": "https://floradobrasil.jbrj.gov.br/"
+  },
+  {
+    "nomePopular": "Jurema-preta",
+    "nomeAnterior": "Mimosa tenuiflora",
+    "nomeCientificoAceito": "Mimosa tenuiflora",
+    "statusTaxonomico": "ACCEPTED",
+    "familia": "Fabaceae",
+    "autoria": "",
+    "usoTradicional": "Manejo para lenha e carvão vegetal",
+    "fonte": "Flora e Funga do Brasil (JBRJ) / GBIF Taxonomic Backbone",
+    "url": "https://floradobrasil.jbrj.gov.br/"
+  }
+]

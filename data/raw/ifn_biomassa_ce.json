@@ -1,0 +1,127 @@
+{
+  "fonte": "Serviço Florestal Brasileiro (IFN-CE) e MapBiomas Coleção 11",
+  "metodologia": "Biomassa aérea ponderada por remanescente nativo (IFN-CE: 34.5 t/ha)",
+  "data_processamento": "11/10/2026",
+  "municipios": {
+    "2311306": {
+      "municipio": "Quixadá",
+      "codigoIBGE": "2311306",
+      "vegetacao_nativa_2025_ha": 147637.6,
+      "area_territorio_mapeado_ha": 202060.9,
+      "pct_cobertura_nativa": 73.07,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 25.21,
+      "estoque_biomassa_total_t": 5093497.4,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    },
+    "2304103": {
+      "municipio": "Crateús",
+      "codigoIBGE": "2304103",
+      "vegetacao_nativa_2025_ha": 218161.5,
+      "area_territorio_mapeado_ha": 298131.7,
+      "pct_cobertura_nativa": 73.18,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 25.25,
+      "estoque_biomassa_total_t": 7526571.7,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    },
+    "2305506": {
+      "municipio": "Iguatu",
+      "codigoIBGE": "2305506",
+      "vegetacao_nativa_2025_ha": 46573.8,
+      "area_territorio_mapeado_ha": 97731.1,
+      "pct_cobertura_nativa": 47.65,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 16.44,
+      "estoque_biomassa_total_t": 1606794.9,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    },
+    "2312908": {
+      "municipio": "Sobral",
+      "codigoIBGE": "2312908",
+      "vegetacao_nativa_2025_ha": 153908.6,
+      "area_territorio_mapeado_ha": 206848.5,
+      "pct_cobertura_nativa": 74.41,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 25.67,
+      "estoque_biomassa_total_t": 5309847.0,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    },
+    "2307304": {
+      "municipio": "Juazeiro do Norte",
+      "codigoIBGE": "2307304",
+      "vegetacao_nativa_2025_ha": 13558.4,
+      "area_territorio_mapeado_ha": 25880.6,
+      "pct_cobertura_nativa": 52.39,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 18.07,
+      "estoque_biomassa_total_t": 467764.0,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    },
+    "2304202": {
+      "municipio": "Crato",
+      "codigoIBGE": "2304202",
+      "vegetacao_nativa_2025_ha": 98879.2,
+      "area_territorio_mapeado_ha": 113810.3,
+      "pct_cobertura_nativa": 86.88,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 29.97,
+      "estoque_biomassa_total_t": 3411331.0,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    },
+    "2312700": {
+      "municipio": "Senador Pompeu",
+      "codigoIBGE": "2312700",
+      "vegetacao_nativa_2025_ha": 60131.5,
+      "area_territorio_mapeado_ha": 96324.6,
+      "pct_cobertura_nativa": 62.43,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 21.54,
+      "estoque_biomassa_total_t": 2074537.0,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    },
+    "2313302": {
+      "municipio": "Tauá",
+      "codigoIBGE": "2313302",
+      "vegetacao_nativa_2025_ha": 237194.2,
+      "area_territorio_mapeado_ha": 401063.3,
+      "pct_cobertura_nativa": 59.14,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 20.4,
+      "estoque_biomassa_total_t": 8183200.6,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    },
+    "2302800": {
+      "municipio": "Canindé",
+      "codigoIBGE": "2302800",
+      "vegetacao_nativa_2025_ha": 268132.4,
+      "area_territorio_mapeado_ha": 303245.8,
+      "pct_cobertura_nativa": 88.42,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 30.51,
+      "estoque_biomassa_total_t": 9250568.3,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    },
+    "2303501": {
+      "municipio": "Cascavel",
+      "codigoIBGE": "2303501",
+      "vegetacao_nativa_2025_ha": 48567.3,
+      "area_territorio_mapeado_ha": 83796.0,
+      "pct_cobertura_nativa": 57.96,
+      "biomassa_media_nativa_t_ha": 34.5,
+      "biomassa_densidade_territorial_t_ha": 20.0,
+      "estoque_biomassa_total_t": 1675571.6,
+      "referencia_alométrica": "Sampaio & Silva (2005) - Acta Botanica Brasilica",
+      "referencia_inventario": "IFN-CE / Serviço Florestal Brasileiro (SFB/MMA)"
+    }
+  }
+}

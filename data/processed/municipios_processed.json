@@ -1,0 +1,3982 @@
+{
+  "2311306": {
+    "codigoIBGE": "2311306",
+    "nome": "Quixadá",
+    "demografia_censo2022": {
+      "populacao_hab": 84168,
+      "area_territorial_km2": 2020.586,
+      "densidade_demografica_hab_km2": 41.66
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 20251
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.2429,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.2385,
+        "prop_domicilios_esgotamento_inadequado": 0.515,
+        "prop_domicilios_lixo_nao_coletado": 0.2102,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 4439,
+      "safs": {
+        "estabelecimentos": 685,
+        "estabelecimentos_pct": 15.43,
+        "area_saf_ha": 28970
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 27345,
+        "pastagens_plantadas": 1326,
+        "matas_naturais": 26391,
+        "lavouras": 18909
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 4,
+        "rotacao_culturas_estab": 298,
+        "adubacao_organica_pct": 17.23,
+        "agricultura_organica_pct": 0.32,
+        "associativismo_sindicato_pct": 56.9,
+        "orientacao_tecnica_pct": 7.97,
+        "energia_solar_estab_pct": 0.47
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 73.07,
+      "vegetacao_nativa_recente_ha": 147637.6,
+      "pastagem_recente_ha": 39528.3,
+      "agricultura_recente_ha": 3929.7,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 177590.4,
+          "nativa_pct": 87.89,
+          "pastagem_ha": 7013.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 202060.9
+        },
+        "1986": {
+          "nativa_ha": 173531.4,
+          "nativa_pct": 85.88,
+          "pastagem_ha": 11660.8,
+          "agricultura_ha": 2.6,
+          "total_mapeado_ha": 202060.9
+        },
+        "1987": {
+          "nativa_ha": 173065.4,
+          "nativa_pct": 85.65,
+          "pastagem_ha": 13999.0,
+          "agricultura_ha": 2.6,
+          "total_mapeado_ha": 202060.9
+        },
+        "1988": {
+          "nativa_ha": 172108.4,
+          "nativa_pct": 85.18,
+          "pastagem_ha": 15888.5,
+          "agricultura_ha": 5.7,
+          "total_mapeado_ha": 202060.9
+        },
+        "1989": {
+          "nativa_ha": 168317.1,
+          "nativa_pct": 83.3,
+          "pastagem_ha": 20428.5,
+          "agricultura_ha": 10.8,
+          "total_mapeado_ha": 202060.9
+        },
+        "1990": {
+          "nativa_ha": 162343.5,
+          "nativa_pct": 80.34,
+          "pastagem_ha": 27080.1,
+          "agricultura_ha": 10.8,
+          "total_mapeado_ha": 202060.9
+        },
+        "1991": {
+          "nativa_ha": 160402.7,
+          "nativa_pct": 79.38,
+          "pastagem_ha": 30401.6,
+          "agricultura_ha": 15.7,
+          "total_mapeado_ha": 202060.9
+        },
+        "1992": {
+          "nativa_ha": 155959.8,
+          "nativa_pct": 77.18,
+          "pastagem_ha": 35550.0,
+          "agricultura_ha": 20.6,
+          "total_mapeado_ha": 202060.9
+        },
+        "1993": {
+          "nativa_ha": 152938.5,
+          "nativa_pct": 75.69,
+          "pastagem_ha": 39793.4,
+          "agricultura_ha": 52.2,
+          "total_mapeado_ha": 202060.9
+        },
+        "1994": {
+          "nativa_ha": 143433.9,
+          "nativa_pct": 70.99,
+          "pastagem_ha": 45980.0,
+          "agricultura_ha": 159.9,
+          "total_mapeado_ha": 202060.9
+        },
+        "1995": {
+          "nativa_ha": 141531.1,
+          "nativa_pct": 70.04,
+          "pastagem_ha": 46984.9,
+          "agricultura_ha": 249.7,
+          "total_mapeado_ha": 202060.9
+        },
+        "1996": {
+          "nativa_ha": 142290.6,
+          "nativa_pct": 70.42,
+          "pastagem_ha": 46523.7,
+          "agricultura_ha": 378.8,
+          "total_mapeado_ha": 202060.9
+        },
+        "1997": {
+          "nativa_ha": 144452.7,
+          "nativa_pct": 71.49,
+          "pastagem_ha": 46202.3,
+          "agricultura_ha": 402.3,
+          "total_mapeado_ha": 202060.9
+        },
+        "1998": {
+          "nativa_ha": 145261.6,
+          "nativa_pct": 71.89,
+          "pastagem_ha": 47011.8,
+          "agricultura_ha": 423.5,
+          "total_mapeado_ha": 202060.9
+        },
+        "1999": {
+          "nativa_ha": 154961.8,
+          "nativa_pct": 76.69,
+          "pastagem_ha": 40743.0,
+          "agricultura_ha": 475.2,
+          "total_mapeado_ha": 202060.9
+        },
+        "2000": {
+          "nativa_ha": 158890.0,
+          "nativa_pct": 78.63,
+          "pastagem_ha": 37647.5,
+          "agricultura_ha": 485.9,
+          "total_mapeado_ha": 202060.9
+        },
+        "2001": {
+          "nativa_ha": 159340.8,
+          "nativa_pct": 78.86,
+          "pastagem_ha": 36334.6,
+          "agricultura_ha": 948.6,
+          "total_mapeado_ha": 202060.9
+        },
+        "2002": {
+          "nativa_ha": 163667.9,
+          "nativa_pct": 81.0,
+          "pastagem_ha": 30724.3,
+          "agricultura_ha": 1127.7,
+          "total_mapeado_ha": 202060.9
+        },
+        "2003": {
+          "nativa_ha": 164024.2,
+          "nativa_pct": 81.18,
+          "pastagem_ha": 29468.6,
+          "agricultura_ha": 1195.2,
+          "total_mapeado_ha": 202060.9
+        },
+        "2004": {
+          "nativa_ha": 161952.3,
+          "nativa_pct": 80.15,
+          "pastagem_ha": 28440.9,
+          "agricultura_ha": 1533.1,
+          "total_mapeado_ha": 202060.9
+        },
+        "2005": {
+          "nativa_ha": 161593.1,
+          "nativa_pct": 79.97,
+          "pastagem_ha": 28710.4,
+          "agricultura_ha": 1823.4,
+          "total_mapeado_ha": 202060.9
+        },
+        "2006": {
+          "nativa_ha": 160430.3,
+          "nativa_pct": 79.4,
+          "pastagem_ha": 28934.1,
+          "agricultura_ha": 2260.3,
+          "total_mapeado_ha": 202060.9
+        },
+        "2007": {
+          "nativa_ha": 158296.7,
+          "nativa_pct": 78.34,
+          "pastagem_ha": 30821.9,
+          "agricultura_ha": 2413.3,
+          "total_mapeado_ha": 202060.9
+        },
+        "2008": {
+          "nativa_ha": 156430.8,
+          "nativa_pct": 77.42,
+          "pastagem_ha": 31454.8,
+          "agricultura_ha": 3052.6,
+          "total_mapeado_ha": 202060.9
+        },
+        "2009": {
+          "nativa_ha": 155406.6,
+          "nativa_pct": 76.91,
+          "pastagem_ha": 30887.2,
+          "agricultura_ha": 3465.1,
+          "total_mapeado_ha": 202060.9
+        },
+        "2010": {
+          "nativa_ha": 154116.8,
+          "nativa_pct": 76.27,
+          "pastagem_ha": 32211.7,
+          "agricultura_ha": 3542.7,
+          "total_mapeado_ha": 202060.9
+        },
+        "2011": {
+          "nativa_ha": 155546.4,
+          "nativa_pct": 76.98,
+          "pastagem_ha": 31911.8,
+          "agricultura_ha": 3558.6,
+          "total_mapeado_ha": 202060.9
+        },
+        "2012": {
+          "nativa_ha": 155109.6,
+          "nativa_pct": 76.76,
+          "pastagem_ha": 33091.0,
+          "agricultura_ha": 3530.3,
+          "total_mapeado_ha": 202060.9
+        },
+        "2013": {
+          "nativa_ha": 157725.4,
+          "nativa_pct": 78.06,
+          "pastagem_ha": 32279.0,
+          "agricultura_ha": 3133.1,
+          "total_mapeado_ha": 202060.9
+        },
+        "2014": {
+          "nativa_ha": 158718.4,
+          "nativa_pct": 78.55,
+          "pastagem_ha": 32832.6,
+          "agricultura_ha": 2850.3,
+          "total_mapeado_ha": 202060.9
+        },
+        "2015": {
+          "nativa_ha": 158862.4,
+          "nativa_pct": 78.62,
+          "pastagem_ha": 33626.0,
+          "agricultura_ha": 2896.9,
+          "total_mapeado_ha": 202060.9
+        },
+        "2016": {
+          "nativa_ha": 159413.3,
+          "nativa_pct": 78.89,
+          "pastagem_ha": 33364.0,
+          "agricultura_ha": 2967.6,
+          "total_mapeado_ha": 202060.9
+        },
+        "2017": {
+          "nativa_ha": 161775.3,
+          "nativa_pct": 80.06,
+          "pastagem_ha": 30777.8,
+          "agricultura_ha": 3065.0,
+          "total_mapeado_ha": 202060.9
+        },
+        "2018": {
+          "nativa_ha": 163067.2,
+          "nativa_pct": 80.7,
+          "pastagem_ha": 29585.3,
+          "agricultura_ha": 3263.1,
+          "total_mapeado_ha": 202060.9
+        },
+        "2019": {
+          "nativa_ha": 163711.1,
+          "nativa_pct": 81.02,
+          "pastagem_ha": 28626.1,
+          "agricultura_ha": 3863.3,
+          "total_mapeado_ha": 202060.9
+        },
+        "2020": {
+          "nativa_ha": 163476.0,
+          "nativa_pct": 80.9,
+          "pastagem_ha": 28943.1,
+          "agricultura_ha": 3897.8,
+          "total_mapeado_ha": 202060.9
+        },
+        "2021": {
+          "nativa_ha": 161954.4,
+          "nativa_pct": 80.15,
+          "pastagem_ha": 30247.5,
+          "agricultura_ha": 3933.7,
+          "total_mapeado_ha": 202060.9
+        },
+        "2022": {
+          "nativa_ha": 161247.7,
+          "nativa_pct": 79.8,
+          "pastagem_ha": 30824.9,
+          "agricultura_ha": 3898.8,
+          "total_mapeado_ha": 202060.9
+        },
+        "2023": {
+          "nativa_ha": 158033.8,
+          "nativa_pct": 78.21,
+          "pastagem_ha": 33026.7,
+          "agricultura_ha": 3905.1,
+          "total_mapeado_ha": 202060.9
+        },
+        "2024": {
+          "nativa_ha": 156663.8,
+          "nativa_pct": 77.53,
+          "pastagem_ha": 34043.9,
+          "agricultura_ha": 3918.4,
+          "total_mapeado_ha": 202060.9
+        },
+        "2025": {
+          "nativa_ha": 147637.6,
+          "nativa_pct": 73.07,
+          "pastagem_ha": 39528.3,
+          "agricultura_ha": 3929.7,
+          "total_mapeado_ha": 202060.9
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Quixadá",
+      "codigoIBGE": "2311306",
+      "estacao_mais_proxima": {
+        "codigo": "A369",
+        "nome": "QUIXADA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -4.97888888,
+        "lon": -39.05722222,
+        "distanciaKm": 4.72
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A369_QUIXADA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 977.2,
+        "registros_horarios": 8420
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Quixadá",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Quixadá",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 16656,
+      "total_alertas": 100,
+      "area_total_desmatada_ha": 704.38,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 25.21,
+      "estoque_biomassa_total_t": 5093497.4,
+      "vegetacao_nativa_2025_ha": 147637.6,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  },
+  "2304103": {
+    "codigoIBGE": "2304103",
+    "nome": "Crateús",
+    "demografia_censo2022": {
+      "populacao_hab": 76390,
+      "area_territorial_km2": 2981.459,
+      "densidade_demografica_hab_km2": 25.62
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 80565
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.2281,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.215,
+        "prop_domicilios_esgotamento_inadequado": 0.4951,
+        "prop_domicilios_lixo_nao_coletado": 0.1945,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 6272,
+      "safs": {
+        "estabelecimentos": 6,
+        "estabelecimentos_pct": 0.1,
+        "area_saf_ha": 246
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 89265,
+        "pastagens_plantadas": 832,
+        "matas_naturais": 50468,
+        "lavouras": 17012
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 10,
+        "rotacao_culturas_estab": 26,
+        "adubacao_organica_pct": 10.76,
+        "agricultura_organica_pct": 0.0,
+        "associativismo_sindicato_pct": 73.07,
+        "orientacao_tecnica_pct": 8.98,
+        "energia_solar_estab_pct": 0.02
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 73.18,
+      "vegetacao_nativa_recente_ha": 218161.5,
+      "pastagem_recente_ha": 71327.0,
+      "agricultura_recente_ha": 427.4,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 262048.4,
+          "nativa_pct": 87.9,
+          "pastagem_ha": 10842.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 298131.7
+        },
+        "1986": {
+          "nativa_ha": 258844.6,
+          "nativa_pct": 86.82,
+          "pastagem_ha": 17130.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 298131.7
+        },
+        "1987": {
+          "nativa_ha": 258022.7,
+          "nativa_pct": 86.55,
+          "pastagem_ha": 23339.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 298131.7
+        },
+        "1988": {
+          "nativa_ha": 256549.3,
+          "nativa_pct": 86.05,
+          "pastagem_ha": 27237.9,
+          "agricultura_ha": 126.6,
+          "total_mapeado_ha": 298131.7
+        },
+        "1989": {
+          "nativa_ha": 255582.9,
+          "nativa_pct": 85.73,
+          "pastagem_ha": 30264.6,
+          "agricultura_ha": 139.6,
+          "total_mapeado_ha": 298131.7
+        },
+        "1990": {
+          "nativa_ha": 252697.1,
+          "nativa_pct": 84.76,
+          "pastagem_ha": 34266.7,
+          "agricultura_ha": 358.3,
+          "total_mapeado_ha": 298131.7
+        },
+        "1991": {
+          "nativa_ha": 255541.3,
+          "nativa_pct": 85.71,
+          "pastagem_ha": 33365.2,
+          "agricultura_ha": 363.3,
+          "total_mapeado_ha": 298131.7
+        },
+        "1992": {
+          "nativa_ha": 252131.4,
+          "nativa_pct": 84.57,
+          "pastagem_ha": 37609.4,
+          "agricultura_ha": 357.6,
+          "total_mapeado_ha": 298131.7
+        },
+        "1993": {
+          "nativa_ha": 251581.7,
+          "nativa_pct": 84.39,
+          "pastagem_ha": 39069.8,
+          "agricultura_ha": 303.1,
+          "total_mapeado_ha": 298131.7
+        },
+        "1994": {
+          "nativa_ha": 251528.1,
+          "nativa_pct": 84.37,
+          "pastagem_ha": 39121.3,
+          "agricultura_ha": 266.3,
+          "total_mapeado_ha": 298131.7
+        },
+        "1995": {
+          "nativa_ha": 253282.8,
+          "nativa_pct": 84.96,
+          "pastagem_ha": 37693.3,
+          "agricultura_ha": 260.2,
+          "total_mapeado_ha": 298131.7
+        },
+        "1996": {
+          "nativa_ha": 253692.5,
+          "nativa_pct": 85.09,
+          "pastagem_ha": 38342.1,
+          "agricultura_ha": 227.9,
+          "total_mapeado_ha": 298131.7
+        },
+        "1997": {
+          "nativa_ha": 252252.8,
+          "nativa_pct": 84.61,
+          "pastagem_ha": 40409.1,
+          "agricultura_ha": 234.1,
+          "total_mapeado_ha": 298131.7
+        },
+        "1998": {
+          "nativa_ha": 249521.5,
+          "nativa_pct": 83.7,
+          "pastagem_ha": 43717.7,
+          "agricultura_ha": 188.9,
+          "total_mapeado_ha": 298131.7
+        },
+        "1999": {
+          "nativa_ha": 250128.2,
+          "nativa_pct": 83.9,
+          "pastagem_ha": 43096.4,
+          "agricultura_ha": 183.5,
+          "total_mapeado_ha": 298131.7
+        },
+        "2000": {
+          "nativa_ha": 249612.4,
+          "nativa_pct": 83.73,
+          "pastagem_ha": 43205.5,
+          "agricultura_ha": 138.4,
+          "total_mapeado_ha": 298131.7
+        },
+        "2001": {
+          "nativa_ha": 247392.8,
+          "nativa_pct": 82.98,
+          "pastagem_ha": 45413.0,
+          "agricultura_ha": 144.4,
+          "total_mapeado_ha": 298131.7
+        },
+        "2002": {
+          "nativa_ha": 246579.0,
+          "nativa_pct": 82.71,
+          "pastagem_ha": 45547.4,
+          "agricultura_ha": 149.9,
+          "total_mapeado_ha": 298131.7
+        },
+        "2003": {
+          "nativa_ha": 243724.4,
+          "nativa_pct": 81.75,
+          "pastagem_ha": 47416.8,
+          "agricultura_ha": 163.3,
+          "total_mapeado_ha": 298131.7
+        },
+        "2004": {
+          "nativa_ha": 238445.3,
+          "nativa_pct": 79.98,
+          "pastagem_ha": 50851.0,
+          "agricultura_ha": 295.0,
+          "total_mapeado_ha": 298131.7
+        },
+        "2005": {
+          "nativa_ha": 236809.5,
+          "nativa_pct": 79.43,
+          "pastagem_ha": 52764.9,
+          "agricultura_ha": 351.4,
+          "total_mapeado_ha": 298131.7
+        },
+        "2006": {
+          "nativa_ha": 233805.5,
+          "nativa_pct": 78.42,
+          "pastagem_ha": 56176.7,
+          "agricultura_ha": 428.9,
+          "total_mapeado_ha": 298131.7
+        },
+        "2007": {
+          "nativa_ha": 231967.1,
+          "nativa_pct": 77.81,
+          "pastagem_ha": 58854.6,
+          "agricultura_ha": 397.0,
+          "total_mapeado_ha": 298131.7
+        },
+        "2008": {
+          "nativa_ha": 231893.7,
+          "nativa_pct": 77.78,
+          "pastagem_ha": 59091.3,
+          "agricultura_ha": 254.5,
+          "total_mapeado_ha": 298131.7
+        },
+        "2009": {
+          "nativa_ha": 231903.0,
+          "nativa_pct": 77.79,
+          "pastagem_ha": 59031.2,
+          "agricultura_ha": 350.1,
+          "total_mapeado_ha": 298131.7
+        },
+        "2010": {
+          "nativa_ha": 232258.9,
+          "nativa_pct": 77.9,
+          "pastagem_ha": 59156.9,
+          "agricultura_ha": 656.2,
+          "total_mapeado_ha": 298131.7
+        },
+        "2011": {
+          "nativa_ha": 239760.4,
+          "nativa_pct": 80.42,
+          "pastagem_ha": 51890.5,
+          "agricultura_ha": 694.4,
+          "total_mapeado_ha": 298131.7
+        },
+        "2012": {
+          "nativa_ha": 238419.1,
+          "nativa_pct": 79.97,
+          "pastagem_ha": 54444.8,
+          "agricultura_ha": 436.0,
+          "total_mapeado_ha": 298131.7
+        },
+        "2013": {
+          "nativa_ha": 238995.2,
+          "nativa_pct": 80.16,
+          "pastagem_ha": 54713.6,
+          "agricultura_ha": 347.9,
+          "total_mapeado_ha": 298131.7
+        },
+        "2014": {
+          "nativa_ha": 241481.8,
+          "nativa_pct": 81.0,
+          "pastagem_ha": 52634.8,
+          "agricultura_ha": 360.9,
+          "total_mapeado_ha": 298131.7
+        },
+        "2015": {
+          "nativa_ha": 240818.3,
+          "nativa_pct": 80.78,
+          "pastagem_ha": 53394.8,
+          "agricultura_ha": 414.5,
+          "total_mapeado_ha": 298131.7
+        },
+        "2016": {
+          "nativa_ha": 240239.0,
+          "nativa_pct": 80.58,
+          "pastagem_ha": 53570.0,
+          "agricultura_ha": 539.1,
+          "total_mapeado_ha": 298131.7
+        },
+        "2017": {
+          "nativa_ha": 239970.4,
+          "nativa_pct": 80.49,
+          "pastagem_ha": 53626.9,
+          "agricultura_ha": 548.8,
+          "total_mapeado_ha": 298131.7
+        },
+        "2018": {
+          "nativa_ha": 239668.3,
+          "nativa_pct": 80.39,
+          "pastagem_ha": 52840.2,
+          "agricultura_ha": 522.2,
+          "total_mapeado_ha": 298131.7
+        },
+        "2019": {
+          "nativa_ha": 238325.4,
+          "nativa_pct": 79.94,
+          "pastagem_ha": 53942.6,
+          "agricultura_ha": 313.5,
+          "total_mapeado_ha": 298131.7
+        },
+        "2020": {
+          "nativa_ha": 235910.0,
+          "nativa_pct": 79.13,
+          "pastagem_ha": 55775.8,
+          "agricultura_ha": 298.5,
+          "total_mapeado_ha": 298131.7
+        },
+        "2021": {
+          "nativa_ha": 233712.9,
+          "nativa_pct": 78.39,
+          "pastagem_ha": 57824.1,
+          "agricultura_ha": 379.0,
+          "total_mapeado_ha": 298131.7
+        },
+        "2022": {
+          "nativa_ha": 228617.7,
+          "nativa_pct": 76.68,
+          "pastagem_ha": 61341.8,
+          "agricultura_ha": 385.0,
+          "total_mapeado_ha": 298131.7
+        },
+        "2023": {
+          "nativa_ha": 222827.3,
+          "nativa_pct": 74.74,
+          "pastagem_ha": 66303.7,
+          "agricultura_ha": 410.2,
+          "total_mapeado_ha": 298131.7
+        },
+        "2024": {
+          "nativa_ha": 220684.3,
+          "nativa_pct": 74.02,
+          "pastagem_ha": 68933.9,
+          "agricultura_ha": 417.4,
+          "total_mapeado_ha": 298131.7
+        },
+        "2025": {
+          "nativa_ha": 218161.5,
+          "nativa_pct": 73.18,
+          "pastagem_ha": 71327.0,
+          "agricultura_ha": 427.4,
+          "total_mapeado_ha": 298131.7
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Crateús",
+      "codigoIBGE": "2304103",
+      "estacao_mais_proxima": {
+        "codigo": "A361",
+        "nome": "CASTELO DO PIAUI",
+        "uf": "PI",
+        "tipo": "Automatica",
+        "lat": -5.34916666,
+        "lon": -41.51222222,
+        "distanciaKm": 94.36
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_PI_A361_CASTELO DO PIAUI_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 575.8,
+        "registros_horarios": 2184
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Crateús",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Crateús",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 18673,
+      "total_alertas": 100,
+      "area_total_desmatada_ha": 595.42,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 25.25,
+      "estoque_biomassa_total_t": 7526571.7,
+      "vegetacao_nativa_2025_ha": 218161.5,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  },
+  "2305506": {
+    "codigoIBGE": "2305506",
+    "nome": "Iguatu",
+    "demografia_censo2022": {
+      "populacao_hab": 98064,
+      "area_territorial_km2": 992.208,
+      "densidade_demografica_hab_km2": 98.83
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 34318
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.2309,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.1363,
+        "prop_domicilios_esgotamento_inadequado": 0.6572,
+        "prop_domicilios_lixo_nao_coletado": 0.1221,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 3707,
+      "safs": {
+        "estabelecimentos": 459,
+        "estabelecimentos_pct": 12.38,
+        "area_saf_ha": 6123
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 17651,
+        "pastagens_plantadas": 2949,
+        "matas_naturais": 3840,
+        "lavouras": 6258
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 2,
+        "rotacao_culturas_estab": 16,
+        "adubacao_organica_pct": 2.64,
+        "agricultura_organica_pct": 0.0,
+        "associativismo_sindicato_pct": 63.56,
+        "orientacao_tecnica_pct": 19.64,
+        "energia_solar_estab_pct": 0.0
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 47.65,
+      "vegetacao_nativa_recente_ha": 46573.8,
+      "pastagem_recente_ha": 41907.7,
+      "agricultura_recente_ha": 309.4,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 78325.8,
+          "nativa_pct": 80.14,
+          "pastagem_ha": 11083.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1986": {
+          "nativa_ha": 78312.5,
+          "nativa_pct": 80.13,
+          "pastagem_ha": 11638.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1987": {
+          "nativa_ha": 78487.8,
+          "nativa_pct": 80.31,
+          "pastagem_ha": 11783.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1988": {
+          "nativa_ha": 77935.9,
+          "nativa_pct": 79.75,
+          "pastagem_ha": 12406.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1989": {
+          "nativa_ha": 77358.8,
+          "nativa_pct": 79.15,
+          "pastagem_ha": 13103.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1990": {
+          "nativa_ha": 76153.9,
+          "nativa_pct": 77.92,
+          "pastagem_ha": 14433.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1991": {
+          "nativa_ha": 75128.4,
+          "nativa_pct": 76.87,
+          "pastagem_ha": 16099.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1992": {
+          "nativa_ha": 74976.3,
+          "nativa_pct": 76.72,
+          "pastagem_ha": 17519.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1993": {
+          "nativa_ha": 75401.3,
+          "nativa_pct": 77.15,
+          "pastagem_ha": 18207.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1994": {
+          "nativa_ha": 75534.4,
+          "nativa_pct": 77.29,
+          "pastagem_ha": 18262.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1995": {
+          "nativa_ha": 75182.2,
+          "nativa_pct": 76.93,
+          "pastagem_ha": 18327.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1996": {
+          "nativa_ha": 74388.6,
+          "nativa_pct": 76.12,
+          "pastagem_ha": 18377.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1997": {
+          "nativa_ha": 75015.3,
+          "nativa_pct": 76.76,
+          "pastagem_ha": 17643.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1998": {
+          "nativa_ha": 74846.5,
+          "nativa_pct": 76.58,
+          "pastagem_ha": 17817.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "1999": {
+          "nativa_ha": 73280.2,
+          "nativa_pct": 74.98,
+          "pastagem_ha": 19465.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 97731.1
+        },
+        "2000": {
+          "nativa_ha": 71652.2,
+          "nativa_pct": 73.32,
+          "pastagem_ha": 21409.4,
+          "agricultura_ha": 1.2,
+          "total_mapeado_ha": 97731.1
+        },
+        "2001": {
+          "nativa_ha": 69747.8,
+          "nativa_pct": 71.37,
+          "pastagem_ha": 23574.2,
+          "agricultura_ha": 5.7,
+          "total_mapeado_ha": 97731.1
+        },
+        "2002": {
+          "nativa_ha": 67761.3,
+          "nativa_pct": 69.33,
+          "pastagem_ha": 25840.4,
+          "agricultura_ha": 8.4,
+          "total_mapeado_ha": 97731.1
+        },
+        "2003": {
+          "nativa_ha": 65245.5,
+          "nativa_pct": 66.76,
+          "pastagem_ha": 28096.8,
+          "agricultura_ha": 68.2,
+          "total_mapeado_ha": 97731.1
+        },
+        "2004": {
+          "nativa_ha": 62791.1,
+          "nativa_pct": 64.25,
+          "pastagem_ha": 26464.7,
+          "agricultura_ha": 60.8,
+          "total_mapeado_ha": 97731.1
+        },
+        "2005": {
+          "nativa_ha": 62279.0,
+          "nativa_pct": 63.72,
+          "pastagem_ha": 28276.6,
+          "agricultura_ha": 16.9,
+          "total_mapeado_ha": 97731.1
+        },
+        "2006": {
+          "nativa_ha": 62609.2,
+          "nativa_pct": 64.06,
+          "pastagem_ha": 28060.5,
+          "agricultura_ha": 18.8,
+          "total_mapeado_ha": 97731.1
+        },
+        "2007": {
+          "nativa_ha": 62594.2,
+          "nativa_pct": 64.05,
+          "pastagem_ha": 27863.8,
+          "agricultura_ha": 8.5,
+          "total_mapeado_ha": 97731.1
+        },
+        "2008": {
+          "nativa_ha": 61693.9,
+          "nativa_pct": 63.13,
+          "pastagem_ha": 27788.5,
+          "agricultura_ha": 1.2,
+          "total_mapeado_ha": 97731.1
+        },
+        "2009": {
+          "nativa_ha": 61222.5,
+          "nativa_pct": 62.64,
+          "pastagem_ha": 28188.1,
+          "agricultura_ha": 1.2,
+          "total_mapeado_ha": 97731.1
+        },
+        "2010": {
+          "nativa_ha": 61129.3,
+          "nativa_pct": 62.55,
+          "pastagem_ha": 28667.6,
+          "agricultura_ha": 8.4,
+          "total_mapeado_ha": 97731.1
+        },
+        "2011": {
+          "nativa_ha": 60829.0,
+          "nativa_pct": 62.24,
+          "pastagem_ha": 29027.8,
+          "agricultura_ha": 7.2,
+          "total_mapeado_ha": 97731.1
+        },
+        "2012": {
+          "nativa_ha": 60348.1,
+          "nativa_pct": 61.75,
+          "pastagem_ha": 29608.5,
+          "agricultura_ha": 4.7,
+          "total_mapeado_ha": 97731.1
+        },
+        "2013": {
+          "nativa_ha": 59096.1,
+          "nativa_pct": 60.47,
+          "pastagem_ha": 32036.1,
+          "agricultura_ha": 3.5,
+          "total_mapeado_ha": 97731.1
+        },
+        "2014": {
+          "nativa_ha": 57808.8,
+          "nativa_pct": 59.15,
+          "pastagem_ha": 34006.1,
+          "agricultura_ha": 93.4,
+          "total_mapeado_ha": 97731.1
+        },
+        "2015": {
+          "nativa_ha": 56384.9,
+          "nativa_pct": 57.69,
+          "pastagem_ha": 36119.5,
+          "agricultura_ha": 189.7,
+          "total_mapeado_ha": 97731.1
+        },
+        "2016": {
+          "nativa_ha": 55384.1,
+          "nativa_pct": 56.67,
+          "pastagem_ha": 37777.9,
+          "agricultura_ha": 205.4,
+          "total_mapeado_ha": 97731.1
+        },
+        "2017": {
+          "nativa_ha": 53925.7,
+          "nativa_pct": 55.18,
+          "pastagem_ha": 39962.0,
+          "agricultura_ha": 211.1,
+          "total_mapeado_ha": 97731.1
+        },
+        "2018": {
+          "nativa_ha": 52385.6,
+          "nativa_pct": 53.6,
+          "pastagem_ha": 41806.7,
+          "agricultura_ha": 179.5,
+          "total_mapeado_ha": 97731.1
+        },
+        "2019": {
+          "nativa_ha": 51704.4,
+          "nativa_pct": 52.9,
+          "pastagem_ha": 42393.9,
+          "agricultura_ha": 161.1,
+          "total_mapeado_ha": 97731.1
+        },
+        "2020": {
+          "nativa_ha": 50730.1,
+          "nativa_pct": 51.91,
+          "pastagem_ha": 42070.9,
+          "agricultura_ha": 167.1,
+          "total_mapeado_ha": 97731.1
+        },
+        "2021": {
+          "nativa_ha": 51336.4,
+          "nativa_pct": 52.53,
+          "pastagem_ha": 40580.1,
+          "agricultura_ha": 175.9,
+          "total_mapeado_ha": 97731.1
+        },
+        "2022": {
+          "nativa_ha": 49088.6,
+          "nativa_pct": 50.23,
+          "pastagem_ha": 41140.3,
+          "agricultura_ha": 188.3,
+          "total_mapeado_ha": 97731.1
+        },
+        "2023": {
+          "nativa_ha": 47579.7,
+          "nativa_pct": 48.68,
+          "pastagem_ha": 41771.5,
+          "agricultura_ha": 221.7,
+          "total_mapeado_ha": 97731.1
+        },
+        "2024": {
+          "nativa_ha": 46594.2,
+          "nativa_pct": 47.68,
+          "pastagem_ha": 42316.9,
+          "agricultura_ha": 238.9,
+          "total_mapeado_ha": 97731.1
+        },
+        "2025": {
+          "nativa_ha": 46573.8,
+          "nativa_pct": 47.65,
+          "pastagem_ha": 41907.7,
+          "agricultura_ha": 309.4,
+          "total_mapeado_ha": 97731.1
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Iguatu",
+      "codigoIBGE": "2305506",
+      "estacao_mais_proxima": {
+        "codigo": "A358",
+        "nome": "JAGUARIBE",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -5.90555555,
+        "lon": -38.62777777,
+        "distanciaKm": 89.4
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A358_JAGUARIBE_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 0.0,
+        "registros_horarios": 0
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Iguatu",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Iguatu",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 15941,
+      "total_alertas": 100,
+      "area_total_desmatada_ha": 1057.61,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 16.44,
+      "estoque_biomassa_total_t": 1606794.9,
+      "vegetacao_nativa_2025_ha": 46573.8,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  },
+  "2312908": {
+    "codigoIBGE": "2312908",
+    "nome": "Sobral",
+    "demografia_censo2022": {
+      "populacao_hab": 203023,
+      "area_territorial_km2": 2068.474,
+      "densidade_demografica_hab_km2": 98.15
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 46875
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.0942,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.062,
+        "prop_domicilios_esgotamento_inadequado": 0.253,
+        "prop_domicilios_lixo_nao_coletado": 0.0538,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 5321,
+      "safs": {
+        "estabelecimentos": 122,
+        "estabelecimentos_pct": 2.29,
+        "area_saf_ha": 4223
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 25911,
+        "pastagens_plantadas": 3909,
+        "matas_naturais": 10228,
+        "lavouras": 11177
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 6,
+        "rotacao_culturas_estab": 151,
+        "adubacao_organica_pct": 5.96,
+        "agricultura_organica_pct": 0.04,
+        "associativismo_sindicato_pct": 56.47,
+        "orientacao_tecnica_pct": 8.49,
+        "energia_solar_estab_pct": 0.11
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 74.41,
+      "vegetacao_nativa_recente_ha": 153908.6,
+      "pastagem_recente_ha": 40777.2,
+      "agricultura_recente_ha": 3.9,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 184337.9,
+          "nativa_pct": 89.12,
+          "pastagem_ha": 5959.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1986": {
+          "nativa_ha": 182050.5,
+          "nativa_pct": 88.01,
+          "pastagem_ha": 9530.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1987": {
+          "nativa_ha": 180088.9,
+          "nativa_pct": 87.06,
+          "pastagem_ha": 13446.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1988": {
+          "nativa_ha": 178977.4,
+          "nativa_pct": 86.53,
+          "pastagem_ha": 16093.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1989": {
+          "nativa_ha": 177421.5,
+          "nativa_pct": 85.77,
+          "pastagem_ha": 19343.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1990": {
+          "nativa_ha": 176829.2,
+          "nativa_pct": 85.49,
+          "pastagem_ha": 21210.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1991": {
+          "nativa_ha": 176272.9,
+          "nativa_pct": 85.22,
+          "pastagem_ha": 22227.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1992": {
+          "nativa_ha": 174990.6,
+          "nativa_pct": 84.6,
+          "pastagem_ha": 23675.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1993": {
+          "nativa_ha": 174770.4,
+          "nativa_pct": 84.49,
+          "pastagem_ha": 23769.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1994": {
+          "nativa_ha": 173929.8,
+          "nativa_pct": 84.09,
+          "pastagem_ha": 24062.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1995": {
+          "nativa_ha": 172755.7,
+          "nativa_pct": 83.52,
+          "pastagem_ha": 24590.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1996": {
+          "nativa_ha": 172478.5,
+          "nativa_pct": 83.38,
+          "pastagem_ha": 25117.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1997": {
+          "nativa_ha": 171808.4,
+          "nativa_pct": 83.06,
+          "pastagem_ha": 26277.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1998": {
+          "nativa_ha": 171584.2,
+          "nativa_pct": 82.95,
+          "pastagem_ha": 27227.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "1999": {
+          "nativa_ha": 171275.0,
+          "nativa_pct": 82.8,
+          "pastagem_ha": 27409.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2000": {
+          "nativa_ha": 171346.9,
+          "nativa_pct": 82.84,
+          "pastagem_ha": 27599.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2001": {
+          "nativa_ha": 170767.3,
+          "nativa_pct": 82.56,
+          "pastagem_ha": 27281.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2002": {
+          "nativa_ha": 169735.1,
+          "nativa_pct": 82.06,
+          "pastagem_ha": 27247.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2003": {
+          "nativa_ha": 168477.9,
+          "nativa_pct": 81.45,
+          "pastagem_ha": 27538.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2004": {
+          "nativa_ha": 166631.8,
+          "nativa_pct": 80.56,
+          "pastagem_ha": 28524.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2005": {
+          "nativa_ha": 165014.6,
+          "nativa_pct": 79.78,
+          "pastagem_ha": 30500.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2006": {
+          "nativa_ha": 163677.2,
+          "nativa_pct": 79.13,
+          "pastagem_ha": 32109.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2007": {
+          "nativa_ha": 162830.1,
+          "nativa_pct": 78.72,
+          "pastagem_ha": 34003.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2008": {
+          "nativa_ha": 162152.7,
+          "nativa_pct": 78.39,
+          "pastagem_ha": 34915.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2009": {
+          "nativa_ha": 161729.1,
+          "nativa_pct": 78.19,
+          "pastagem_ha": 35591.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2010": {
+          "nativa_ha": 161553.0,
+          "nativa_pct": 78.1,
+          "pastagem_ha": 35809.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2011": {
+          "nativa_ha": 161547.7,
+          "nativa_pct": 78.1,
+          "pastagem_ha": 35661.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2012": {
+          "nativa_ha": 161434.5,
+          "nativa_pct": 78.04,
+          "pastagem_ha": 35437.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2013": {
+          "nativa_ha": 162162.8,
+          "nativa_pct": 78.4,
+          "pastagem_ha": 34907.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2014": {
+          "nativa_ha": 162687.0,
+          "nativa_pct": 78.65,
+          "pastagem_ha": 34754.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2015": {
+          "nativa_ha": 162753.9,
+          "nativa_pct": 78.68,
+          "pastagem_ha": 34733.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2016": {
+          "nativa_ha": 163573.1,
+          "nativa_pct": 79.08,
+          "pastagem_ha": 33503.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2017": {
+          "nativa_ha": 165115.1,
+          "nativa_pct": 79.82,
+          "pastagem_ha": 31213.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2018": {
+          "nativa_ha": 166856.7,
+          "nativa_pct": 80.67,
+          "pastagem_ha": 29594.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2019": {
+          "nativa_ha": 167505.7,
+          "nativa_pct": 80.98,
+          "pastagem_ha": 29063.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2020": {
+          "nativa_ha": 166705.6,
+          "nativa_pct": 80.59,
+          "pastagem_ha": 29806.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2021": {
+          "nativa_ha": 165629.4,
+          "nativa_pct": 80.07,
+          "pastagem_ha": 31187.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2022": {
+          "nativa_ha": 162430.4,
+          "nativa_pct": 78.53,
+          "pastagem_ha": 34332.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 206848.5
+        },
+        "2023": {
+          "nativa_ha": 159814.9,
+          "nativa_pct": 77.26,
+          "pastagem_ha": 36461.9,
+          "agricultura_ha": 3.9,
+          "total_mapeado_ha": 206848.5
+        },
+        "2024": {
+          "nativa_ha": 157529.9,
+          "nativa_pct": 76.16,
+          "pastagem_ha": 38261.2,
+          "agricultura_ha": 3.9,
+          "total_mapeado_ha": 206848.5
+        },
+        "2025": {
+          "nativa_ha": 153908.6,
+          "nativa_pct": 74.41,
+          "pastagem_ha": 40777.2,
+          "agricultura_ha": 3.9,
+          "total_mapeado_ha": 206848.5
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Sobral",
+      "codigoIBGE": "2312908",
+      "estacao_mais_proxima": {
+        "codigo": "A368",
+        "nome": "TIANGUA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -3.73222221,
+        "lon": -41.01194444,
+        "distanciaKm": 73.76
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A368_TIANGUA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 833.4,
+        "registros_horarios": 4465
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Sobral",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Sobral",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 17533,
+      "total_alertas": 100,
+      "area_total_desmatada_ha": 1118.14,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 25.67,
+      "estoque_biomassa_total_t": 5309847.0,
+      "vegetacao_nativa_2025_ha": 153908.6,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  },
+  "2307304": {
+    "codigoIBGE": "2307304",
+    "nome": "Juazeiro do Norte",
+    "demografia_censo2022": {
+      "populacao_hab": 286120,
+      "area_territorial_km2": 258.788,
+      "densidade_demografica_hab_km2": 1105.62
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 520
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.1699,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.0584,
+        "prop_domicilios_esgotamento_inadequado": 0.5868,
+        "prop_domicilios_lixo_nao_coletado": 0.0263,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 945,
+      "safs": {
+        "estabelecimentos": 2,
+        "estabelecimentos_pct": 0.21,
+        "area_saf_ha": 0.0
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 3014,
+        "pastagens_plantadas": 2006,
+        "matas_naturais": 2100,
+        "lavouras": 1458
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 0,
+        "rotacao_culturas_estab": 4,
+        "adubacao_organica_pct": 12.38,
+        "agricultura_organica_pct": 0.0,
+        "associativismo_sindicato_pct": 29.52,
+        "orientacao_tecnica_pct": 24.23,
+        "energia_solar_estab_pct": 0.0
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 52.39,
+      "vegetacao_nativa_recente_ha": 13558.4,
+      "pastagem_recente_ha": 5815.5,
+      "agricultura_recente_ha": 1125.6,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 21023.0,
+          "nativa_pct": 81.23,
+          "pastagem_ha": 3143.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1986": {
+          "nativa_ha": 21231.2,
+          "nativa_pct": 82.04,
+          "pastagem_ha": 3222.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1987": {
+          "nativa_ha": 21245.2,
+          "nativa_pct": 82.09,
+          "pastagem_ha": 3286.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1988": {
+          "nativa_ha": 21109.6,
+          "nativa_pct": 81.57,
+          "pastagem_ha": 3430.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1989": {
+          "nativa_ha": 20757.0,
+          "nativa_pct": 80.2,
+          "pastagem_ha": 3671.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1990": {
+          "nativa_ha": 20189.2,
+          "nativa_pct": 78.01,
+          "pastagem_ha": 4068.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1991": {
+          "nativa_ha": 19828.2,
+          "nativa_pct": 76.61,
+          "pastagem_ha": 4274.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1992": {
+          "nativa_ha": 19484.5,
+          "nativa_pct": 75.29,
+          "pastagem_ha": 4449.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1993": {
+          "nativa_ha": 19473.3,
+          "nativa_pct": 75.24,
+          "pastagem_ha": 4409.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1994": {
+          "nativa_ha": 19439.2,
+          "nativa_pct": 75.11,
+          "pastagem_ha": 4331.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1995": {
+          "nativa_ha": 19553.1,
+          "nativa_pct": 75.55,
+          "pastagem_ha": 4120.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1996": {
+          "nativa_ha": 19722.8,
+          "nativa_pct": 76.21,
+          "pastagem_ha": 3885.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1997": {
+          "nativa_ha": 19647.2,
+          "nativa_pct": 75.91,
+          "pastagem_ha": 3877.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1998": {
+          "nativa_ha": 19494.8,
+          "nativa_pct": 75.33,
+          "pastagem_ha": 3958.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "1999": {
+          "nativa_ha": 19441.1,
+          "nativa_pct": 75.12,
+          "pastagem_ha": 3874.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "2000": {
+          "nativa_ha": 19027.6,
+          "nativa_pct": 73.52,
+          "pastagem_ha": 4176.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "2001": {
+          "nativa_ha": 18819.7,
+          "nativa_pct": 72.72,
+          "pastagem_ha": 4306.9,
+          "agricultura_ha": 1.2,
+          "total_mapeado_ha": 25880.6
+        },
+        "2002": {
+          "nativa_ha": 18769.8,
+          "nativa_pct": 72.52,
+          "pastagem_ha": 4280.2,
+          "agricultura_ha": 1.6,
+          "total_mapeado_ha": 25880.6
+        },
+        "2003": {
+          "nativa_ha": 18237.3,
+          "nativa_pct": 70.47,
+          "pastagem_ha": 4687.5,
+          "agricultura_ha": 2.6,
+          "total_mapeado_ha": 25880.6
+        },
+        "2004": {
+          "nativa_ha": 17789.7,
+          "nativa_pct": 68.74,
+          "pastagem_ha": 4987.5,
+          "agricultura_ha": 2.9,
+          "total_mapeado_ha": 25880.6
+        },
+        "2005": {
+          "nativa_ha": 17492.6,
+          "nativa_pct": 67.59,
+          "pastagem_ha": 5172.2,
+          "agricultura_ha": 5.6,
+          "total_mapeado_ha": 25880.6
+        },
+        "2006": {
+          "nativa_ha": 17285.8,
+          "nativa_pct": 66.79,
+          "pastagem_ha": 5314.7,
+          "agricultura_ha": 8.2,
+          "total_mapeado_ha": 25880.6
+        },
+        "2007": {
+          "nativa_ha": 17165.3,
+          "nativa_pct": 66.32,
+          "pastagem_ha": 5315.6,
+          "agricultura_ha": 12.2,
+          "total_mapeado_ha": 25880.6
+        },
+        "2008": {
+          "nativa_ha": 17055.5,
+          "nativa_pct": 65.9,
+          "pastagem_ha": 5368.0,
+          "agricultura_ha": 15.4,
+          "total_mapeado_ha": 25880.6
+        },
+        "2009": {
+          "nativa_ha": 17023.2,
+          "nativa_pct": 65.78,
+          "pastagem_ha": 5338.4,
+          "agricultura_ha": 17.1,
+          "total_mapeado_ha": 25880.6
+        },
+        "2010": {
+          "nativa_ha": 17097.3,
+          "nativa_pct": 66.06,
+          "pastagem_ha": 5244.9,
+          "agricultura_ha": 17.6,
+          "total_mapeado_ha": 25880.6
+        },
+        "2011": {
+          "nativa_ha": 17150.6,
+          "nativa_pct": 66.27,
+          "pastagem_ha": 5125.1,
+          "agricultura_ha": 49.4,
+          "total_mapeado_ha": 25880.6
+        },
+        "2012": {
+          "nativa_ha": 17236.9,
+          "nativa_pct": 66.6,
+          "pastagem_ha": 4964.6,
+          "agricultura_ha": 69.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "2013": {
+          "nativa_ha": 17122.7,
+          "nativa_pct": 66.16,
+          "pastagem_ha": 4910.9,
+          "agricultura_ha": 141.1,
+          "total_mapeado_ha": 25880.6
+        },
+        "2014": {
+          "nativa_ha": 16969.6,
+          "nativa_pct": 65.57,
+          "pastagem_ha": 4862.9,
+          "agricultura_ha": 230.8,
+          "total_mapeado_ha": 25880.6
+        },
+        "2015": {
+          "nativa_ha": 16608.6,
+          "nativa_pct": 64.17,
+          "pastagem_ha": 4611.7,
+          "agricultura_ha": 726.4,
+          "total_mapeado_ha": 25880.6
+        },
+        "2016": {
+          "nativa_ha": 16346.8,
+          "nativa_pct": 63.16,
+          "pastagem_ha": 4615.7,
+          "agricultura_ha": 850.0,
+          "total_mapeado_ha": 25880.6
+        },
+        "2017": {
+          "nativa_ha": 16173.0,
+          "nativa_pct": 62.49,
+          "pastagem_ha": 4551.9,
+          "agricultura_ha": 953.1,
+          "total_mapeado_ha": 25880.6
+        },
+        "2018": {
+          "nativa_ha": 15864.5,
+          "nativa_pct": 61.3,
+          "pastagem_ha": 4644.9,
+          "agricultura_ha": 1033.8,
+          "total_mapeado_ha": 25880.6
+        },
+        "2019": {
+          "nativa_ha": 15538.5,
+          "nativa_pct": 60.04,
+          "pastagem_ha": 4713.5,
+          "agricultura_ha": 1134.4,
+          "total_mapeado_ha": 25880.6
+        },
+        "2020": {
+          "nativa_ha": 15240.1,
+          "nativa_pct": 58.89,
+          "pastagem_ha": 4834.0,
+          "agricultura_ha": 1123.8,
+          "total_mapeado_ha": 25880.6
+        },
+        "2021": {
+          "nativa_ha": 15034.1,
+          "nativa_pct": 58.09,
+          "pastagem_ha": 4897.4,
+          "agricultura_ha": 1122.2,
+          "total_mapeado_ha": 25880.6
+        },
+        "2022": {
+          "nativa_ha": 14539.6,
+          "nativa_pct": 56.18,
+          "pastagem_ha": 5339.9,
+          "agricultura_ha": 1121.7,
+          "total_mapeado_ha": 25880.6
+        },
+        "2023": {
+          "nativa_ha": 14214.9,
+          "nativa_pct": 54.92,
+          "pastagem_ha": 5471.9,
+          "agricultura_ha": 1122.2,
+          "total_mapeado_ha": 25880.6
+        },
+        "2024": {
+          "nativa_ha": 13992.5,
+          "nativa_pct": 54.07,
+          "pastagem_ha": 5549.8,
+          "agricultura_ha": 1128.4,
+          "total_mapeado_ha": 25880.6
+        },
+        "2025": {
+          "nativa_ha": 13558.4,
+          "nativa_pct": 52.39,
+          "pastagem_ha": 5815.5,
+          "agricultura_ha": 1125.6,
+          "total_mapeado_ha": 25880.6
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Juazeiro do Norte",
+      "codigoIBGE": "2307304",
+      "estacao_mais_proxima": {
+        "codigo": "A347",
+        "nome": "CAMPOS SALES",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -7.07777777,
+        "lon": -40.36277777,
+        "distanciaKm": 116.36
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A347_CAMPOS SALES_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 0.0,
+        "registros_horarios": 0
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Juazeiro do Norte",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Juazeiro do Norte",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 16029,
+      "total_alertas": 35,
+      "area_total_desmatada_ha": 287.98,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 18.07,
+      "estoque_biomassa_total_t": 467764.0,
+      "vegetacao_nativa_2025_ha": 13558.4,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  },
+  "2304202": {
+    "codigoIBGE": "2304202",
+    "nome": "Crato",
+    "demografia_censo2022": {
+      "populacao_hab": 131050,
+      "area_territorial_km2": 1138.15,
+      "densidade_demografica_hab_km2": 115.14
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 12100
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.1913,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.106,
+        "prop_domicilios_esgotamento_inadequado": 0.5668,
+        "prop_domicilios_lixo_nao_coletado": 0.0846,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 2643,
+      "safs": {
+        "estabelecimentos": 236,
+        "estabelecimentos_pct": 8.93,
+        "area_saf_ha": 2222
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 1211,
+        "pastagens_plantadas": 3733,
+        "matas_naturais": 5526,
+        "lavouras": 4477
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 2,
+        "rotacao_culturas_estab": 97,
+        "adubacao_organica_pct": 7.34,
+        "agricultura_organica_pct": 0.0,
+        "associativismo_sindicato_pct": 36.59,
+        "orientacao_tecnica_pct": 8.7,
+        "energia_solar_estab_pct": 0.04
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 86.88,
+      "vegetacao_nativa_recente_ha": 98879.2,
+      "pastagem_recente_ha": 10685.9,
+      "agricultura_recente_ha": 401.1,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 109911.4,
+          "nativa_pct": 96.57,
+          "pastagem_ha": 2572.0,
+          "agricultura_ha": 56.3,
+          "total_mapeado_ha": 113810.3
+        },
+        "1986": {
+          "nativa_ha": 110510.5,
+          "nativa_pct": 97.1,
+          "pastagem_ha": 2259.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "1987": {
+          "nativa_ha": 110668.6,
+          "nativa_pct": 97.24,
+          "pastagem_ha": 2142.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "1988": {
+          "nativa_ha": 110606.8,
+          "nativa_pct": 97.19,
+          "pastagem_ha": 2200.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "1989": {
+          "nativa_ha": 110444.2,
+          "nativa_pct": 97.04,
+          "pastagem_ha": 2341.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "1990": {
+          "nativa_ha": 110187.7,
+          "nativa_pct": 96.82,
+          "pastagem_ha": 2577.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "1991": {
+          "nativa_ha": 110119.6,
+          "nativa_pct": 96.76,
+          "pastagem_ha": 2630.3,
+          "agricultura_ha": 1.8,
+          "total_mapeado_ha": 113810.3
+        },
+        "1992": {
+          "nativa_ha": 110009.1,
+          "nativa_pct": 96.66,
+          "pastagem_ha": 2744.4,
+          "agricultura_ha": 1.8,
+          "total_mapeado_ha": 113810.3
+        },
+        "1993": {
+          "nativa_ha": 110004.7,
+          "nativa_pct": 96.66,
+          "pastagem_ha": 2745.5,
+          "agricultura_ha": 1.7,
+          "total_mapeado_ha": 113810.3
+        },
+        "1994": {
+          "nativa_ha": 110123.4,
+          "nativa_pct": 96.76,
+          "pastagem_ha": 2568.0,
+          "agricultura_ha": 1.8,
+          "total_mapeado_ha": 113810.3
+        },
+        "1995": {
+          "nativa_ha": 110196.5,
+          "nativa_pct": 96.82,
+          "pastagem_ha": 2439.9,
+          "agricultura_ha": 1.4,
+          "total_mapeado_ha": 113810.3
+        },
+        "1996": {
+          "nativa_ha": 110352.9,
+          "nativa_pct": 96.96,
+          "pastagem_ha": 2198.7,
+          "agricultura_ha": 1.4,
+          "total_mapeado_ha": 113810.3
+        },
+        "1997": {
+          "nativa_ha": 110328.5,
+          "nativa_pct": 96.94,
+          "pastagem_ha": 2228.8,
+          "agricultura_ha": 1.1,
+          "total_mapeado_ha": 113810.3
+        },
+        "1998": {
+          "nativa_ha": 110330.4,
+          "nativa_pct": 96.94,
+          "pastagem_ha": 2191.2,
+          "agricultura_ha": 1.1,
+          "total_mapeado_ha": 113810.3
+        },
+        "1999": {
+          "nativa_ha": 110241.8,
+          "nativa_pct": 96.86,
+          "pastagem_ha": 2200.5,
+          "agricultura_ha": 1.1,
+          "total_mapeado_ha": 113810.3
+        },
+        "2000": {
+          "nativa_ha": 109909.1,
+          "nativa_pct": 96.57,
+          "pastagem_ha": 2528.1,
+          "agricultura_ha": 1.1,
+          "total_mapeado_ha": 113810.3
+        },
+        "2001": {
+          "nativa_ha": 109805.1,
+          "nativa_pct": 96.48,
+          "pastagem_ha": 2620.2,
+          "agricultura_ha": 1.1,
+          "total_mapeado_ha": 113810.3
+        },
+        "2002": {
+          "nativa_ha": 109800.5,
+          "nativa_pct": 96.48,
+          "pastagem_ha": 2574.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "2003": {
+          "nativa_ha": 109478.5,
+          "nativa_pct": 96.19,
+          "pastagem_ha": 2847.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "2004": {
+          "nativa_ha": 109300.5,
+          "nativa_pct": 96.04,
+          "pastagem_ha": 2905.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "2005": {
+          "nativa_ha": 109283.9,
+          "nativa_pct": 96.02,
+          "pastagem_ha": 2915.3,
+          "agricultura_ha": 5.5,
+          "total_mapeado_ha": 113810.3
+        },
+        "2006": {
+          "nativa_ha": 109395.4,
+          "nativa_pct": 96.12,
+          "pastagem_ha": 2776.9,
+          "agricultura_ha": 7.1,
+          "total_mapeado_ha": 113810.3
+        },
+        "2007": {
+          "nativa_ha": 109192.6,
+          "nativa_pct": 95.94,
+          "pastagem_ha": 2929.9,
+          "agricultura_ha": 12.9,
+          "total_mapeado_ha": 113810.3
+        },
+        "2008": {
+          "nativa_ha": 108826.7,
+          "nativa_pct": 95.62,
+          "pastagem_ha": 3268.0,
+          "agricultura_ha": 15.6,
+          "total_mapeado_ha": 113810.3
+        },
+        "2009": {
+          "nativa_ha": 108680.8,
+          "nativa_pct": 95.49,
+          "pastagem_ha": 3402.4,
+          "agricultura_ha": 17.6,
+          "total_mapeado_ha": 113810.3
+        },
+        "2010": {
+          "nativa_ha": 108680.2,
+          "nativa_pct": 95.49,
+          "pastagem_ha": 3415.2,
+          "agricultura_ha": 13.1,
+          "total_mapeado_ha": 113810.3
+        },
+        "2011": {
+          "nativa_ha": 108505.5,
+          "nativa_pct": 95.34,
+          "pastagem_ha": 3612.9,
+          "agricultura_ha": 22.3,
+          "total_mapeado_ha": 113810.3
+        },
+        "2012": {
+          "nativa_ha": 108597.5,
+          "nativa_pct": 95.42,
+          "pastagem_ha": 3525.7,
+          "agricultura_ha": 31.4,
+          "total_mapeado_ha": 113810.3
+        },
+        "2013": {
+          "nativa_ha": 108684.0,
+          "nativa_pct": 95.5,
+          "pastagem_ha": 3428.7,
+          "agricultura_ha": 60.7,
+          "total_mapeado_ha": 113810.3
+        },
+        "2014": {
+          "nativa_ha": 108349.0,
+          "nativa_pct": 95.2,
+          "pastagem_ha": 3679.9,
+          "agricultura_ha": 87.2,
+          "total_mapeado_ha": 113810.3
+        },
+        "2015": {
+          "nativa_ha": 107750.9,
+          "nativa_pct": 94.68,
+          "pastagem_ha": 4149.0,
+          "agricultura_ha": 194.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "2016": {
+          "nativa_ha": 107356.1,
+          "nativa_pct": 94.33,
+          "pastagem_ha": 4476.7,
+          "agricultura_ha": 231.0,
+          "total_mapeado_ha": 113810.3
+        },
+        "2017": {
+          "nativa_ha": 107085.1,
+          "nativa_pct": 94.09,
+          "pastagem_ha": 4660.5,
+          "agricultura_ha": 274.1,
+          "total_mapeado_ha": 113810.3
+        },
+        "2018": {
+          "nativa_ha": 106636.1,
+          "nativa_pct": 93.7,
+          "pastagem_ha": 4959.6,
+          "agricultura_ha": 335.4,
+          "total_mapeado_ha": 113810.3
+        },
+        "2019": {
+          "nativa_ha": 106249.6,
+          "nativa_pct": 93.36,
+          "pastagem_ha": 5137.1,
+          "agricultura_ha": 388.1,
+          "total_mapeado_ha": 113810.3
+        },
+        "2020": {
+          "nativa_ha": 105451.3,
+          "nativa_pct": 92.66,
+          "pastagem_ha": 5694.4,
+          "agricultura_ha": 387.9,
+          "total_mapeado_ha": 113810.3
+        },
+        "2021": {
+          "nativa_ha": 104461.6,
+          "nativa_pct": 91.79,
+          "pastagem_ha": 6381.9,
+          "agricultura_ha": 395.7,
+          "total_mapeado_ha": 113810.3
+        },
+        "2022": {
+          "nativa_ha": 103326.1,
+          "nativa_pct": 90.79,
+          "pastagem_ha": 7360.8,
+          "agricultura_ha": 399.3,
+          "total_mapeado_ha": 113810.3
+        },
+        "2023": {
+          "nativa_ha": 102194.1,
+          "nativa_pct": 89.79,
+          "pastagem_ha": 8102.1,
+          "agricultura_ha": 399.6,
+          "total_mapeado_ha": 113810.3
+        },
+        "2024": {
+          "nativa_ha": 100668.1,
+          "nativa_pct": 88.45,
+          "pastagem_ha": 9154.0,
+          "agricultura_ha": 397.8,
+          "total_mapeado_ha": 113810.3
+        },
+        "2025": {
+          "nativa_ha": 98879.2,
+          "nativa_pct": 86.88,
+          "pastagem_ha": 10685.9,
+          "agricultura_ha": 401.1,
+          "total_mapeado_ha": 113810.3
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Crato",
+      "codigoIBGE": "2304202",
+      "estacao_mais_proxima": {
+        "codigo": "A347",
+        "nome": "CAMPOS SALES",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -7.07777777,
+        "lon": -40.36277777,
+        "distanciaKm": 106.61
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A347_CAMPOS SALES_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 0.0,
+        "registros_horarios": 0
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Crato",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Crato",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 19697,
+      "total_alertas": 100,
+      "area_total_desmatada_ha": 603.98,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 29.97,
+      "estoque_biomassa_total_t": 3411331.0,
+      "vegetacao_nativa_2025_ha": 98879.2,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  },
+  "2312700": {
+    "codigoIBGE": "2312700",
+    "nome": "Senador Pompeu",
+    "demografia_censo2022": {
+      "populacao_hab": 24266,
+      "area_territorial_km2": 956.882,
+      "densidade_demografica_hab_km2": 25.36
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 4895
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.2732,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.2147,
+        "prop_domicilios_esgotamento_inadequado": 0.567,
+        "prop_domicilios_lixo_nao_coletado": 0.3029,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 2220,
+      "safs": {
+        "estabelecimentos": 655,
+        "estabelecimentos_pct": 29.5,
+        "area_saf_ha": 25092
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 15703,
+        "pastagens_plantadas": 889,
+        "matas_naturais": 10132.0,
+        "lavouras": 3716
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 0,
+        "rotacao_culturas_estab": 396,
+        "adubacao_organica_pct": 6.71,
+        "agricultura_organica_pct": 0.0,
+        "associativismo_sindicato_pct": 77.79,
+        "orientacao_tecnica_pct": 16.31,
+        "energia_solar_estab_pct": 0.0
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 62.43,
+      "vegetacao_nativa_recente_ha": 60131.5,
+      "pastagem_recente_ha": 31663.5,
+      "agricultura_recente_ha": 0.0,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 86544.9,
+          "nativa_pct": 89.85,
+          "pastagem_ha": 3955.9,
+          "agricultura_ha": 195.5,
+          "total_mapeado_ha": 96324.6
+        },
+        "1986": {
+          "nativa_ha": 89656.6,
+          "nativa_pct": 93.08,
+          "pastagem_ha": 4265.0,
+          "agricultura_ha": 10.8,
+          "total_mapeado_ha": 96324.6
+        },
+        "1987": {
+          "nativa_ha": 89673.9,
+          "nativa_pct": 93.1,
+          "pastagem_ha": 4553.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1988": {
+          "nativa_ha": 89176.8,
+          "nativa_pct": 92.58,
+          "pastagem_ha": 5139.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1989": {
+          "nativa_ha": 88938.8,
+          "nativa_pct": 92.33,
+          "pastagem_ha": 5460.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1990": {
+          "nativa_ha": 88220.5,
+          "nativa_pct": 91.59,
+          "pastagem_ha": 6190.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1991": {
+          "nativa_ha": 86929.0,
+          "nativa_pct": 90.25,
+          "pastagem_ha": 7498.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1992": {
+          "nativa_ha": 84987.1,
+          "nativa_pct": 88.23,
+          "pastagem_ha": 9415.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1993": {
+          "nativa_ha": 82911.0,
+          "nativa_pct": 86.07,
+          "pastagem_ha": 11539.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1994": {
+          "nativa_ha": 77168.4,
+          "nativa_pct": 80.11,
+          "pastagem_ha": 14377.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1995": {
+          "nativa_ha": 75100.8,
+          "nativa_pct": 77.97,
+          "pastagem_ha": 15576.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1996": {
+          "nativa_ha": 75034.0,
+          "nativa_pct": 77.9,
+          "pastagem_ha": 15796.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1997": {
+          "nativa_ha": 76178.5,
+          "nativa_pct": 79.09,
+          "pastagem_ha": 15359.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1998": {
+          "nativa_ha": 77432.9,
+          "nativa_pct": 80.39,
+          "pastagem_ha": 15728.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "1999": {
+          "nativa_ha": 81083.6,
+          "nativa_pct": 84.18,
+          "pastagem_ha": 13826.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2000": {
+          "nativa_ha": 82022.9,
+          "nativa_pct": 85.15,
+          "pastagem_ha": 13060.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2001": {
+          "nativa_ha": 82416.4,
+          "nativa_pct": 85.56,
+          "pastagem_ha": 12703.3,
+          "agricultura_ha": 2.1,
+          "total_mapeado_ha": 96324.6
+        },
+        "2002": {
+          "nativa_ha": 82842.6,
+          "nativa_pct": 86.0,
+          "pastagem_ha": 11959.1,
+          "agricultura_ha": 3.7,
+          "total_mapeado_ha": 96324.6
+        },
+        "2003": {
+          "nativa_ha": 82382.4,
+          "nativa_pct": 85.53,
+          "pastagem_ha": 12258.1,
+          "agricultura_ha": 3.3,
+          "total_mapeado_ha": 96324.6
+        },
+        "2004": {
+          "nativa_ha": 82148.6,
+          "nativa_pct": 85.28,
+          "pastagem_ha": 12017.6,
+          "agricultura_ha": 10.1,
+          "total_mapeado_ha": 96324.6
+        },
+        "2005": {
+          "nativa_ha": 81635.2,
+          "nativa_pct": 84.75,
+          "pastagem_ha": 12578.1,
+          "agricultura_ha": 15.5,
+          "total_mapeado_ha": 96324.6
+        },
+        "2006": {
+          "nativa_ha": 80867.4,
+          "nativa_pct": 83.95,
+          "pastagem_ha": 13389.9,
+          "agricultura_ha": 17.3,
+          "total_mapeado_ha": 96324.6
+        },
+        "2007": {
+          "nativa_ha": 79992.3,
+          "nativa_pct": 83.04,
+          "pastagem_ha": 14335.9,
+          "agricultura_ha": 8.5,
+          "total_mapeado_ha": 96324.6
+        },
+        "2008": {
+          "nativa_ha": 78507.3,
+          "nativa_pct": 81.5,
+          "pastagem_ha": 15731.4,
+          "agricultura_ha": 1.3,
+          "total_mapeado_ha": 96324.6
+        },
+        "2009": {
+          "nativa_ha": 76848.1,
+          "nativa_pct": 79.78,
+          "pastagem_ha": 17279.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2010": {
+          "nativa_ha": 75579.3,
+          "nativa_pct": 78.46,
+          "pastagem_ha": 18702.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2011": {
+          "nativa_ha": 76225.0,
+          "nativa_pct": 79.13,
+          "pastagem_ha": 18375.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2012": {
+          "nativa_ha": 75359.5,
+          "nativa_pct": 78.24,
+          "pastagem_ha": 19435.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2013": {
+          "nativa_ha": 75929.6,
+          "nativa_pct": 78.83,
+          "pastagem_ha": 19187.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2014": {
+          "nativa_ha": 76502.8,
+          "nativa_pct": 79.42,
+          "pastagem_ha": 18865.3,
+          "agricultura_ha": 3.2,
+          "total_mapeado_ha": 96324.6
+        },
+        "2015": {
+          "nativa_ha": 76550.8,
+          "nativa_pct": 79.47,
+          "pastagem_ha": 19027.8,
+          "agricultura_ha": 4.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2016": {
+          "nativa_ha": 76443.2,
+          "nativa_pct": 79.36,
+          "pastagem_ha": 19259.8,
+          "agricultura_ha": 1.4,
+          "total_mapeado_ha": 96324.6
+        },
+        "2017": {
+          "nativa_ha": 77571.8,
+          "nativa_pct": 80.53,
+          "pastagem_ha": 18099.3,
+          "agricultura_ha": 1.4,
+          "total_mapeado_ha": 96324.6
+        },
+        "2018": {
+          "nativa_ha": 77365.0,
+          "nativa_pct": 80.32,
+          "pastagem_ha": 18114.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2019": {
+          "nativa_ha": 77521.3,
+          "nativa_pct": 80.48,
+          "pastagem_ha": 17885.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2020": {
+          "nativa_ha": 77013.4,
+          "nativa_pct": 79.95,
+          "pastagem_ha": 18135.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2021": {
+          "nativa_ha": 75761.8,
+          "nativa_pct": 78.65,
+          "pastagem_ha": 19152.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2022": {
+          "nativa_ha": 72527.8,
+          "nativa_pct": 75.3,
+          "pastagem_ha": 21568.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2023": {
+          "nativa_ha": 69043.1,
+          "nativa_pct": 71.68,
+          "pastagem_ha": 24483.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2024": {
+          "nativa_ha": 65792.6,
+          "nativa_pct": 68.3,
+          "pastagem_ha": 27261.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        },
+        "2025": {
+          "nativa_ha": 60131.5,
+          "nativa_pct": 62.43,
+          "pastagem_ha": 31663.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 96324.6
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Senador Pompeu",
+      "codigoIBGE": "2312700",
+      "estacao_mais_proxima": {
+        "codigo": "A325",
+        "nome": "QUIXERAMOBIM",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -5.17444443,
+        "lon": -39.28944444,
+        "distanciaKm": 46.91
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A325_QUIXERAMOBIM_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 494.6,
+        "registros_horarios": 4363
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Senador Pompeu",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Senador Pompeu",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 15538,
+      "total_alertas": 100,
+      "area_total_desmatada_ha": 752.84,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 21.54,
+      "estoque_biomassa_total_t": 2074537.0,
+      "vegetacao_nativa_2025_ha": 60131.5,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  },
+  "2313302": {
+    "codigoIBGE": "2313302",
+    "nome": "Tauá",
+    "demografia_censo2022": {
+      "populacao_hab": 61227,
+      "area_territorial_km2": 4010.618,
+      "densidade_demografica_hab_km2": 15.27
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 74750
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.3304,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.3092,
+        "prop_domicilios_esgotamento_inadequado": 0.7346,
+        "prop_domicilios_lixo_nao_coletado": 0.2697,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 5327,
+      "safs": {
+        "estabelecimentos": 1483,
+        "estabelecimentos_pct": 27.84,
+        "area_saf_ha": 101467
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 117362,
+        "pastagens_plantadas": 3741,
+        "matas_naturais": 83822,
+        "lavouras": 14479
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 10,
+        "rotacao_culturas_estab": 191,
+        "adubacao_organica_pct": 9.57,
+        "agricultura_organica_pct": 0.26,
+        "associativismo_sindicato_pct": 51.45,
+        "orientacao_tecnica_pct": 11.6,
+        "energia_solar_estab_pct": 0.04
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 59.14,
+      "vegetacao_nativa_recente_ha": 237194.2,
+      "pastagem_recente_ha": 124405.9,
+      "agricultura_recente_ha": 27.0,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 321112.8,
+          "nativa_pct": 80.07,
+          "pastagem_ha": 31281.5,
+          "agricultura_ha": 547.9,
+          "total_mapeado_ha": 401063.3
+        },
+        "1986": {
+          "nativa_ha": 323130.1,
+          "nativa_pct": 80.57,
+          "pastagem_ha": 42823.1,
+          "agricultura_ha": 27.1,
+          "total_mapeado_ha": 401063.3
+        },
+        "1987": {
+          "nativa_ha": 325061.1,
+          "nativa_pct": 81.05,
+          "pastagem_ha": 48443.4,
+          "agricultura_ha": 6.5,
+          "total_mapeado_ha": 401063.3
+        },
+        "1988": {
+          "nativa_ha": 323490.8,
+          "nativa_pct": 80.66,
+          "pastagem_ha": 51351.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1989": {
+          "nativa_ha": 319878.5,
+          "nativa_pct": 79.76,
+          "pastagem_ha": 55763.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1990": {
+          "nativa_ha": 314228.5,
+          "nativa_pct": 78.35,
+          "pastagem_ha": 61382.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1991": {
+          "nativa_ha": 311814.9,
+          "nativa_pct": 77.75,
+          "pastagem_ha": 63994.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1992": {
+          "nativa_ha": 309738.3,
+          "nativa_pct": 77.23,
+          "pastagem_ha": 66512.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1993": {
+          "nativa_ha": 309403.0,
+          "nativa_pct": 77.15,
+          "pastagem_ha": 68476.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1994": {
+          "nativa_ha": 309789.1,
+          "nativa_pct": 77.24,
+          "pastagem_ha": 68863.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1995": {
+          "nativa_ha": 305217.2,
+          "nativa_pct": 76.1,
+          "pastagem_ha": 72488.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1996": {
+          "nativa_ha": 301951.8,
+          "nativa_pct": 75.29,
+          "pastagem_ha": 75760.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1997": {
+          "nativa_ha": 301676.6,
+          "nativa_pct": 75.22,
+          "pastagem_ha": 79514.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1998": {
+          "nativa_ha": 294430.9,
+          "nativa_pct": 73.41,
+          "pastagem_ha": 87584.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "1999": {
+          "nativa_ha": 290707.1,
+          "nativa_pct": 72.48,
+          "pastagem_ha": 89157.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2000": {
+          "nativa_ha": 286259.4,
+          "nativa_pct": 71.38,
+          "pastagem_ha": 93877.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2001": {
+          "nativa_ha": 283861.6,
+          "nativa_pct": 70.78,
+          "pastagem_ha": 95228.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2002": {
+          "nativa_ha": 276722.2,
+          "nativa_pct": 69.0,
+          "pastagem_ha": 96395.7,
+          "agricultura_ha": 10.3,
+          "total_mapeado_ha": 401063.3
+        },
+        "2003": {
+          "nativa_ha": 269822.0,
+          "nativa_pct": 67.28,
+          "pastagem_ha": 97232.2,
+          "agricultura_ha": 12.9,
+          "total_mapeado_ha": 401063.3
+        },
+        "2004": {
+          "nativa_ha": 260698.6,
+          "nativa_pct": 65.0,
+          "pastagem_ha": 99356.0,
+          "agricultura_ha": 5.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2005": {
+          "nativa_ha": 254498.0,
+          "nativa_pct": 63.46,
+          "pastagem_ha": 105768.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2006": {
+          "nativa_ha": 249313.8,
+          "nativa_pct": 62.16,
+          "pastagem_ha": 114650.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2007": {
+          "nativa_ha": 248414.7,
+          "nativa_pct": 61.94,
+          "pastagem_ha": 122945.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2008": {
+          "nativa_ha": 248232.5,
+          "nativa_pct": 61.89,
+          "pastagem_ha": 130116.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2009": {
+          "nativa_ha": 249064.8,
+          "nativa_pct": 62.1,
+          "pastagem_ha": 133796.8,
+          "agricultura_ha": 3.7,
+          "total_mapeado_ha": 401063.3
+        },
+        "2010": {
+          "nativa_ha": 249779.6,
+          "nativa_pct": 62.28,
+          "pastagem_ha": 130859.9,
+          "agricultura_ha": 39.2,
+          "total_mapeado_ha": 401063.3
+        },
+        "2011": {
+          "nativa_ha": 253912.1,
+          "nativa_pct": 63.31,
+          "pastagem_ha": 124642.4,
+          "agricultura_ha": 34.6,
+          "total_mapeado_ha": 401063.3
+        },
+        "2012": {
+          "nativa_ha": 255213.8,
+          "nativa_pct": 63.63,
+          "pastagem_ha": 120205.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2013": {
+          "nativa_ha": 256199.0,
+          "nativa_pct": 63.88,
+          "pastagem_ha": 118023.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2014": {
+          "nativa_ha": 255841.6,
+          "nativa_pct": 63.79,
+          "pastagem_ha": 117721.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2015": {
+          "nativa_ha": 254273.1,
+          "nativa_pct": 63.4,
+          "pastagem_ha": 119087.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2016": {
+          "nativa_ha": 253700.7,
+          "nativa_pct": 63.26,
+          "pastagem_ha": 119437.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2017": {
+          "nativa_ha": 250579.0,
+          "nativa_pct": 62.48,
+          "pastagem_ha": 124569.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2018": {
+          "nativa_ha": 247223.1,
+          "nativa_pct": 61.64,
+          "pastagem_ha": 131060.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2019": {
+          "nativa_ha": 245265.4,
+          "nativa_pct": 61.15,
+          "pastagem_ha": 137985.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2020": {
+          "nativa_ha": 245157.7,
+          "nativa_pct": 61.13,
+          "pastagem_ha": 141438.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2021": {
+          "nativa_ha": 245023.6,
+          "nativa_pct": 61.09,
+          "pastagem_ha": 143369.8,
+          "agricultura_ha": 1.1,
+          "total_mapeado_ha": 401063.3
+        },
+        "2022": {
+          "nativa_ha": 241824.8,
+          "nativa_pct": 60.3,
+          "pastagem_ha": 145451.1,
+          "agricultura_ha": 1.1,
+          "total_mapeado_ha": 401063.3
+        },
+        "2023": {
+          "nativa_ha": 240120.7,
+          "nativa_pct": 59.87,
+          "pastagem_ha": 143988.0,
+          "agricultura_ha": 25.9,
+          "total_mapeado_ha": 401063.3
+        },
+        "2024": {
+          "nativa_ha": 237885.3,
+          "nativa_pct": 59.31,
+          "pastagem_ha": 136368.0,
+          "agricultura_ha": 27.0,
+          "total_mapeado_ha": 401063.3
+        },
+        "2025": {
+          "nativa_ha": 237194.2,
+          "nativa_pct": 59.14,
+          "pastagem_ha": 124405.9,
+          "agricultura_ha": 27.0,
+          "total_mapeado_ha": 401063.3
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Tauá",
+      "codigoIBGE": "2313302",
+      "estacao_mais_proxima": {
+        "codigo": "A324",
+        "nome": "TAUA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -6.01749999,
+        "lon": -40.28138888,
+        "distanciaKm": 2.1
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A324_TAUA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 0.0,
+        "registros_horarios": 0
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Tauá",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Tauá",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 18661,
+      "total_alertas": 100,
+      "area_total_desmatada_ha": 884.29,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 20.4,
+      "estoque_biomassa_total_t": 8183200.6,
+      "vegetacao_nativa_2025_ha": 237194.2,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  },
+  "2302800": {
+    "codigoIBGE": "2302800",
+    "nome": "Canindé",
+    "demografia_censo2022": {
+      "populacao_hab": 74174,
+      "area_territorial_km2": 3032.39,
+      "densidade_demografica_hab_km2": 24.46
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 207480
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.3515,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.3458,
+        "prop_domicilios_esgotamento_inadequado": 0.7353,
+        "prop_domicilios_lixo_nao_coletado": 0.3169,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 5687,
+      "safs": {
+        "estabelecimentos": 1256,
+        "estabelecimentos_pct": 22.09,
+        "area_saf_ha": 19516
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 15024,
+        "pastagens_plantadas": 839,
+        "matas_naturais": 17077.0,
+        "lavouras": 11216
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 2,
+        "rotacao_culturas_estab": 70,
+        "adubacao_organica_pct": 8.65,
+        "agricultura_organica_pct": 0.0,
+        "associativismo_sindicato_pct": 66.77,
+        "orientacao_tecnica_pct": 3.62,
+        "energia_solar_estab_pct": 0.9
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 88.42,
+      "vegetacao_nativa_recente_ha": 268132.4,
+      "pastagem_recente_ha": 24620.2,
+      "agricultura_recente_ha": 53.6,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 289854.7,
+          "nativa_pct": 95.58,
+          "pastagem_ha": 3569.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1986": {
+          "nativa_ha": 294351.8,
+          "nativa_pct": 97.07,
+          "pastagem_ha": 3426.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1987": {
+          "nativa_ha": 294710.1,
+          "nativa_pct": 97.19,
+          "pastagem_ha": 3873.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1988": {
+          "nativa_ha": 293603.5,
+          "nativa_pct": 96.82,
+          "pastagem_ha": 4943.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1989": {
+          "nativa_ha": 291357.8,
+          "nativa_pct": 96.08,
+          "pastagem_ha": 7205.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1990": {
+          "nativa_ha": 289582.6,
+          "nativa_pct": 95.49,
+          "pastagem_ha": 9200.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1991": {
+          "nativa_ha": 288074.8,
+          "nativa_pct": 95.0,
+          "pastagem_ha": 11021.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1992": {
+          "nativa_ha": 285977.3,
+          "nativa_pct": 94.31,
+          "pastagem_ha": 13433.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1993": {
+          "nativa_ha": 284804.0,
+          "nativa_pct": 93.92,
+          "pastagem_ha": 15023.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1994": {
+          "nativa_ha": 282957.2,
+          "nativa_pct": 93.31,
+          "pastagem_ha": 16707.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1995": {
+          "nativa_ha": 281258.4,
+          "nativa_pct": 92.75,
+          "pastagem_ha": 18359.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1996": {
+          "nativa_ha": 280947.9,
+          "nativa_pct": 92.65,
+          "pastagem_ha": 18618.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1997": {
+          "nativa_ha": 279614.8,
+          "nativa_pct": 92.21,
+          "pastagem_ha": 20297.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1998": {
+          "nativa_ha": 278701.8,
+          "nativa_pct": 91.91,
+          "pastagem_ha": 21426.0,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "1999": {
+          "nativa_ha": 277751.9,
+          "nativa_pct": 91.59,
+          "pastagem_ha": 21967.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2000": {
+          "nativa_ha": 277880.5,
+          "nativa_pct": 91.64,
+          "pastagem_ha": 21871.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2001": {
+          "nativa_ha": 277661.4,
+          "nativa_pct": 91.56,
+          "pastagem_ha": 21922.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2002": {
+          "nativa_ha": 278704.2,
+          "nativa_pct": 91.91,
+          "pastagem_ha": 20577.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2003": {
+          "nativa_ha": 279009.5,
+          "nativa_pct": 92.01,
+          "pastagem_ha": 20150.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2004": {
+          "nativa_ha": 278648.7,
+          "nativa_pct": 91.89,
+          "pastagem_ha": 20186.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2005": {
+          "nativa_ha": 279179.6,
+          "nativa_pct": 92.06,
+          "pastagem_ha": 19897.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2006": {
+          "nativa_ha": 279449.0,
+          "nativa_pct": 92.15,
+          "pastagem_ha": 19619.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2007": {
+          "nativa_ha": 278816.7,
+          "nativa_pct": 91.94,
+          "pastagem_ha": 20362.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2008": {
+          "nativa_ha": 278066.9,
+          "nativa_pct": 91.7,
+          "pastagem_ha": 21053.1,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2009": {
+          "nativa_ha": 277437.4,
+          "nativa_pct": 91.49,
+          "pastagem_ha": 21545.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2010": {
+          "nativa_ha": 276293.6,
+          "nativa_pct": 91.11,
+          "pastagem_ha": 22959.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2011": {
+          "nativa_ha": 275923.7,
+          "nativa_pct": 90.99,
+          "pastagem_ha": 23579.3,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2012": {
+          "nativa_ha": 275979.3,
+          "nativa_pct": 91.01,
+          "pastagem_ha": 23851.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2013": {
+          "nativa_ha": 276448.4,
+          "nativa_pct": 91.16,
+          "pastagem_ha": 23640.4,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2014": {
+          "nativa_ha": 277528.9,
+          "nativa_pct": 91.52,
+          "pastagem_ha": 22400.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2015": {
+          "nativa_ha": 278353.4,
+          "nativa_pct": 91.79,
+          "pastagem_ha": 21623.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2016": {
+          "nativa_ha": 279203.1,
+          "nativa_pct": 92.07,
+          "pastagem_ha": 20487.2,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2017": {
+          "nativa_ha": 279916.2,
+          "nativa_pct": 92.31,
+          "pastagem_ha": 19293.6,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2018": {
+          "nativa_ha": 280079.7,
+          "nativa_pct": 92.36,
+          "pastagem_ha": 18979.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2019": {
+          "nativa_ha": 279086.7,
+          "nativa_pct": 92.03,
+          "pastagem_ha": 19812.7,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2020": {
+          "nativa_ha": 277963.9,
+          "nativa_pct": 91.66,
+          "pastagem_ha": 20956.8,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2021": {
+          "nativa_ha": 277439.2,
+          "nativa_pct": 91.49,
+          "pastagem_ha": 21471.5,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2022": {
+          "nativa_ha": 277245.2,
+          "nativa_pct": 91.43,
+          "pastagem_ha": 21442.9,
+          "agricultura_ha": 0.0,
+          "total_mapeado_ha": 303245.8
+        },
+        "2023": {
+          "nativa_ha": 273659.1,
+          "nativa_pct": 90.24,
+          "pastagem_ha": 23001.3,
+          "agricultura_ha": 53.6,
+          "total_mapeado_ha": 303245.8
+        },
+        "2024": {
+          "nativa_ha": 271600.5,
+          "nativa_pct": 89.56,
+          "pastagem_ha": 23661.9,
+          "agricultura_ha": 53.6,
+          "total_mapeado_ha": 303245.8
+        },
+        "2025": {
+          "nativa_ha": 268132.4,
+          "nativa_pct": 88.42,
+          "pastagem_ha": 24620.2,
+          "agricultura_ha": 53.6,
+          "total_mapeado_ha": 303245.8
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Canindé",
+      "codigoIBGE": "2302800",
+      "estacao_mais_proxima": {
+        "codigo": "A314",
+        "nome": "GUARAMIRANGA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -4.22916666,
+        "lon": -38.95888888,
+        "distanciaKm": 41.75
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A314_GUARAMIRANGA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 42.6,
+        "registros_horarios": 138
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Canindé",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Canindé",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 15727,
+      "total_alertas": 100,
+      "area_total_desmatada_ha": 619.55,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 30.51,
+      "estoque_biomassa_total_t": 9250568.3,
+      "vegetacao_nativa_2025_ha": 268132.4,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  },
+  "2303501": {
+    "codigoIBGE": "2303501",
+    "nome": "Cascavel",
+    "demografia_censo2022": {
+      "populacao_hab": 72720,
+      "area_territorial_km2": 838.115,
+      "densidade_demografica_hab_km2": 86.77
+    },
+    "extrativismo_pevs_2025": {
+      "lenha_extraida_m3": 536
+    },
+    "ivs_proprio_censo2022": {
+      "ivs": 0.4032,
+      "indicadores": {
+        "prop_domicilios_sem_rede_agua": 0.487,
+        "prop_domicilios_esgotamento_inadequado": 0.9565,
+        "prop_domicilios_lixo_nao_coletado": 0.1614,
+        "prop_domicilios_sem_energia_eletrica": 0.008
+      }
+    },
+    "agropecuaria_censoagro2017": {
+      "total_estabelecimentos": 2537,
+      "safs": {
+        "estabelecimentos": 379,
+        "estabelecimentos_pct": 14.94,
+        "area_saf_ha": 1567
+      },
+      "utilizacao_terras_ha": {
+        "pastagens_naturais": 3316,
+        "pastagens_plantadas": 93,
+        "matas_naturais": 7932,
+        "lavouras": 12078
+      },
+      "praticas_sustentaveis": {
+        "manejo_florestal_estab": 8,
+        "rotacao_culturas_estab": 767,
+        "adubacao_organica_pct": 32.01,
+        "agricultura_organica_pct": 0.08,
+        "associativismo_sindicato_pct": 15.37,
+        "orientacao_tecnica_pct": 16.4,
+        "energia_solar_estab_pct": 0.08
+      }
+    },
+    "cobertura_mapbiomas_col11": {
+      "ano_recente": 2025,
+      "vegetacao_nativa_recente_pct": 57.96,
+      "vegetacao_nativa_recente_ha": 48567.3,
+      "pastagem_recente_ha": 4876.1,
+      "agricultura_recente_ha": 20992.0,
+      "serie_historica_1985_2025": {
+        "1985": {
+          "nativa_ha": 72141.4,
+          "nativa_pct": 86.09,
+          "pastagem_ha": 3875.5,
+          "agricultura_ha": 13.7,
+          "total_mapeado_ha": 83796.0
+        },
+        "1986": {
+          "nativa_ha": 69961.6,
+          "nativa_pct": 83.49,
+          "pastagem_ha": 5885.2,
+          "agricultura_ha": 365.3,
+          "total_mapeado_ha": 83796.0
+        },
+        "1987": {
+          "nativa_ha": 69391.8,
+          "nativa_pct": 82.81,
+          "pastagem_ha": 6892.1,
+          "agricultura_ha": 472.4,
+          "total_mapeado_ha": 83796.0
+        },
+        "1988": {
+          "nativa_ha": 68245.0,
+          "nativa_pct": 81.44,
+          "pastagem_ha": 8063.9,
+          "agricultura_ha": 532.7,
+          "total_mapeado_ha": 83796.0
+        },
+        "1989": {
+          "nativa_ha": 68123.4,
+          "nativa_pct": 81.3,
+          "pastagem_ha": 8245.2,
+          "agricultura_ha": 625.6,
+          "total_mapeado_ha": 83796.0
+        },
+        "1990": {
+          "nativa_ha": 69481.7,
+          "nativa_pct": 82.92,
+          "pastagem_ha": 7311.6,
+          "agricultura_ha": 727.4,
+          "total_mapeado_ha": 83796.0
+        },
+        "1991": {
+          "nativa_ha": 70396.7,
+          "nativa_pct": 84.01,
+          "pastagem_ha": 6472.1,
+          "agricultura_ha": 858.0,
+          "total_mapeado_ha": 83796.0
+        },
+        "1992": {
+          "nativa_ha": 71460.6,
+          "nativa_pct": 85.28,
+          "pastagem_ha": 5340.0,
+          "agricultura_ha": 988.7,
+          "total_mapeado_ha": 83796.0
+        },
+        "1993": {
+          "nativa_ha": 71994.0,
+          "nativa_pct": 85.92,
+          "pastagem_ha": 3597.5,
+          "agricultura_ha": 1168.4,
+          "total_mapeado_ha": 83796.0
+        },
+        "1994": {
+          "nativa_ha": 72013.0,
+          "nativa_pct": 85.94,
+          "pastagem_ha": 1399.7,
+          "agricultura_ha": 1733.7,
+          "total_mapeado_ha": 83796.0
+        },
+        "1995": {
+          "nativa_ha": 68365.5,
+          "nativa_pct": 81.59,
+          "pastagem_ha": 770.5,
+          "agricultura_ha": 2219.4,
+          "total_mapeado_ha": 83796.0
+        },
+        "1996": {
+          "nativa_ha": 68275.4,
+          "nativa_pct": 81.48,
+          "pastagem_ha": 777.0,
+          "agricultura_ha": 3163.5,
+          "total_mapeado_ha": 83796.0
+        },
+        "1997": {
+          "nativa_ha": 67825.7,
+          "nativa_pct": 80.94,
+          "pastagem_ha": 913.7,
+          "agricultura_ha": 3318.4,
+          "total_mapeado_ha": 83796.0
+        },
+        "1998": {
+          "nativa_ha": 66215.3,
+          "nativa_pct": 79.02,
+          "pastagem_ha": 2954.7,
+          "agricultura_ha": 3419.3,
+          "total_mapeado_ha": 83796.0
+        },
+        "1999": {
+          "nativa_ha": 64605.6,
+          "nativa_pct": 77.1,
+          "pastagem_ha": 4128.5,
+          "agricultura_ha": 6066.5,
+          "total_mapeado_ha": 83796.0
+        },
+        "2000": {
+          "nativa_ha": 64391.5,
+          "nativa_pct": 76.84,
+          "pastagem_ha": 4257.7,
+          "agricultura_ha": 7338.9,
+          "total_mapeado_ha": 83796.0
+        },
+        "2001": {
+          "nativa_ha": 63866.2,
+          "nativa_pct": 76.22,
+          "pastagem_ha": 4302.5,
+          "agricultura_ha": 7779.5,
+          "total_mapeado_ha": 83796.0
+        },
+        "2002": {
+          "nativa_ha": 63420.2,
+          "nativa_pct": 75.68,
+          "pastagem_ha": 3986.7,
+          "agricultura_ha": 8333.4,
+          "total_mapeado_ha": 83796.0
+        },
+        "2003": {
+          "nativa_ha": 62433.3,
+          "nativa_pct": 74.51,
+          "pastagem_ha": 3862.6,
+          "agricultura_ha": 9142.3,
+          "total_mapeado_ha": 83796.0
+        },
+        "2004": {
+          "nativa_ha": 61888.3,
+          "nativa_pct": 73.86,
+          "pastagem_ha": 3527.1,
+          "agricultura_ha": 10303.5,
+          "total_mapeado_ha": 83796.0
+        },
+        "2005": {
+          "nativa_ha": 61095.3,
+          "nativa_pct": 72.91,
+          "pastagem_ha": 3155.5,
+          "agricultura_ha": 12098.8,
+          "total_mapeado_ha": 83796.0
+        },
+        "2006": {
+          "nativa_ha": 60610.8,
+          "nativa_pct": 72.33,
+          "pastagem_ha": 2939.2,
+          "agricultura_ha": 13224.1,
+          "total_mapeado_ha": 83796.0
+        },
+        "2007": {
+          "nativa_ha": 59709.5,
+          "nativa_pct": 71.26,
+          "pastagem_ha": 2870.0,
+          "agricultura_ha": 14460.0,
+          "total_mapeado_ha": 83796.0
+        },
+        "2008": {
+          "nativa_ha": 58387.3,
+          "nativa_pct": 69.68,
+          "pastagem_ha": 2766.8,
+          "agricultura_ha": 15974.4,
+          "total_mapeado_ha": 83796.0
+        },
+        "2009": {
+          "nativa_ha": 57636.5,
+          "nativa_pct": 68.78,
+          "pastagem_ha": 2572.4,
+          "agricultura_ha": 17015.8,
+          "total_mapeado_ha": 83796.0
+        },
+        "2010": {
+          "nativa_ha": 57510.4,
+          "nativa_pct": 68.63,
+          "pastagem_ha": 2459.1,
+          "agricultura_ha": 17384.5,
+          "total_mapeado_ha": 83796.0
+        },
+        "2011": {
+          "nativa_ha": 56581.0,
+          "nativa_pct": 67.52,
+          "pastagem_ha": 2944.7,
+          "agricultura_ha": 17592.6,
+          "total_mapeado_ha": 83796.0
+        },
+        "2012": {
+          "nativa_ha": 56099.8,
+          "nativa_pct": 66.95,
+          "pastagem_ha": 3411.6,
+          "agricultura_ha": 17720.3,
+          "total_mapeado_ha": 83796.0
+        },
+        "2013": {
+          "nativa_ha": 55070.3,
+          "nativa_pct": 65.72,
+          "pastagem_ha": 4146.1,
+          "agricultura_ha": 18221.0,
+          "total_mapeado_ha": 83796.0
+        },
+        "2014": {
+          "nativa_ha": 54369.7,
+          "nativa_pct": 64.88,
+          "pastagem_ha": 4205.4,
+          "agricultura_ha": 18742.1,
+          "total_mapeado_ha": 83796.0
+        },
+        "2015": {
+          "nativa_ha": 53440.5,
+          "nativa_pct": 63.77,
+          "pastagem_ha": 4095.8,
+          "agricultura_ha": 19622.6,
+          "total_mapeado_ha": 83796.0
+        },
+        "2016": {
+          "nativa_ha": 53003.5,
+          "nativa_pct": 63.25,
+          "pastagem_ha": 4107.2,
+          "agricultura_ha": 19952.1,
+          "total_mapeado_ha": 83796.0
+        },
+        "2017": {
+          "nativa_ha": 52705.2,
+          "nativa_pct": 62.9,
+          "pastagem_ha": 3767.3,
+          "agricultura_ha": 20461.0,
+          "total_mapeado_ha": 83796.0
+        },
+        "2018": {
+          "nativa_ha": 52443.9,
+          "nativa_pct": 62.59,
+          "pastagem_ha": 3572.9,
+          "agricultura_ha": 20671.8,
+          "total_mapeado_ha": 83796.0
+        },
+        "2019": {
+          "nativa_ha": 51972.2,
+          "nativa_pct": 62.02,
+          "pastagem_ha": 3379.7,
+          "agricultura_ha": 21042.7,
+          "total_mapeado_ha": 83796.0
+        },
+        "2020": {
+          "nativa_ha": 51608.9,
+          "nativa_pct": 61.59,
+          "pastagem_ha": 3441.6,
+          "agricultura_ha": 21042.6,
+          "total_mapeado_ha": 83796.0
+        },
+        "2021": {
+          "nativa_ha": 51075.5,
+          "nativa_pct": 60.95,
+          "pastagem_ha": 3607.4,
+          "agricultura_ha": 21060.5,
+          "total_mapeado_ha": 83796.0
+        },
+        "2022": {
+          "nativa_ha": 50628.7,
+          "nativa_pct": 60.42,
+          "pastagem_ha": 3821.0,
+          "agricultura_ha": 21057.8,
+          "total_mapeado_ha": 83796.0
+        },
+        "2023": {
+          "nativa_ha": 49828.1,
+          "nativa_pct": 59.46,
+          "pastagem_ha": 4169.3,
+          "agricultura_ha": 21048.5,
+          "total_mapeado_ha": 83796.0
+        },
+        "2024": {
+          "nativa_ha": 49213.8,
+          "nativa_pct": 58.73,
+          "pastagem_ha": 4383.3,
+          "agricultura_ha": 21012.0,
+          "total_mapeado_ha": 83796.0
+        },
+        "2025": {
+          "nativa_ha": 48567.3,
+          "nativa_pct": 57.96,
+          "pastagem_ha": 4876.1,
+          "agricultura_ha": 20992.0,
+          "total_mapeado_ha": 83796.0
+        }
+      }
+    },
+    "clima_inmet": {
+      "municipio": "Cascavel",
+      "codigoIBGE": "2303501",
+      "estacao_mais_proxima": {
+        "codigo": "A314",
+        "nome": "GUARAMIRANGA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -4.22916666,
+        "lon": -38.95888888,
+        "distanciaKm": 80.32
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A314_GUARAMIRANGA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 42.6,
+        "registros_horarios": 138
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    "iqm_icms_socioambiental_ipece": {
+      "iqm_2026": {
+        "municipio": "Cascavel",
+        "tipo_consorcio": "CONSORCIADO",
+        "eixo_I_plano": "0.1",
+        "eixo_II_coleta": "0.2",
+        "eixo_III_destinacao": "0.4",
+        "eixo_IV_coleta_seletiva": "0.3",
+        "eixo_V_logistica_reversa": "NA",
+        "eixo_VI_educacao_ambiental": "NA",
+        "iqm_somatorio": 1.0
+      },
+      "rateio_icms_socioambiental": {
+        "municipio": "Cascavel",
+        "iqm_indice": 1.0,
+        "participacao_meio_ambiente": 0.0057551,
+        "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+        "ano_exercicio": "2025-2026"
+      }
+    },
+    "alertas_desmatamento_mapbiomas": {
+      "territoryId": 17102,
+      "total_alertas": 94,
+      "area_total_desmatada_ha": 946.41,
+      "fonte": "MapBiomas Alerta API v2"
+    },
+    "biomassa_florestal_ifn": {
+      "biomassa_densidade_territorial_t_ha": 20.0,
+      "estoque_biomassa_total_t": 1675571.6,
+      "vegetacao_nativa_2025_ha": 48567.3,
+      "fonte": "SFB/IFN-CE e Sampaio & Silva (2005)"
+    },
+    "projetos_comunitarios_fundeci": {
+      "status": "Dados indisponíveis",
+      "motivo": "Projeto FUNDECI em estruturação; sem acordos comunitários formalizados ou dados de campo até o momento",
+      "acordos_comunitarios": null,
+      "monitoramento_participativo": null
+    }
+  }
+}

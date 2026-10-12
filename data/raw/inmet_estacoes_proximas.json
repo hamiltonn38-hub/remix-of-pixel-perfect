@@ -1,0 +1,152 @@
+[
+  {
+    "municipio": "Quixadá",
+    "codigoIBGE": "2311306",
+    "lat": -4.9715,
+    "lon": -39.0153,
+    "estacao_mais_proxima": {
+      "codigo": "A369",
+      "nome": "QUIXADA",
+      "uf": "CE",
+      "tipo": "Automatica",
+      "lat": -4.97888888,
+      "lon": -39.05722222,
+      "distanciaKm": 4.72
+    }
+  },
+  {
+    "municipio": "Crateús",
+    "codigoIBGE": "2304103",
+    "lat": -5.1784,
+    "lon": -40.6775,
+    "estacao_mais_proxima": {
+      "codigo": "A361",
+      "nome": "CASTELO DO PIAUI",
+      "uf": "PI",
+      "tipo": "Automatica",
+      "lat": -5.34916666,
+      "lon": -41.51222222,
+      "distanciaKm": 94.36
+    }
+  },
+  {
+    "municipio": "Iguatu",
+    "codigoIBGE": "2305506",
+    "lat": -6.3589,
+    "lon": -39.2956,
+    "estacao_mais_proxima": {
+      "codigo": "A358",
+      "nome": "JAGUARIBE",
+      "uf": "CE",
+      "tipo": "Automatica",
+      "lat": -5.90555555,
+      "lon": -38.62777777,
+      "distanciaKm": 89.4
+    }
+  },
+  {
+    "municipio": "Sobral",
+    "codigoIBGE": "2312908",
+    "lat": -3.6894,
+    "lon": -40.3486,
+    "estacao_mais_proxima": {
+      "codigo": "A368",
+      "nome": "TIANGUA",
+      "uf": "CE",
+      "tipo": "Automatica",
+      "lat": -3.73222221,
+      "lon": -41.01194444,
+      "distanciaKm": 73.76
+    }
+  },
+  {
+    "municipio": "Juazeiro do Norte",
+    "codigoIBGE": "2307304",
+    "lat": -7.2033,
+    "lon": -39.3158,
+    "estacao_mais_proxima": {
+      "codigo": "A347",
+      "nome": "CAMPOS SALES",
+      "uf": "CE",
+      "tipo": "Automatica",
+      "lat": -7.07777777,
+      "lon": -40.36277777,
+      "distanciaKm": 116.36
+    }
+  },
+  {
+    "municipio": "Crato",
+    "codigoIBGE": "2304202",
+    "lat": -7.2342,
+    "lon": -39.4094,
+    "estacao_mais_proxima": {
+      "codigo": "A347",
+      "nome": "CAMPOS SALES",
+      "uf": "CE",
+      "tipo": "Automatica",
+      "lat": -7.07777777,
+      "lon": -40.36277777,
+      "distanciaKm": 106.61
+    }
+  },
+  {
+    "municipio": "Senador Pompeu",
+    "codigoIBGE": "2312700",
+    "lat": -5.5881,
+    "lon": -39.3725,
+    "estacao_mais_proxima": {
+      "codigo": "A325",
+      "nome": "QUIXERAMOBIM",
+      "uf": "CE",
+      "tipo": "Automatica",
+      "lat": -5.17444443,
+      "lon": -39.28944444,
+      "distanciaKm": 46.91
+    }
+  },
+  {
+    "municipio": "Tauá",
+    "codigoIBGE": "2313302",
+    "lat": -6.0028,
+    "lon": -40.2933,
+    "estacao_mais_proxima": {
+      "codigo": "A324",
+      "nome": "TAUA",
+      "uf": "CE",
+      "tipo": "Automatica",
+      "lat": -6.01749999,
+      "lon": -40.28138888,
+      "distanciaKm": 2.1
+    }
+  },
+  {
+    "municipio": "Canindé",
+    "codigoIBGE": "2302800",
+    "lat": -4.3589,
+    "lon": -39.3122,
+    "estacao_mais_proxima": {
+      "codigo": "A314",
+      "nome": "GUARAMIRANGA",
+      "uf": "CE",
+      "tipo": "Automatica",
+      "lat": -4.22916666,
+      "lon": -38.95888888,
+      "distanciaKm": 41.75
+    }
+  },
+  {
+    "municipio": "Cascavel",
+    "codigoIBGE": "2303501",
+    "lat": -4.1331,
+    "lon": -38.2411,
+    "estacao_mais_proxima": {
+      "codigo": "A314",
+      "nome": "GUARAMIRANGA",
+      "uf": "CE",
+      "tipo": "Automatica",
+      "lat": -4.22916666,
+      "lon": -38.95888888,
+      "distanciaKm": 80.32
+    }
+  }
+]

@@ -39,3 +39,5 @@ origins.txt
 # Bun binary
 bun-windows-x64/
 
+# Raw large archives
+data/raw/*.zip

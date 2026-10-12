@@ -1,0 +1,228 @@
+{
+  "fonte": "INMET - Instituto Nacional de Meteorologia (BDMEP e API Normais Climatológicas)",
+  "url_bdmep": "https://portal.inmet.gov.br/uploads/dadoshistoricos/2024.zip",
+  "url_api_normais": "https://apitempo.inmet.gov.br/normais/consulta/1/N208/82586",
+  "data_consulta": "11/10/2026",
+  "sha256_arquivo_bruto_2024": "0a7f89de57427f79b6f82943b2f7f2e932202d9253e34bf25629ed088d108ae7",
+  "normais_climatologicas_referencia": {
+    "estacao_referencia": "82586 (Quixeramobim/CE)",
+    "periodo": "1991-2020",
+    "normal_anual_mm": 857.7,
+    "mensal_mm": [
+      80.2,
+      111.0,
+      180.6,
+      189.0,
+      137.7,
+      79.9,
+      45.4,
+      7.0,
+      3.0,
+      2.4,
+      5.3,
+      16.1
+    ]
+  },
+  "municipios": [
+    {
+      "municipio": "Quixadá",
+      "codigoIBGE": "2311306",
+      "estacao_mais_proxima": {
+        "codigo": "A369",
+        "nome": "QUIXADA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -4.97888888,
+        "lon": -39.05722222,
+        "distanciaKm": 4.72
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A369_QUIXADA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 977.2,
+        "registros_horarios": 8420
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    {
+      "municipio": "Crateús",
+      "codigoIBGE": "2304103",
+      "estacao_mais_proxima": {
+        "codigo": "A361",
+        "nome": "CASTELO DO PIAUI",
+        "uf": "PI",
+        "tipo": "Automatica",
+        "lat": -5.34916666,
+        "lon": -41.51222222,
+        "distanciaKm": 94.36
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_PI_A361_CASTELO DO PIAUI_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 575.8,
+        "registros_horarios": 2184
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    {
+      "municipio": "Iguatu",
+      "codigoIBGE": "2305506",
+      "estacao_mais_proxima": {
+        "codigo": "A358",
+        "nome": "JAGUARIBE",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -5.90555555,
+        "lon": -38.62777777,
+        "distanciaKm": 89.4
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A358_JAGUARIBE_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 0.0,
+        "registros_horarios": 0
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    {
+      "municipio": "Sobral",
+      "codigoIBGE": "2312908",
+      "estacao_mais_proxima": {
+        "codigo": "A368",
+        "nome": "TIANGUA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -3.73222221,
+        "lon": -41.01194444,
+        "distanciaKm": 73.76
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A368_TIANGUA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 833.4,
+        "registros_horarios": 4465
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    {
+      "municipio": "Juazeiro do Norte",
+      "codigoIBGE": "2307304",
+      "estacao_mais_proxima": {
+        "codigo": "A347",
+        "nome": "CAMPOS SALES",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -7.07777777,
+        "lon": -40.36277777,
+        "distanciaKm": 116.36
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A347_CAMPOS SALES_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 0.0,
+        "registros_horarios": 0
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    {
+      "municipio": "Crato",
+      "codigoIBGE": "2304202",
+      "estacao_mais_proxima": {
+        "codigo": "A347",
+        "nome": "CAMPOS SALES",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -7.07777777,
+        "lon": -40.36277777,
+        "distanciaKm": 106.61
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A347_CAMPOS SALES_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 0.0,
+        "registros_horarios": 0
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    {
+      "municipio": "Senador Pompeu",
+      "codigoIBGE": "2312700",
+      "estacao_mais_proxima": {
+        "codigo": "A325",
+        "nome": "QUIXERAMOBIM",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -5.17444443,
+        "lon": -39.28944444,
+        "distanciaKm": 46.91
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A325_QUIXERAMOBIM_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 494.6,
+        "registros_horarios": 4363
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    {
+      "municipio": "Tauá",
+      "codigoIBGE": "2313302",
+      "estacao_mais_proxima": {
+        "codigo": "A324",
+        "nome": "TAUA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -6.01749999,
+        "lon": -40.28138888,
+        "distanciaKm": 2.1
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A324_TAUA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 0.0,
+        "registros_horarios": 0
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    {
+      "municipio": "Canindé",
+      "codigoIBGE": "2302800",
+      "estacao_mais_proxima": {
+        "codigo": "A314",
+        "nome": "GUARAMIRANGA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -4.22916666,
+        "lon": -38.95888888,
+        "distanciaKm": 41.75
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A314_GUARAMIRANGA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 42.6,
+        "registros_horarios": 138
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    },
+    {
+      "municipio": "Cascavel",
+      "codigoIBGE": "2303501",
+      "estacao_mais_proxima": {
+        "codigo": "A314",
+        "nome": "GUARAMIRANGA",
+        "uf": "CE",
+        "tipo": "Automatica",
+        "lat": -4.22916666,
+        "lon": -38.95888888,
+        "distanciaKm": 80.32
+      },
+      "precipitacao_2024": {
+        "ano": 2024,
+        "arquivo_estacao": "INMET_NE_CE_A314_GUARAMIRANGA_01-01-2024_A_31-12-2024.CSV",
+        "precipitacao_total_mm": 42.6,
+        "registros_horarios": 138
+      },
+      "precipitacao_normal_referencia_mm": 857.7
+    }
+  ]
+}

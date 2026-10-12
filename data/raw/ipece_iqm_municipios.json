@@ -1,0 +1,241 @@
+{
+  "fonte": "IPECE - Instituto de Pesquisa e Estratégia Econômica do Ceará",
+  "url": "https://www.ipece.ce.gov.br/cota-parte-do-icms/",
+  "data_consulta": "11/10/2026",
+  "arquivos_brutos": {
+    "IQM_Base-de-Dados_2026.xlsx": "b583a6f50f378398cf170f214106cf303fa6722c122ae0413df208f01b27c0db",
+    "Resultados_2018-2026.xlsx": "c927a810a819e232085f21adf1a296dcfea843ca8200ab638eb00044c8a3962d"
+  },
+  "municipios": {
+    "2311306": {
+      "nome": "Quixadá",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Quixadá",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Quixadá",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    },
+    "2304103": {
+      "nome": "Crateús",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Crateús",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Crateús",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    },
+    "2305506": {
+      "nome": "Iguatu",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Iguatu",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Iguatu",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    },
+    "2312908": {
+      "nome": "Sobral",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Sobral",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Sobral",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    },
+    "2307304": {
+      "nome": "Juazeiro do Norte",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Juazeiro do Norte",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Juazeiro do Norte",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    },
+    "2304202": {
+      "nome": "Crato",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Crato",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Crato",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    },
+    "2312700": {
+      "nome": "Senador Pompeu",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Senador Pompeu",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Senador Pompeu",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    },
+    "2313302": {
+      "nome": "Tauá",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Tauá",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Tauá",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    },
+    "2302800": {
+      "nome": "Canindé",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Canindé",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Canindé",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    },
+    "2303501": {
+      "nome": "Cascavel",
+      "dados": {
+        "iqm_2026": {
+          "municipio": "Cascavel",
+          "tipo_consorcio": "CONSORCIADO",
+          "eixo_I_plano": "0.1",
+          "eixo_II_coleta": "0.2",
+          "eixo_III_destinacao": "0.4",
+          "eixo_IV_coleta_seletiva": "0.3",
+          "eixo_V_logistica_reversa": "NA",
+          "eixo_VI_educacao_ambiental": "NA",
+          "iqm_somatorio": 1.0
+        },
+        "rateio_icms_socioambiental": {
+          "municipio": "Cascavel",
+          "iqm_indice": 1.0,
+          "participacao_meio_ambiente": 0.0057551,
+          "coeficiente_rateio_meio_ambiente_pct": 0.0115101,
+          "ano_exercicio": "2025-2026"
+        }
+      }
+    }
+  }
+}
