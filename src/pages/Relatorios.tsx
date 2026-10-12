@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { usePits } from "@/context/PitsContext";
-import { FileText, Download } from "lucide-react";
+import { FileText, Download, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { generateRelatorioPDF, exportCSV } from "@/lib/generatePDF";
 import { toast } from "sonner";
 import { classifyIPSENorm } from "@/lib/calcPits";
+import FonteInfo from "@/components/FonteInfo";
 
 interface RelatorioHistorico {
   id: string;
   periodo: string;
+  periodoExtenso: string;
   municipio: string;
   gerado: string;
   tipo: string;
@@ -29,19 +31,25 @@ export default function Relatorios() {
     localStorage.setItem("pits_relatorios", JSON.stringify(historico));
   }, [historico]);
 
+  const now = new Date();
+  const isS1 = now.getMonth() < 6;
+  const periodoSemestralCodigo = `${now.getFullYear()}-${isS1 ? "S1" : "S2"}`;
+  const periodoSemestralExtenso = isS1
+    ? `1º Semestre de ${now.getFullYear()} (01/01 a 30/06)`
+    : `2º Semestre de ${now.getFullYear()} (01/07 a 31/12)`;
+
   const handleGenerate = () => {
-    const loadingId = toast.loading("Gerando PDF com dados oficiais...");
+    const loadingId = toast.loading("Gerando PDF com dados oficiais auditados...");
     try {
       generateRelatorioPDF(m);
 
-      const now = new Date();
-      const semestre = now.getMonth() < 6 ? "S1" : "S2";
       const newRelatorio: RelatorioHistorico = {
         id: Math.random().toString(36).substring(7),
-        periodo: `${now.getFullYear()}-${semestre}`,
+        periodo: periodoSemestralCodigo,
+        periodoExtenso: periodoSemestralExtenso,
         municipio: m.municipio,
         gerado: now.toLocaleDateString("pt-BR"),
-        tipo: "Territorial Sintético",
+        tipo: "Relatório Técnico Semestral",
       };
       setHistorico((prev) => [newRelatorio, ...prev]);
       toast.success("PDF gerado com sucesso!", { id: loadingId });
@@ -61,76 +69,111 @@ export default function Relatorios() {
       </div>
 
       {/* Generator */}
-      <div className="pits-card">
-        <h2 className="pits-section-title mb-4">Gerar Relatório — {m.municipio}</h2>
-        <p className="text-sm text-muted-foreground mb-4">
-          Gere um documento técnico formal em PDF ou planilha auditável em CSV com base nos dados reais do <strong>IBGE Censo 2022</strong>, <strong>MapBiomas Coleção 11</strong>, <strong>IFN-CE</strong> e <strong>IPECE</strong>.
+      <div className="pits-card space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="pits-section-title">Gerar Relatório — {m.municipio}</h2>
+            <p className="text-xs text-muted-foreground flex items-center gap-1.5 mt-0.5">
+              <Calendar size={13} className="text-primary" />
+              Período de Referência Atual: <strong>{periodoSemestralExtenso}</strong>
+            </p>
+          </div>
+          <span className="text-xs font-mono px-2.5 py-1 rounded bg-primary/10 text-primary font-bold">
+            {periodoSemestralCodigo}
+          </span>
+        </div>
+
+        <p className="text-sm text-muted-foreground">
+          Gere um documento técnico formal em PDF ou planilha auditável em CSV com base nos dados reais do <strong>IBGE Censo Demográfico 2022</strong>, <strong>MapBiomas Coleção 11</strong>, <strong>SFB / IFN-CE</strong>, <strong>IBGE PEVS 2025</strong> e <strong>IPECE IQM 2026</strong>.
         </p>
+
         <div className="flex flex-wrap gap-3">
           <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleGenerate}>
             <FileText size={16} className="mr-2" />
-            Gerar Relatório Técnico PDF
+            Gerar Relatório Técnico Semestral (PDF)
           </Button>
-          <Button variant="outline" onClick={() => { exportCSV(m); toast.success("CSV exportado com proveniência!"); }}>
+          <Button
+            variant="outline"
+            onClick={() => {
+              exportCSV(m);
+              toast.success("Planilha CSV com proveniência exportada!");
+            }}
+          >
             <Download size={16} className="mr-2" />
             Exportar Dados Oficiais (CSV)
           </Button>
         </div>
+
+        <FonteInfo
+          instituicao="PITS / MANIFEST.json"
+          ano={2026}
+          dataConsulta="11/10/2026"
+          tabela="Base consolidada de indicadores municipais auditados"
+        />
       </div>
 
       {/* Preview */}
-      <div className="pits-card">
-        <h2 className="pits-section-title mb-4">Prévia do Relatório Territorial — {m.municipio}</h2>
+      <div className="pits-card space-y-4">
+        <h2 className="pits-section-title">Prévia do Diagnóstico Territorial — {m.municipio}</h2>
         <div className="space-y-4 text-sm">
-          <div className="p-4 bg-muted/30 rounded-lg">
-            <h3 className="font-semibold mb-2">1. Diagnóstico do Índice IPSE</h3>
-            <p>
-              O município de {m.municipio} ({m.estado}, código IBGE: {m.codigoIBGE}) possui área de {m.area_km2.toLocaleString("pt-BR")} km² e população de {m.populacao.toLocaleString("pt-BR")} habitantes (IBGE Censo 2022). O IPSE Normalizado é de <strong>{m.IPSE_norm.toFixed(3)}</strong> ({classifyIPSENorm(m.IPSE_norm).label}), com IPSE Bruto de <strong>{(m.IPSE / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k GJ/ano</strong> calculado pelo modelo oficial <em>IPSE = PEL / IVS*</em>.
+          <div className="p-4 bg-muted/30 rounded-lg space-y-1">
+            <h3 className="font-semibold text-foreground">1. Diagnóstico do Índice IPSE (Modelo Oficial)</h3>
+            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+              O município de {m.municipio} ({m.estado}, código IBGE: {m.codigoIBGE}) possui área territorial oficial de {m.area_km2.toLocaleString("pt-BR")} km² e população de {m.populacao.toLocaleString("pt-BR")} habitantes (IBGE Censo 2022). O IPSE Normalizado é de <strong>{m.IPSE_norm.toFixed(3)}</strong> ({classifyIPSENorm(m.IPSE_norm).label}), com IPSE Bruto de <strong>{(m.IPSE / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k GJ/ano</strong> calculado pela especificação matemática oficial <em>IPSE = PEL / IVS*</em>.
             </p>
           </div>
 
-          <div className="p-4 bg-muted/30 rounded-lg">
-            <h3 className="font-semibold mb-2">2. Modelo e Indicadores Setoriais de Apoio</h3>
-            <ul className="space-y-1 list-disc list-inside text-muted-foreground text-xs md:text-sm">
+          <div className="p-4 bg-muted/30 rounded-lg space-y-1">
+            <h3 className="font-semibold text-foreground">2. Variáveis do Modelo e Indicadores Setoriais de Apoio</h3>
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground text-xs md:text-sm">
               <li><strong>PEL (Potencial Energético Local):</strong> {(m.PEL / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k GJ/ano (MapBiomas Col. 11 + Lit.)</li>
               <li><strong>IVS (Vulnerabilidade Social):</strong> {m.IVS.toFixed(4)} (IBGE Censo 2022; quanto maior, mais vulnerável)</li>
-              <li><strong>IB (Biomassa / Veg. Nativa):</strong> {m.IB.toFixed(2)} ({m.cobertura_nativa_pct}% da área territorial)</li>
-              <li><strong>IIE (Infraestrutura Rural):</strong> {m.IIE.toFixed(2)} ({m.safs_pct}% estabelecimentos com SAFs)</li>
-              <li><strong>IGL (Governança e Resíduos):</strong> {m.IGL.toFixed(2)} (IQM IPECE 2026: {m.iqm_residuos.toFixed(1)})</li>
+              <li><strong>IB (Biomassa / Veg. Nativa):</strong> {m.IB.toFixed(2)} ({m.cobertura_nativa_pct}% da área territorial em formações nativas)</li>
+              <li><strong>IIE (Infraestrutura Rural):</strong> {m.IIE.toFixed(2)} ({m.safs_pct}% estabelecimentos com SAFs no Censo Agro 2017)</li>
+              <li><strong>IGL (Governança e Resíduos):</strong> {m.IGL.toFixed(2)} (Cota ICMS IQM 2026: {m.iqm_residuos.toFixed(1)})</li>
+              <li><strong>Lenha Extraída PEVS:</strong> {(m.lenha_pevs_m3_ano / 1000).toFixed(1)}k m³/ano (IBGE PEVS 2025)</li>
             </ul>
           </div>
 
-          <div className="p-4 bg-muted/30 rounded-lg">
-            <h3 className="font-semibold mb-2">3. Recomendações Estratégicas</h3>
-            <ul className="space-y-1 list-disc list-inside text-muted-foreground text-xs md:text-sm">
+          <div className="p-4 bg-muted/30 rounded-lg space-y-1">
+            <h3 className="font-semibold text-foreground">3. Recomendações Estratégicas Baseadas em Evidências</h3>
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground text-xs md:text-sm">
               {m.IVS >= 0.30 && (
-                <li>Priorizar políticas de saneamento e infraestrutura social para redução do IVS (situação de carência: {m.IVS.toFixed(2)}).</li>
+                <li>Priorizar políticas públicas de saneamento e infraestrutura social básica para redução da vulnerabilidade (IVS: {m.IVS.toFixed(2)}).</li>
               )}
               {m.cobertura_nativa_pct < 60 && (
-                <li>Ampliar regeneração natural assistida e cumprimento da Reserva Legal da Caatinga (Lei 12.651/2012).</li>
+                <li>Ampliar programas de regeneração natural assistida e cumprimento da Reserva Legal da Caatinga (Lei 12.651/2012, Art. 12, II).</li>
               )}
               {m.safs_pct < 5.0 && (
-                <li>Estimular linhas de transição agroflorestal (SAFs) para geração sustentável de biomassa e segurança alimentar.</li>
+                <li>Estimular linhas de crédito e assistência técnica para expansão de Sistemas Agroflorestais (SAFs).</li>
               )}
               {m.lenha_pevs_m3_ano > 30000 && (
-                <li>Apoiar planos de manejo florestal sustentável e substituição de fogões rurais para mitigar corte de lenha.</li>
+                <li>Apoiar planos de manejo florestal sustentável e substituição gradual de fogões rurais rudimentares.</li>
               )}
-              <li>Expandir monitoramento com sensoriamento remoto e alertas validados SAD-Caatinga.</li>
+              <li>Consolidar monitoramento contínuo com imagens orbitais (MapBiomas Alerta) e protocolos participativos.</li>
             </ul>
           </div>
         </div>
+
+        <FonteInfo
+          instituicao="PITS / Modelo Oficial do Artigo"
+          ano={2026}
+          dataConsulta="11/10/2026"
+          tabela="Seção 3.1 — Especificação Metodológica do IPSE"
+        />
       </div>
 
       {/* History */}
-      <div className="pits-card overflow-x-auto">
-        <h2 className="pits-section-title mb-4">Histórico de Relatórios Emitidos</h2>
+      <div className="pits-card overflow-x-auto space-y-3">
+        <h2 className="pits-section-title">Histórico de Relatórios Emitidos</h2>
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border text-xs text-muted-foreground">
-              <th className="text-left py-2 px-3">Período</th>
+              <th className="text-left py-2 px-3">Código Período</th>
+              <th className="text-left py-2 px-3">Período Auditado</th>
               <th className="text-left py-2 px-3">Município</th>
-              <th className="text-left py-2 px-3">Tipo</th>
-              <th className="text-left py-2 px-3">Gerado em</th>
+              <th className="text-left py-2 px-3">Tipo de Documento</th>
+              <th className="text-left py-2 px-3">Data de Emissão</th>
               <th className="text-right py-2 px-3">Ações</th>
             </tr>
           </thead>
@@ -138,10 +181,11 @@ export default function Relatorios() {
             {historico.length > 0 ? (
               historico.map((r) => (
                 <tr key={r.id} className="border-b border-border/50 hover:bg-muted/50">
-                  <td className="py-2.5 px-3 font-medium">{r.periodo}</td>
-                  <td className="py-2.5 px-3">{r.municipio}</td>
-                  <td className="py-2.5 px-3">{r.tipo}</td>
-                  <td className="py-2.5 px-3 text-muted-foreground">{r.gerado}</td>
+                  <td className="py-2.5 px-3 font-mono font-bold text-xs text-primary">{r.periodo}</td>
+                  <td className="py-2.5 px-3 text-xs">{r.periodoExtenso || r.periodo}</td>
+                  <td className="py-2.5 px-3 font-medium">{r.municipio}</td>
+                  <td className="py-2.5 px-3 text-xs text-muted-foreground">{r.tipo}</td>
+                  <td className="py-2.5 px-3 text-xs text-muted-foreground">{r.gerado}</td>
                   <td className="py-2.5 px-3 text-right">
                     <button
                       className="text-xs text-primary hover:underline font-medium"
@@ -158,8 +202,8 @@ export default function Relatorios() {
               ))
             ) : (
               <tr>
-                <td colSpan={5} className="py-6 text-center text-xs text-muted-foreground">
-                  Nenhum relatório emitido nesta sessão. Clique no botão acima para gerar seu primeiro relatório.
+                <td colSpan={6} className="py-6 text-center text-xs text-muted-foreground">
+                  Nenhum relatório emitido nesta sessão. Clique no botão acima para gerar seu primeiro relatório semestral.
                 </td>
               </tr>
             )}

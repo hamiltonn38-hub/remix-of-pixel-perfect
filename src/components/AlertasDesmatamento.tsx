@@ -3,15 +3,17 @@ import { useAlertasData } from "@/hooks/useAlertas";
 import { getMapBiomasMunicipio } from "@/data/mapbiomas";
 import { Satellite, AlertTriangle, Loader2, TreePine, Flame } from "lucide-react";
 import { DESMAT_SEVERITY } from "@/lib/constants";
+import FonteInfo from "./FonteInfo";
 
 export default function AlertasDesmatamento() {
   const { selectedMunicipio } = usePits();
   const mb = getMapBiomasMunicipio(selectedMunicipio.municipio);
-  const codigoIBGE = mb?.codigoIBGE;
-  const { data: alertsList, isFetching: loading, error: apiError } = useAlertasData(codigoIBGE);
+  const codigoIBGE = mb?.codigoIBGE || selectedMunicipio.codigoIBGE;
+  const { data: alertsList, isFetching: loading, isError, error: apiError } = useAlertasData(codigoIBGE);
 
   const error = apiError ? apiError.message : null;
   const alerts = alertsList || [];
+  const hasLoadedAlerts = !loading && !isError && alertsList !== undefined;
 
   if (!codigoIBGE) {
     return (
@@ -29,9 +31,9 @@ export default function AlertasDesmatamento() {
   });
 
   const severidade = (ha: number) => {
-    if (ha >= DESMAT_SEVERITY.high) return { label: "Alta", class: "bg-pits-alerta/20 text-pits-alerta" };
-    if (ha >= DESMAT_SEVERITY.medium) return { label: "Média", class: "bg-pits-seco/20 text-pits-terra" };
-    return { label: "Baixa", class: "bg-pits-caatinga/20 text-pits-caatinga" };
+    if (ha >= DESMAT_SEVERITY.high) return { label: "Alta", class: "bg-pits-alerta/20 text-pits-alerta font-semibold px-2 py-0.5 rounded text-[10px]" };
+    if (ha >= DESMAT_SEVERITY.medium) return { label: "Média", class: "bg-pits-seco/20 text-pits-terra font-semibold px-2 py-0.5 rounded text-[10px]" };
+    return { label: "Baixa", class: "bg-pits-caatinga/20 text-pits-caatinga font-semibold px-2 py-0.5 rounded text-[10px]" };
   };
 
   return (
@@ -41,7 +43,7 @@ export default function AlertasDesmatamento() {
         <div className="flex items-center gap-2 mb-4">
           <Satellite size={18} className="text-pits-alerta" />
           <h2 className="pits-section-title">
-            Alertas de Desmatamento — MapBiomas Alerta
+            Alertas de Desmatamento — MapBiomas Alerta (SAD-Caatinga)
           </h2>
         </div>
 
@@ -49,27 +51,29 @@ export default function AlertasDesmatamento() {
         {loading && (
           <div className="flex items-center justify-center gap-2 py-8 text-muted-foreground">
             <Loader2 size={18} className="animate-spin" />
-            <span className="text-sm">Consultando API MapBiomas Alerta...</span>
+            <span className="text-sm">Consultando API v2 MapBiomas Alerta...</span>
           </div>
         )}
 
-        {/* Error */}
-        {error && (
-          <div className="flex items-center gap-2 p-3 bg-pits-alerta/10 rounded-lg border border-pits-alerta/20 text-sm text-pits-alerta">
-            <AlertTriangle size={16} className="shrink-0" />
-            <div>
-              <p className="font-medium">Erro ao consultar MapBiomas Alerta</p>
-              <p className="text-xs mt-0.5 opacity-80">{error}</p>
+        {/* Error — Regra G8 / D11: exibir "Dados indisponíveis", nunca "0 alertas" */}
+        {isError && (
+          <div className="p-4 bg-destructive/10 rounded-lg border border-destructive/20 text-sm text-destructive space-y-1 my-3">
+            <div className="flex items-center gap-2 font-medium">
+              <AlertTriangle size={16} className="shrink-0" />
+              <span>Falha na consulta ao MapBiomas Alerta — Dados indisponíveis</span>
             </div>
+            <p className="text-xs text-muted-foreground pl-6">
+              Não foi possível obter os alertas em tempo real ({error || "serviço indisponível"}). O sistema não assume zero para evitar falsos negativos.
+            </p>
           </div>
         )}
 
         {/* Summary cards */}
-        {!loading && !error && (
+        {hasLoadedAlerts && (
           <>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               <div className="p-3 bg-pits-alerta/10 rounded-lg text-center">
-                <p className="text-[11px] text-muted-foreground font-medium">Total Alertas</p>
+                <p className="text-[11px] text-muted-foreground font-medium">Total de Alertas</p>
                 <p className="text-lg font-bold text-pits-alerta">{alerts.length}</p>
               </div>
               <div className="p-3 bg-pits-alerta/10 rounded-lg text-center">
@@ -107,7 +111,7 @@ export default function AlertasDesmatamento() {
                   <tbody>
                     {alerts.map((a) => {
                       const sev = severidade(a.areaHa);
-                      const detDate = new Date(a.detectedAt);
+                      const detDate = a.detectedAt ? new Date(a.detectedAt) : null;
                       return (
                         <tr key={a.alertCode} className="border-b border-border/40 hover:bg-muted/30 transition-colors">
                           <td className="py-2 px-2 font-mono text-[11px]">
@@ -117,7 +121,7 @@ export default function AlertasDesmatamento() {
                             </div>
                           </td>
                           <td className="py-2 px-2">
-                            {detDate.toLocaleDateString("pt-BR")}
+                            {detDate ? detDate.toLocaleDateString("pt-BR") : "—"}
                           </td>
                           <td className="py-2 px-2 text-right font-medium">
                             {a.areaHa.toLocaleString("pt-BR", { maximumFractionDigits: 2 })}
@@ -129,7 +133,7 @@ export default function AlertasDesmatamento() {
                           </td>
                           <td className="py-2 px-2 text-muted-foreground">{a.source}</td>
                           <td className="py-2 px-2">
-                            <span className="pits-badge pits-badge-success">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-success/15 text-success">
                               {a.statusLabel}
                             </span>
                           </td>
@@ -140,17 +144,19 @@ export default function AlertasDesmatamento() {
                 </table>
               </div>
             ) : (
-              <div className="flex items-center justify-center gap-2 py-6 text-muted-foreground">
-                <TreePine size={18} />
-                <span className="text-sm">Nenhum alerta de desmatamento registrado para este município.</span>
+              <div className="flex items-center justify-center gap-2 py-6 text-muted-foreground bg-muted/20 rounded-lg">
+                <TreePine size={18} className="text-secondary" />
+                <span className="text-sm">Nenhum alerta de desmatamento validado registrado para este município no período.</span>
               </div>
             )}
-
-            <p className="text-[10px] text-muted-foreground mt-3 italic">
-              Fonte: MapBiomas Alerta — plataforma.alerta.mapbiomas.org. Dados atualizados via API GraphQL v2.
-            </p>
           </>
         )}
+
+        <FonteInfo
+          variavel="alertas_desmatamento_mapbiomas"
+          codigoIBGE={codigoIBGE}
+          selo="MapBiomas"
+        />
       </div>
     </div>
   );

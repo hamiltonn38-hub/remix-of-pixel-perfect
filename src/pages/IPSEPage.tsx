@@ -16,6 +16,7 @@ import {
 import { PitsRadarChart } from "@/components/charts/PitsCharts";
 import { Info, Sliders, ShieldAlert, Award } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import FonteInfo from "@/components/FonteInfo";
 
 export default function IPSEPage() {
   const { selectedMunicipio: m, allMunicipios } = usePits();
@@ -424,6 +425,13 @@ export default function IPSEPage() {
             })}
           </tbody>
         </table>
+        <FonteInfo
+          instituicao="PITS / IBGE Censo 2022 e MapBiomas Col. 11"
+          ano={2026}
+          dataConsulta="11/10/2026"
+          tabela="Min-Max intermunicipal (Eq. 7) sobre IPSE = PEL / IVS*"
+          url="https://brasil.mapbiomas.org/downloads/estatisticas/"
+        />
       </div>
     </div>
   );

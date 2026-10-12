@@ -27,9 +27,9 @@ export default defineConfig(({ mode }) => ({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "placeholder.svg", "apple-touch-icon.png"],
       manifest: {
-        name: "PITS - Territórios Sustentáveis",
+        name: "Plataforma de Inteligência Territorial Socioenergética",
         short_name: "PITS",
-        description: "Plataforma Integrada de Territórios Sustentáveis (Semiárido)",
+        description: "Plataforma de Inteligência Territorial Socioenergética (PITS) — Planejamento territorial integrado e transição energética justa",
         theme_color: "#F2E8DF",
         background_color: "#FAF9F6",
         display: "standalone",

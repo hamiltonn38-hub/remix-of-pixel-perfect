@@ -1,7 +1,7 @@
 /**
  * DADOS REAIS MUNICIPAIS — PLATAFORMA PITS
  * Carrega exclusivamente de data/processed/municipios_processed.json
- * Fontes oficiais:
+ * Fontes oficiais auditadas:
  * - IBGE Censo Demográfico 2022 (População, Área, Carências Domiciliares para IVS)
  * - MapBiomas Coleção 11 (2025) (Área e % de Vegetação Nativa para PEL e IB)
  * - SFB / IFN-CE e Sampaio & Silva (2005) (Biomassa em t/ha)
@@ -9,10 +9,11 @@
  * - IBGE Censo Agropecuário 2017 (SAFs, adubação e energia solar para IIE)
  * - IPECE IQM 2026 (Gestão de Resíduos Sólidos e rateio ICMS para IGL)
  * - MapBiomas Alerta SAD-Caatinga (Alertas e Área Desmatada)
- * - INMET BDMEP 2024 (Precipitação Anual)
+ * - INMET BDMEP 2024 (Precipitação Anual e Estações Meteorológicas)
  * 
- * Variáveis sem dado empírico disponível em bases públicas (ex: acordos de campo FUNDECI)
- * permanecem estritamente como `null` ("Dados indisponíveis").
+ * Regra 1: Proibido inventar dados.
+ * Regra 2c: null = "Dados indisponíveis".
+ * Regra 3 (G3): Cascavel = 2303501.
  */
 
 import rawProcessed from "../../data/processed/municipios_processed.json";
@@ -26,6 +27,16 @@ import {
   LiteraturaParams,
   DEFAULT_LITERATURA_PARAMS,
 } from "@/lib/calcPits";
+
+export interface EstacaoInmetInfo {
+  codigo: string;
+  nome: string;
+  uf: string;
+  tipo: string;
+  lat: number;
+  lon: number;
+  distanciaKm: number;
+}
 
 export interface MunicipioPits {
   codigoIBGE: string;
@@ -44,7 +55,7 @@ export interface MunicipioPits {
   IPSE: number;         // Eq. 6: IPSE Bruto = PEL / IVS* (GJ/ano)
   IPSE_norm: number;    // Eq. 7: IPSE Normalizado Min-Max (0–1)
 
-  // Indicadores de Apoio (NÃO compõem o IPSE)
+  // Indicadores de Apoio Setoriais (NÃO compõem o IPSE)
   IB: number;           // Índice Biofísico (vegetação nativa / total)
   IIE: number;          // Índice de Infraestrutura e Práticas Agroecológicas
   IGL: number;          // Índice de Governança Local e Resíduos
@@ -54,18 +65,29 @@ export interface MunicipioPits {
   estoque_biomassa_total_t: number;
   lenha_pevs_m3_ano: number;
   safs_pct: number;
-  precipitacao_anual_mm: number;
+  precipitacao_anual_mm: number | null;
+  precipitacao_registros_horarios: number;
+  estacao_inmet: EstacaoInmetInfo | null;
   alertas_desmatamento: number;
   area_desmatamento_alertas_ha: number;
   iqm_residuos: number;
+  iqm_coeficiente_icms: number;
 
-  // Variáveis sem dado empírico real (Regra 2c: null = "Dados indisponíveis")
+  // Práticas agropecuárias auditadas (IBGE Censo Agro 2017)
+  adubacao_organica_pct: number;
+  agricultura_organica_pct: number;
+  associativismo_pct: number;
+  energia_solar_estab_pct: number;
+  rotacao_culturas_estab: number;
+  manejo_florestal_estab: number;
+
+  // Variáveis de campo FUNDECI (Regra 2c: null = "Dados indisponíveis")
   acordos_manejo_ativos: number | null;
   monitoramento_participativo_pontos: number | null;
   biodigestores_instalados: number | null;
   recursos_psa_anuais: number | null;
 
-  // Propriedades legadas mantidas para compatibilidade retroativa
+  // Campos de compatibilidade
   cobertura_arborea_pct: number;
   area_sistemas_integrados_pct: number;
   demanda_lenha_sem_manejo_m3_ano: number;
@@ -108,19 +130,41 @@ export function buildMunicipiosList(
     // IIE: composto por SAFs (Censo Agro Tabela 6881), adubação orgânica e solar
     const safPct = m.agropecuaria_censoagro2017?.safs?.estabelecimentos_pct ?? 0;
     const adubOrgPct = m.agropecuaria_censoagro2017?.praticas_sustentaveis?.adubacao_organica_pct ?? 0;
+    const agricOrgPct = m.agropecuaria_censoagro2017?.praticas_sustentaveis?.agricultura_organica_pct ?? 0;
     const solarPct = m.agropecuaria_censoagro2017?.praticas_sustentaveis?.energia_solar_estab_pct ?? 0;
+    const assocPct = m.agropecuaria_censoagro2017?.praticas_sustentaveis?.associativismo_sindicato_pct ?? 0;
+    const rotCulturas = m.agropecuaria_censoagro2017?.praticas_sustentaveis?.rotacao_culturas_estab ?? 0;
+    const manejoFlor = m.agropecuaria_censoagro2017?.praticas_sustentaveis?.manejo_florestal_estab ?? 0;
+
     // Escala normalizada de apoio 0-1
     const iie = Number(Math.min(1, (safPct / 20) * 0.4 + (adubOrgPct / 25) * 0.4 + (solarPct / 2) * 0.2).toFixed(2));
 
     // IGL: IQM IPECE 2026 (resíduos) e associativismo rural
     const iqm = m.iqm_icms_socioambiental_ipece?.iqm_2026?.iqm_somatorio ?? 1.0;
-    const assocPct = m.agropecuaria_censoagro2017?.praticas_sustentaveis?.associativismo_sindicato_pct ?? 0;
+    const coefIcms = m.iqm_icms_socioambiental_ipece?.coeficiente_rateio_icms_2026 ?? 0.01;
     const igl = Number(Math.min(1, (iqm * 0.6) + (assocPct / 100 * 0.4)).toFixed(2));
 
     const bioDens = m.biomassa_florestal_ifn?.biomassa_densidade_territorial_t_ha ?? 0;
     const bioTotal = m.biomassa_florestal_ifn?.estoque_biomassa_total_t ?? 0;
     const lenha = m.extrativismo_pevs_2025?.lenha_extraida_m3 ?? 0;
-    const precip = m.clima_inmet?.precipitacao_2024?.precipitacao_total_mm ?? 0;
+
+    // INMET: Se a estação teve 0 registros no ano, o dado é considerado indisponível (Regra 5)
+    const registrosHorarios = m.clima_inmet?.precipitacao_2024?.registros_horarios ?? 0;
+    const precipVal = m.clima_inmet?.precipitacao_2024?.precipitacao_total_mm;
+    const precipitacao_anual_mm = registrosHorarios > 0 ? (precipVal ?? null) : null;
+
+    const estacaoInmet: EstacaoInmetInfo | null = m.clima_inmet?.estacao_mais_proxima
+      ? {
+          codigo: m.clima_inmet.estacao_mais_proxima.codigo,
+          nome: m.clima_inmet.estacao_mais_proxima.nome,
+          uf: m.clima_inmet.estacao_mais_proxima.uf,
+          tipo: m.clima_inmet.estacao_mais_proxima.tipo,
+          lat: m.clima_inmet.estacao_mais_proxima.lat,
+          lon: m.clima_inmet.estacao_mais_proxima.lon,
+          distanciaKm: m.clima_inmet.estacao_mais_proxima.distanciaKm,
+        }
+      : null;
+
     const alertas = m.alertas_desmatamento_mapbiomas?.total_alertas ?? 0;
     const desmatHa = m.alertas_desmatamento_mapbiomas?.area_total_desmatada_ha ?? 0;
 
@@ -144,18 +188,28 @@ export function buildMunicipiosList(
       estoque_biomassa_total_t: bioTotal,
       lenha_pevs_m3_ano: lenha,
       safs_pct: safPct,
-      precipitacao_anual_mm: precip,
+      precipitacao_anual_mm,
+      precipitacao_registros_horarios: registrosHorarios,
+      estacao_inmet: estacaoInmet,
       alertas_desmatamento: alertas,
       area_desmatamento_alertas_ha: desmatHa,
       iqm_residuos: iqm,
+      iqm_coeficiente_icms: coefIcms,
 
-      // Valores sem dado empírico real no campo
+      adubacao_organica_pct: adubOrgPct,
+      agricultura_organica_pct: agricOrgPct,
+      associativismo_pct: assocPct,
+      energia_solar_estab_pct: solarPct,
+      rotacao_culturas_estab: rotCulturas,
+      manejo_florestal_estab: manejoFlor,
+
+      // Valores sem dado empírico real no campo (Regra 2c)
       acordos_manejo_ativos: null,
       monitoramento_participativo_pontos: null,
       biodigestores_instalados: null,
       recursos_psa_anuais: null,
 
-      // Campos de compatibilidade
+      // Campos de compatibilidade retroativa
       cobertura_arborea_pct: nativaPct,
       area_sistemas_integrados_pct: safPct,
       demanda_lenha_sem_manejo_m3_ano: lenha,
@@ -221,5 +275,52 @@ export function getAlertasOficiais(m: MunicipioPits): string[] {
 
   return alerts;
 }
+
+/**
+ * Espécies botânicas da Caatinga com nomenclatura botânica aceita (Flora e Funga do Brasil / JBRJ)
+ * Item 3 (M1-10): Cenostigma pyramidale, Sarcomphalus joazeiro, etc.
+ */
+export const especiesNativasCaatinga = [
+  {
+    especie: "Sabiá",
+    nomeCientifico: "Mimosa caesalpiniifolia",
+    familia: "Fabaceae",
+    origem: "Nativa da Caatinga",
+    statusEcologico: "Nativa",
+    uso: "Manejo florestal sustentável, estacas e forragem rica em proteína",
+  },
+  {
+    especie: "Catingueira",
+    nomeCientifico: "Cenostigma pyramidale",
+    familia: "Fabaceae",
+    origem: "Nativa endêmica da Caatinga",
+    statusEcologico: "Nativa",
+    uso: "Regeneração natural pioneira e lenha sob plano de manejo",
+  },
+  {
+    especie: "Juazeiro",
+    nomeCientifico: "Sarcomphalus joazeiro",
+    familia: "Rhamnaceae",
+    origem: "Nativa da Caatinga",
+    statusEcologico: "Nativa",
+    uso: "Sombra perene, forragem no auge da estiagem e conservação hídrica",
+  },
+  {
+    especie: "Angico",
+    nomeCientifico: "Anadenanthera colubrina",
+    familia: "Fabaceae",
+    origem: "Nativa da Caatinga",
+    statusEcologico: "Nativa",
+    uso: "Manejo florestal madeireiro, tanino e apicultura",
+  },
+  {
+    especie: "Jurema-preta",
+    nomeCientifico: "Mimosa tenuiflora",
+    familia: "Fabaceae",
+    origem: "Nativa da Caatinga",
+    statusEcologico: "Nativa",
+    uso: "Biomassa energética de alto poder calorífico e proteção de solos degradados",
+  },
+];
 
 export type Municipio = MunicipioPits;

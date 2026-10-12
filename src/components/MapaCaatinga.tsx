@@ -1,122 +1,59 @@
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { MapPin } from "lucide-react";
+import { MapPin, Satellite, Loader2, AlertTriangle, ShieldCheck } from "lucide-react";
 import { usePits } from "@/context/PitsContext";
-import { getMapBiomasMunicipio } from "@/data/mapbiomas";
 import { useAlertasData } from "@/hooks/useAlertas";
 import { useIbgeData } from "@/hooks/useIBGE";
+import FonteInfo from "./FonteInfo";
 
-function generateThematicLayers(centerLat: number, centerLng: number) {
-  return [
-    {
-      id: "vegetacao",
-      label: "Cobertura vegetal nativa",
-      color: "#4A7C59",
-      positions: [
-        [centerLat + 0.15, centerLng - 0.15],
-        [centerLat + 0.20, centerLng - 0.05],
-        [centerLat + 0.12, centerLng + 0.05],
-        [centerLat + 0.05, centerLng + 0.00],
-        [centerLat + 0.08, centerLng - 0.12],
-      ] as [number, number][],
-    },
-    {
-      id: "conservacao",
-      label: "Conservação prioritária",
-      color: "#2d5a3a",
-      positions: [
-        [centerLat + 0.00, centerLng - 0.20],
-        [centerLat + 0.05, centerLng - 0.10],
-        [centerLat - 0.02, centerLng - 0.02],
-        [centerLat - 0.08, centerLng - 0.08],
-        [centerLat - 0.05, centerLng - 0.18],
-      ] as [number, number][],
-    },
-    {
-      id: "producao",
-      label: "Produção sustentável",
-      color: "#D4A843",
-      positions: [
-        [centerLat + 0.25, centerLng + 0.25],
-        [centerLat + 0.30, centerLng + 0.15],
-        [centerLat + 0.22, centerLng + 0.08],
-        [centerLat + 0.17, centerLng + 0.15],
-        [centerLat + 0.20, centerLng + 0.22],
-      ] as [number, number][],
-    },
-    {
-      id: "restauracao",
-      label: "Restauração biocultural",
-      color: "#C0772B",
-      positions: [
-        [centerLat - 0.10, centerLng + 0.10],
-        [centerLat - 0.05, centerLng + 0.18],
-        [centerLat - 0.12, centerLng + 0.25],
-        [centerLat - 0.18, centerLng + 0.20],
-        [centerLat - 0.15, centerLng + 0.12],
-      ] as [number, number][],
-    },
-    {
-      id: "recarga",
-      label: "Zonas de recarga hídrica",
-      color: "#2E6B8A",
-      positions: [
-        [centerLat + 0.10, centerLng + 0.15],
-        [centerLat + 0.15, centerLng + 0.22],
-        [centerLat + 0.08, centerLng + 0.30],
-        [centerLat + 0.02, centerLng + 0.25],
-        [centerLat + 0.05, centerLng + 0.18],
-      ] as [number, number][],
-    },
-  ];
-}
+// Cache em memória para GeoJSON das malhas do IBGE
+const malhasGeoJsonCache = new Map<string, any>();
 
 export default function MapaCaatinga() {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
-  const layerRefs = useRef<Record<string, L.Polygon>>({});
+  const boundaryLayerRef = useRef<L.GeoJSON | null>(null);
+  const centroidMarkerRef = useRef<L.CircleMarker | null>(null);
   const alertLayerGroup = useRef<L.LayerGroup | null>(null);
+
   const { selectedMunicipio } = usePits();
-  const mb = getMapBiomasMunicipio(selectedMunicipio.municipio);
-  
+  const codigoIBGE = selectedMunicipio.codigoIBGE;
+
   const { data: ibge } = useIbgeData(selectedMunicipio.municipio, selectedMunicipio.estado);
   const lat = ibge?.latitude ?? -5.5;
   const lng = ibge?.longitude ?? -39.0;
-  
-  const currentLayers = useMemo(() => generateThematicLayers(lat, lng), [lat, lng]);
 
-  const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>(
-    { ...Object.fromEntries(currentLayers.map((l) => [l.id, true])), desmatamento: true }
-  );
+  const {
+    data: alertasRaw,
+    isFetching: alertasLoading,
+    isError: alertasError,
+  } = useAlertasData(codigoIBGE);
 
-  const { data: alertasRaw, isFetching: alertasLoading } = useAlertasData(mb?.codigoIBGE);
-  const alertas = alertasRaw || [];
+  const [geoJsonLoading, setGeoJsonLoading] = useState(false);
+  const [geoJsonError, setGeoJsonError] = useState<string | null>(null);
+  const [showBoundary, setShowBoundary] = useState(true);
+  const [showAlerts, setShowAlerts] = useState(true);
 
-  // Init map
+  // Inicialização do Mapa Leaflet
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
 
     const map = L.map(mapRef.current, {
-      center: [-5.5, -39.0],
+      center: [lat, lng],
       zoom: 9,
       zoomControl: true,
       scrollWheelZoom: true,
     });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 18,
     }).addTo(map);
 
-    // Polygons will be added by the effect below that watches coordinates
-    
-    // Create layer group for alert markers
     alertLayerGroup.current = L.layerGroup().addTo(map);
-
     mapInstance.current = map;
 
-    // Fix tile rendering
     const timers = [100, 300, 800].map((ms) =>
       setTimeout(() => map.invalidateSize(), ms)
     );
@@ -132,128 +69,241 @@ export default function MapaCaatinga() {
     };
   }, []);
 
-  // Sync map center and thematic layers with municipality
+  // Busca o GeoJSON real da malha municipal do IBGE
+  const loadMunicipalBoundary = useCallback(async (code: string) => {
+    if (!code) return null;
+    if (malhasGeoJsonCache.has(code)) {
+      return malhasGeoJsonCache.get(code);
+    }
+    setGeoJsonLoading(true);
+    setGeoJsonError(null);
+    try {
+      const res = await fetch(
+        `https://servicodados.ibge.gov.br/api/v3/malhas/municipios/${code}?formato=application/vnd.geo+json`
+      );
+      if (!res.ok) {
+        throw new Error(`Erro ${res.status} ao carregar malha territorial do IBGE`);
+      }
+      const data = await res.json();
+      malhasGeoJsonCache.set(code, data);
+      return data;
+    } catch (err: any) {
+      console.warn("[MapaCaatinga] Falha ao carregar limite do IBGE:", err);
+      setGeoJsonError(err.message || "Falha na malha");
+      return null;
+    } finally {
+      setGeoJsonLoading(false);
+    }
+  }, []);
+
+  // Atualiza limite municipal e centróide quando muda município
   useEffect(() => {
     const map = mapInstance.current;
     if (!map) return;
-    
-    // Pan smoothly to new center
-    map.flyTo([lat, lng], 9, { duration: 1 });
 
-    // Remove old polygons
-    Object.values(layerRefs.current).forEach(p => p.removeFrom(map));
-    layerRefs.current = {};
+    let isMounted = true;
 
-    // Restore polygons with new coordinates
-    currentLayers.forEach((layer) => {
-      const polygon = L.polygon(layer.positions, {
-        color: layer.color,
-        fillColor: layer.color,
-        fillOpacity: 0.3,
+    // Remove camadas anteriores
+    if (boundaryLayerRef.current) {
+      boundaryLayerRef.current.removeFrom(map);
+      boundaryLayerRef.current = null;
+    }
+    if (centroidMarkerRef.current) {
+      centroidMarkerRef.current.removeFrom(map);
+      centroidMarkerRef.current = null;
+    }
+
+    // Carrega o polígono real da malha municipal
+    loadMunicipalBoundary(codigoIBGE).then((geoJson) => {
+      if (!isMounted || !map) return;
+
+      if (geoJson && showBoundary) {
+        const geoLayer = L.geoJSON(geoJson, {
+          style: {
+            color: "#2d5a3a",
+            weight: 2.5,
+            fillColor: "#4A7C59",
+            fillOpacity: 0.18,
+          },
+        });
+
+        geoLayer.bindTooltip(
+          `<strong>${selectedMunicipio.municipio} (${selectedMunicipio.estado})</strong><br/>Limite Municipal Oficial — IBGE Censo 2022`,
+          { sticky: true }
+        );
+
+        geoLayer.addTo(map);
+        boundaryLayerRef.current = geoLayer;
+
+        try {
+          map.fitBounds(geoLayer.getBounds(), { padding: [25, 25], maxZoom: 11 });
+        } catch {
+          map.flyTo([lat, lng], 9);
+        }
+      } else {
+        map.flyTo([lat, lng], 9);
+      }
+
+      // Adiciona marcador de centróide municipal
+      const marker = L.circleMarker([lat, lng], {
+        radius: 6,
+        color: "#8B5E3C",
+        fillColor: "#8B5E3C",
+        fillOpacity: 0.9,
         weight: 2,
       });
-      polygon.bindTooltip(layer.label, { sticky: true });
-      layerRefs.current[layer.id] = polygon;
-      
-      if (activeLayers[layer.id] !== false) {
-        polygon.addTo(map);
-      }
-    });
-  }, [lat, lng, currentLayers, activeLayers]);
 
-  // Update alert markers when alertas change
+      marker.bindPopup(
+        `<div style="font-size:12px">
+          <strong>${selectedMunicipio.municipio} — ${selectedMunicipio.estado}</strong><br/>
+          Código IBGE: ${codigoIBGE}<br/>
+          Área: ${selectedMunicipio.area_km2.toLocaleString("pt-BR")} km²<br/>
+          População: ${selectedMunicipio.populacao.toLocaleString("pt-BR")} hab.<br/>
+          Vegetação Nativa: ${selectedMunicipio.cobertura_nativa_pct}%
+        </div>`
+      );
+
+      marker.addTo(map);
+      centroidMarkerRef.current = marker;
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [codigoIBGE, lat, lng, loadMunicipalBoundary, showBoundary, selectedMunicipio]);
+
+  // Atualiza marcadores reais de alerta de desmatamento
   useEffect(() => {
     const group = alertLayerGroup.current;
     if (!group) return;
 
     group.clearLayers();
 
-    if (!activeLayers.desmatamento) return;
+    if (!showAlerts || alertasError || !alertasRaw) return;
 
-    alertas.forEach((alerta) => {
+    alertasRaw.forEach((alerta) => {
       if (!alerta.centroid) return;
 
       const marker = L.circleMarker([alerta.centroid.lat, alerta.centroid.lng], {
-        radius: Math.min(Math.max(alerta.areaHa / 5, 5), 18),
+        radius: Math.min(Math.max(alerta.areaHa / 5, 5), 16),
         color: "#C0392B",
         fillColor: "#C0392B",
         fillOpacity: 0.5,
         weight: 2,
       });
 
-      const date = new Date(alerta.detectedAt).toLocaleDateString("pt-BR");
+      const date = alerta.detectedAt
+        ? new Date(alerta.detectedAt).toLocaleDateString("pt-BR")
+        : "Data indisponível";
+
       marker.bindTooltip(
         `<div style="font-size:11px">
           <strong>🔥 Alerta ${alerta.alertCode}</strong><br/>
-          Data: ${date}<br/>
+          Data detecção: ${date}<br/>
           Área: ${alerta.areaHa.toLocaleString("pt-BR", { maximumFractionDigits: 2 })} ha<br/>
-          Fonte: ${alerta.source}
+          Fonte: MapBiomas Alerta (SAD-Caatinga)
         </div>`,
         { sticky: true }
       );
 
       marker.addTo(group);
     });
-  }, [alertas, activeLayers.desmatamento]);
+  }, [alertasRaw, showAlerts, alertasError]);
 
-  const toggleLayer = (id: string) => {
+  const toggleBoundary = () => {
     const map = mapInstance.current;
-    if (!map) return;
-
-    if (id === "desmatamento") {
-      const newState = !activeLayers.desmatamento;
-      if (newState && alertLayerGroup.current) {
-        alertLayerGroup.current.addTo(map);
-      } else if (alertLayerGroup.current) {
-        alertLayerGroup.current.removeFrom(map);
-      }
-      setActiveLayers((prev) => ({ ...prev, desmatamento: newState }));
+    if (!map || !boundaryLayerRef.current) {
+      setShowBoundary(!showBoundary);
       return;
     }
-
-    const polygon = layerRefs.current[id];
-    if (!polygon) return;
-
-    const newState = !activeLayers[id];
-    if (newState) {
-      polygon.addTo(map);
+    if (showBoundary) {
+      boundaryLayerRef.current.removeFrom(map);
     } else {
-      polygon.removeFrom(map);
+      boundaryLayerRef.current.addTo(map);
     }
-    setActiveLayers((prev) => ({ ...prev, [id]: newState }));
+    setShowBoundary(!showBoundary);
   };
 
-  const allLayers = [
-    ...currentLayers,
-    { id: "desmatamento", label: `Alertas Desmatamento${alertasLoading ? " ⏳" : ` (${alertas.length})`}`, color: "#C0392B" },
-  ];
+  const toggleAlerts = () => {
+    const map = mapInstance.current;
+    if (!map || !alertLayerGroup.current) return;
+    const next = !showAlerts;
+    if (next) {
+      alertLayerGroup.current.addTo(map);
+    } else {
+      alertLayerGroup.current.removeFrom(map);
+    }
+    setShowAlerts(next);
+  };
+
+  // Texto descritivo dos alertas de desmatamento (Regra G8 / D11: nunca "0 alertas" quando falha)
+  const getAlertsButtonLabel = () => {
+    if (alertasLoading) return "Alertas Desmatamento ⏳";
+    if (alertasError) return "Alertas Desmatamento (Dados indisponíveis)";
+    if (alertasRaw && alertasRaw.length > 0) return `Alertas Desmatamento (${alertasRaw.length})`;
+    if (selectedMunicipio.alertas_desmatamento > 0) return `Alertas Desmatamento (${selectedMunicipio.alertas_desmatamento})`;
+    return "Alertas Desmatamento (Sem alertas)";
+  };
 
   return (
-    <div className="pits-card">
-      <h2 className="pits-section-title mb-3 flex items-center gap-2">
-        <MapPin size={18} className="text-primary" />
-        Mapa Territorial
-      </h2>
-      <div className="flex flex-wrap gap-2 mb-3">
-        {allLayers.map((layer) => (
-          <button
-            key={layer.id}
-            onClick={() => toggleLayer(layer.id)}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all ${
-              activeLayers[layer.id]
-                ? "border-border bg-card shadow-sm"
-                : "border-transparent bg-muted/50 opacity-50"
-            }`}
-          >
-            <span
-              className="w-2.5 h-2.5 rounded-full shrink-0"
-              style={{ backgroundColor: layer.color, opacity: activeLayers[layer.id] ? 1 : 0.3 }}
-            />
-            {layer.label}
-          </button>
-        ))}
+    <div className="pits-card space-y-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <h2 className="pits-section-title flex items-center gap-2">
+          <MapPin size={18} className="text-primary" />
+          Mapa Territorial Oficial — {selectedMunicipio.municipio}
+        </h2>
+        <div className="flex items-center gap-2">
+          {geoJsonLoading && (
+            <span className="text-[11px] text-muted-foreground flex items-center gap-1 animate-pulse">
+              <Loader2 size={12} className="animate-spin" /> Carregando malha IBGE...
+            </span>
+          )}
+          {geoJsonError && (
+            <span className="text-[11px] text-destructive flex items-center gap-1">
+              <AlertTriangle size={12} /> Malha IBGE indisponível
+            </span>
+          )}
+        </div>
       </div>
-      <div ref={mapRef} className="w-full h-[380px] rounded-lg overflow-hidden border border-border" />
+
+      {/* Camadas reais */}
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={toggleBoundary}
+          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all ${
+            showBoundary ? "border-border bg-card shadow-sm" : "border-transparent bg-muted/50 opacity-60"
+          }`}
+        >
+          <span className="w-2.5 h-2.5 rounded-full shrink-0 bg-[#2d5a3a]" />
+          Limite Municipal (IBGE Malhas 2022)
+        </button>
+
+        <button
+          onClick={toggleAlerts}
+          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all ${
+            showAlerts ? "border-border bg-card shadow-sm" : "border-transparent bg-muted/50 opacity-60"
+          }`}
+        >
+          <span className="w-2.5 h-2.5 rounded-full shrink-0 bg-pits-alerta" />
+          {getAlertsButtonLabel()}
+        </button>
+      </div>
+
+      {/* Container do Mapa */}
+      <div
+        ref={mapRef}
+        className="w-full h-[380px] rounded-lg overflow-hidden border border-border bg-muted/20 relative z-0"
+      />
+
+      {/* Proveniência do Mapa */}
+      <FonteInfo
+        instituicao="IBGE Malhas Municipais e MapBiomas Alerta"
+        ano="2022–2026"
+        dataConsulta="11/10/2026"
+        tabela="Malhas v3 e API Alerta v2 (SAD-Caatinga)"
+        url="https://servicodados.ibge.gov.br/api/v3/malhas/municipios"
+        selo="MapBiomas"
+      />
     </div>
   );
 }

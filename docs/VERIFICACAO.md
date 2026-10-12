@@ -1,7 +1,7 @@
 # RELATÓRIO DE VERIFICAÇÃO DE DADOS (PITS)
 *Auditoria de conformidade executada conforme o PASSO 4 de REGRAS.md.*
 
-- **Data da Execução:** 11/10/2026 21:29:55
+- **Data da Execução:** 11/10/2026 22:56:45
 - **Total de Indicadores Auditados via API Viva:** 53
 - **Concordâncias (MATCH):** 53 (100.0%)
 - **Divergências (MISMATCH):** 0 (0.0%)
@@ -13,49 +13,49 @@
 
 | Município | Indicador | Fonte Oficial | Valor API Viva | Valor Processado | Latência | Status |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| Quixadá | População (Censo 2022) | IBGE Sidra 4714/V93 | 84168 | 84168 | 2.34s | **MATCH** |
-| Crateús | População (Censo 2022) | IBGE Sidra 4714/V93 | 76390 | 76390 | 2.34s | **MATCH** |
-| Iguatu | População (Censo 2022) | IBGE Sidra 4714/V93 | 98064 | 98064 | 2.34s | **MATCH** |
-| Sobral | População (Censo 2022) | IBGE Sidra 4714/V93 | 203023 | 203023 | 2.34s | **MATCH** |
-| Juazeiro do Norte | População (Censo 2022) | IBGE Sidra 4714/V93 | 286120 | 286120 | 2.34s | **MATCH** |
-| Crato | População (Censo 2022) | IBGE Sidra 4714/V93 | 131050 | 131050 | 2.34s | **MATCH** |
-| Senador Pompeu | População (Censo 2022) | IBGE Sidra 4714/V93 | 24266 | 24266 | 2.34s | **MATCH** |
-| Tauá | População (Censo 2022) | IBGE Sidra 4714/V93 | 61227 | 61227 | 2.34s | **MATCH** |
-| Canindé | População (Censo 2022) | IBGE Sidra 4714/V93 | 74174 | 74174 | 2.34s | **MATCH** |
-| Cascavel | População (Censo 2022) | IBGE Sidra 4714/V93 | 72720 | 72720 | 2.34s | **MATCH** |
-| Quixadá | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 2020.586 | 2020.586 | 1.55s | **MATCH** |
-| Crateús | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 2981.459 | 2981.459 | 1.55s | **MATCH** |
-| Iguatu | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 992.208 | 992.208 | 1.55s | **MATCH** |
-| Sobral | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 2068.474 | 2068.474 | 1.55s | **MATCH** |
-| Juazeiro do Norte | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 258.788 | 258.788 | 1.55s | **MATCH** |
-| Crato | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 1138.15 | 1138.15 | 1.55s | **MATCH** |
-| Senador Pompeu | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 956.882 | 956.882 | 1.55s | **MATCH** |
-| Tauá | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 4010.618 | 4010.618 | 1.55s | **MATCH** |
-| Canindé | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 3032.39 | 3032.39 | 1.55s | **MATCH** |
-| Cascavel | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 838.115 | 838.115 | 1.55s | **MATCH** |
-| Quixadá | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 20251 | 20251 | 1.06s | **MATCH** |
-| Crateús | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 80565 | 80565 | 1.06s | **MATCH** |
-| Iguatu | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 34318 | 34318 | 1.06s | **MATCH** |
-| Sobral | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 46875 | 46875 | 1.06s | **MATCH** |
-| Juazeiro do Norte | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 520 | 520 | 1.06s | **MATCH** |
-| Crato | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 12100 | 12100 | 1.06s | **MATCH** |
-| Senador Pompeu | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 4895 | 4895 | 1.06s | **MATCH** |
-| Tauá | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 74750 | 74750 | 1.06s | **MATCH** |
-| Canindé | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 207480 | 207480 | 1.06s | **MATCH** |
-| Cascavel | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 536 | 536 | 1.06s | **MATCH** |
-| Quixadá | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 685 | 685 | 1.38s | **MATCH** |
-| Crateús | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 6 | 6 | 1.38s | **MATCH** |
-| Iguatu | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 459 | 459 | 1.38s | **MATCH** |
-| Sobral | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 122 | 122 | 1.38s | **MATCH** |
-| Juazeiro do Norte | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 2 | 2 | 1.38s | **MATCH** |
-| Crato | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 236 | 236 | 1.38s | **MATCH** |
-| Senador Pompeu | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 655 | 655 | 1.38s | **MATCH** |
-| Tauá | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 1483 | 1483 | 1.38s | **MATCH** |
-| Canindé | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 1256 | 1256 | 1.38s | **MATCH** |
-| Cascavel | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 379 | 379 | 1.38s | **MATCH** |
-| Regional (CE) | Normal Pluviométrica Anual (mm) | INMET API Normais N208 | 857.7 mm | 857.7 mm | 1.3s | **MATCH** |
-| Bioma Caatinga | Taxonomia Mimosa caesalpiniifolia | GBIF / Flora do Brasil API | ACCEPTED (Fabaceae) | ACCEPTED (Fabaceae) | 1.34s | **MATCH** |
-| Quixadá | Alertas de Desmatamento (MapBiomas) | MapBiomas Alerta API v2 GraphQL | 100 alertas | 100 alertas | 3.09s | **MATCH** |
+| Quixadá | População (Censo 2022) | IBGE Sidra 4714/V93 | 84168 | 84168 | 0.83s | **MATCH** |
+| Crateús | População (Censo 2022) | IBGE Sidra 4714/V93 | 76390 | 76390 | 0.83s | **MATCH** |
+| Iguatu | População (Censo 2022) | IBGE Sidra 4714/V93 | 98064 | 98064 | 0.83s | **MATCH** |
+| Sobral | População (Censo 2022) | IBGE Sidra 4714/V93 | 203023 | 203023 | 0.83s | **MATCH** |
+| Juazeiro do Norte | População (Censo 2022) | IBGE Sidra 4714/V93 | 286120 | 286120 | 0.83s | **MATCH** |
+| Crato | População (Censo 2022) | IBGE Sidra 4714/V93 | 131050 | 131050 | 0.83s | **MATCH** |
+| Senador Pompeu | População (Censo 2022) | IBGE Sidra 4714/V93 | 24266 | 24266 | 0.83s | **MATCH** |
+| Tauá | População (Censo 2022) | IBGE Sidra 4714/V93 | 61227 | 61227 | 0.83s | **MATCH** |
+| Canindé | População (Censo 2022) | IBGE Sidra 4714/V93 | 74174 | 74174 | 0.83s | **MATCH** |
+| Cascavel | População (Censo 2022) | IBGE Sidra 4714/V93 | 72720 | 72720 | 0.83s | **MATCH** |
+| Quixadá | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 2020.586 | 2020.586 | 1.37s | **MATCH** |
+| Crateús | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 2981.459 | 2981.459 | 1.37s | **MATCH** |
+| Iguatu | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 992.208 | 992.208 | 1.37s | **MATCH** |
+| Sobral | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 2068.474 | 2068.474 | 1.37s | **MATCH** |
+| Juazeiro do Norte | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 258.788 | 258.788 | 1.37s | **MATCH** |
+| Crato | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 1138.15 | 1138.15 | 1.37s | **MATCH** |
+| Senador Pompeu | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 956.882 | 956.882 | 1.37s | **MATCH** |
+| Tauá | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 4010.618 | 4010.618 | 1.37s | **MATCH** |
+| Canindé | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 3032.39 | 3032.39 | 1.37s | **MATCH** |
+| Cascavel | Área Territorial (km²) | IBGE Sidra 4714/V6318 | 838.115 | 838.115 | 1.37s | **MATCH** |
+| Quixadá | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 20251 | 20251 | 1.27s | **MATCH** |
+| Crateús | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 80565 | 80565 | 1.27s | **MATCH** |
+| Iguatu | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 34318 | 34318 | 1.27s | **MATCH** |
+| Sobral | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 46875 | 46875 | 1.27s | **MATCH** |
+| Juazeiro do Norte | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 520 | 520 | 1.27s | **MATCH** |
+| Crato | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 12100 | 12100 | 1.27s | **MATCH** |
+| Senador Pompeu | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 4895 | 4895 | 1.27s | **MATCH** |
+| Tauá | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 74750 | 74750 | 1.27s | **MATCH** |
+| Canindé | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 207480 | 207480 | 1.27s | **MATCH** |
+| Cascavel | Lenha Extraída PEVS (m³) | IBGE Sidra 289/V144 | 536 | 536 | 1.27s | **MATCH** |
+| Quixadá | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 685 | 685 | 3.14s | **MATCH** |
+| Crateús | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 6 | 6 | 3.14s | **MATCH** |
+| Iguatu | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 459 | 459 | 3.14s | **MATCH** |
+| Sobral | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 122 | 122 | 3.14s | **MATCH** |
+| Juazeiro do Norte | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 2 | 2 | 3.14s | **MATCH** |
+| Crato | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 236 | 236 | 3.14s | **MATCH** |
+| Senador Pompeu | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 655 | 655 | 3.14s | **MATCH** |
+| Tauá | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 1483 | 1483 | 3.14s | **MATCH** |
+| Canindé | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 1256 | 1256 | 3.14s | **MATCH** |
+| Cascavel | Estabelecimentos c/ SAFs | IBGE Sidra 6881/V9587 | 379 | 379 | 3.14s | **MATCH** |
+| Regional (CE) | Normal Pluviométrica Anual (mm) | INMET API Normais N208 | 857.7 mm | 857.7 mm | 2.51s | **MATCH** |
+| Bioma Caatinga | Taxonomia Mimosa caesalpiniifolia | GBIF / Flora do Brasil API | ACCEPTED (Fabaceae) | ACCEPTED (Fabaceae) | 1.56s | **MATCH** |
+| Quixadá | Alertas de Desmatamento (MapBiomas) | MapBiomas Alerta API v2 GraphQL | 100 alertas | 100 alertas | 3.88s | **MATCH** |
 | Quixadá | Biomassa Média (t/ha) | SFB/IFN-CE + MapBiomas Col. 11 | 25.21 t/ha (IFN-CE) | 25.21 t/ha | 0.01s | **MATCH** |
 | Crateús | Biomassa Média (t/ha) | SFB/IFN-CE + MapBiomas Col. 11 | 25.25 t/ha (IFN-CE) | 25.25 t/ha | 0.01s | **MATCH** |
 | Iguatu | Biomassa Média (t/ha) | SFB/IFN-CE + MapBiomas Col. 11 | 16.44 t/ha (IFN-CE) | 16.44 t/ha | 0.01s | **MATCH** |

@@ -1,5 +1,6 @@
 import { LucideIcon, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import FonteInfo from "./FonteInfo";
 
 interface SubIndexCardProps {
   label: string;
@@ -10,6 +11,10 @@ interface SubIndexCardProps {
   inverted?: boolean;
   tooltip?: string;
   fonte?: string;
+  variavelManifest?: string;
+  ano?: number | string;
+  dataConsulta?: string;
+  tabela?: string;
 }
 
 export default function SubIndexCard({
@@ -20,6 +25,10 @@ export default function SubIndexCard({
   inverted = false,
   tooltip,
   fonte,
+  variavelManifest,
+  ano,
+  dataConsulta = "11/10/2026",
+  tabela,
 }: SubIndexCardProps) {
   const isAvailable = value !== null && value !== undefined && !isNaN(value);
   const pct = isAvailable ? Math.round(Math.min(1, Math.max(0, value)) * 100) : 0;
@@ -91,11 +100,12 @@ export default function SubIndexCard({
           )}
         </div>
 
-        {fonte && (
-          <p className="text-[10px] text-muted-foreground/70 mt-1 truncate" title={fonte}>
-            {fonte}
-          </p>
-        )}
+        {/* Proveniência do MANIFEST (Regra 2) */}
+        {variavelManifest ? (
+          <FonteInfo variavel={variavelManifest} />
+        ) : fonte ? (
+          <FonteInfo instituicao={fonte} ano={ano ?? 2025} dataConsulta={dataConsulta} tabela={tabela} />
+        ) : null}
       </div>
     </div>
   );

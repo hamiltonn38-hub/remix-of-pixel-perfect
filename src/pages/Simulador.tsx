@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { calcPEL, calcIVS, calcIVSStar, calcIPSE } from "@/lib/calcPits";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import FonteInfo from "@/components/FonteInfo";
 
 interface CenarioVars {
   reflorestamento_ha_ano: number;  // ha/ano de recuperação da Caatinga
@@ -449,14 +450,22 @@ export default function Simulador() {
             isUp: true,
           },
         ].map((card) => (
-          <div key={card.label} className="pits-card text-center">
-            <p className="pits-label text-[11px]">{card.label}</p>
-            <p className="pits-metric text-xl mt-1">{card.value}</p>
-            <div className={`flex items-center justify-center gap-1 text-xs mt-0.5 ${card.isUp ? "text-success" : "text-destructive"}`}>
-              {card.isUp ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
-              <span>{card.delta}</span>
+          <div key={card.label} className="pits-card text-center flex flex-col justify-between">
+            <div>
+              <p className="pits-label text-[11px]">{card.label}</p>
+              <p className="pits-metric text-xl mt-1">{card.value}</p>
+              <div className={`flex items-center justify-center gap-1 text-xs mt-0.5 ${card.isUp ? "text-success" : "text-destructive"}`}>
+                {card.isUp ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
+                <span>{card.delta}</span>
+              </div>
+              <p className="text-[10px] text-muted-foreground mt-1">{card.sub}</p>
             </div>
-            <p className="text-[10px] text-muted-foreground mt-1">{card.sub}</p>
+            <FonteInfo
+              instituicao="Modelo Prospectivo PITS"
+              ano={anoInicial + horizonte}
+              dataConsulta="11/10/2026"
+              tabela="Projeção paramétrica biofísica e socioeconômica"
+            />
           </div>
         ))}
       </div>
