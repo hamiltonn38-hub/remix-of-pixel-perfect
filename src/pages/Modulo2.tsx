@@ -2,6 +2,7 @@ import { usePits } from "@/context/PitsContext";
 import { Recycle, Zap, Flame, TreePine, ExternalLink, BookOpen, AlertTriangle } from "lucide-react";
 import { PitsBarChart } from "@/components/charts/PitsCharts";
 import FonteInfo from "@/components/FonteInfo";
+import H2SimuladorCard from "@/components/H2SimuladorCard";
 
 // Experimento de campo em Taperoá/PB (Martins et al., 2013, DOI: 10.1590/S1415-43662013000600002)
 const produtividadeData = [
@@ -178,6 +179,9 @@ export default function Modulo2() {
           url="https://doi.org/10.1590/S1415-43662013000600002"
         />
       </div>
+
+      {/* Simulação de Potencial de Hidrogênio (H2 de Biomassa) */}
+      <H2SimuladorCard />
 
       {/* Estrutura Oficial do PNDBio — Eixos 2 e 3 (G7 / M2-7) */}
       <div className="pits-card border-l-4 border-l-secondary space-y-3">

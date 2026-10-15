@@ -41,3 +41,12 @@ bun-windows-x64/
 
 # Raw large archives
 data/raw/*.zip
+
+# Auditoria e relatórios técnicos
+docs/referencia/
+docs/auditoria/
+docs/relatorio/
+
+# Python cache
+__pycache__/
+*.pyc

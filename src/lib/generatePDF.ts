@@ -140,11 +140,44 @@ export function generateRelatorioPDF(m: MunicipioPits): void {
 
     y = (doc as any).lastAutoTable.finalY + 7;
 
-    // ── 4. Recomendações Estratégicas ─────────────────────────────────────────
+    // ── 4. Potencial Teórico-Tecnológico de Hidrogênio (H2 de Biomassa) ──────
+    if (y > 210) { doc.addPage(); y = 20; }
+    doc.setFontSize(11);
+    doc.setTextColor(...COR_TEXTO);
+    doc.text("4. Potencial Teórico-Tecnológico de Hidrogênio (H2 de Biomassa)", 14, y);
+    y += 4;
+
+    doc.setFontSize(7.5);
+    doc.setTextColor(...COR_CINZA);
+    const avisoH2 =
+      "Aviso Metodológico Obrigatório: Potencial teórico-tecnológico. Não é projeto de engenharia nem previsão de produção comercial. " +
+      "Modelagem estequiométrica baseada em corte sustentável (fração 20%) de biomassa nativa com gaseificação e WGS (IEA Task 33; Maggio et al., 2024).";
+    const linhasH2 = doc.splitTextToSize(avisoH2, w - 28);
+    doc.text(linhasH2, 14, y);
+    y += linhasH2.length * 3.8 + 2;
+
+    const h2Data = m.h2_potencial.rotaA_gasificacao;
+    autoTable(doc, {
+      startY: y,
+      head: [["Regime de Simulação", "Potencial Energético", "Produção H2", "Demanda Mín. Água", "TRL / Tecnologia"]],
+      body: [
+        ["Conservador", `${h2Data.min_mwh_ano.toLocaleString("pt-BR")} MWh/ano`, `${((h2Data.min_mwh_ano * 3600) / (120 * 1000)).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} t/ano`, `${((h2Data.min_mwh_ano * 3600 / 120) * 8.936 / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} m³/ano`, "TRL 7 (Gaseificação DFB / Maggio 2024)"],
+        ["Típico (Referência)", `${h2Data.tipico_mwh_ano.toLocaleString("pt-BR")} MWh/ano`, `${h2Data.massa_h2_tipico_t_ano.toLocaleString("pt-BR")} t/ano`, `${h2Data.demanda_agua_tipico_m3_ano.toLocaleString("pt-BR")} m³/ano`, "TRL 7 (Gaseificação DFB / Maggio 2024)"],
+        ["Otimista", `${h2Data.max_mwh_ano.toLocaleString("pt-BR")} MWh/ano`, `${((h2Data.max_mwh_ano * 3600) / (120 * 1000)).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} t/ano`, `${((h2Data.max_mwh_ano * 3600 / 120) * 8.936 / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} m³/ano`, "TRL 7 (Gaseificação DFB / Maggio 2024)"],
+      ],
+      theme: "grid",
+      headStyles: { fillColor: [45, 106, 79], textColor: 255, fontSize: 7.5 },
+      styles:     { fontSize: 7.5 },
+      margin:     { left: 14, right: 14 },
+    });
+
+    y = (doc as any).lastAutoTable.finalY + 7;
+
+    // ── 5. Recomendações Estratégicas ─────────────────────────────────────────
     if (y > 235) { doc.addPage(); y = 20; }
     doc.setFontSize(11);
     doc.setTextColor(...COR_TEXTO);
-    doc.text("4. Recomendações Estratégicas Baseadas em Evidências", 14, y);
+    doc.text("5. Recomendações Estratégicas Baseadas em Evidências", 14, y);
     y += 5;
 
     doc.setFontSize(8.5);
@@ -256,6 +289,12 @@ export function exportCSV(m: MunicipioPits): void {
     ["Cota-Parte ICMS Resíduos (IQM)", m.iqm_residuos.toString(), "pontuação (0-1)", "IPECE / SEMA-CE (IQM 2026)"],
     ["Acordos de Manejo Formalizados", "Sem registros — aguardando coleta de campo", "acordos", "Projeto FUNDECI em estruturação (Regra 2c)"],
     ["Monitoramento Participativo", "Sem registros — aguardando coleta de campo", "pontos", "Projeto FUNDECI em estruturação (Regra 2c)"],
+    ["Potencial H2 Rota A — Conservador", m.h2_potencial.rotaA_gasificacao.min_mwh_ano.toString(), "MWh PCI/ano", "IEA Task 33 / Maggio et al. (2024)"],
+    ["Potencial H2 Rota A — Típico", m.h2_potencial.rotaA_gasificacao.tipico_mwh_ano.toString(), "MWh PCI/ano", "IEA Task 33 / Maggio et al. (2024)"],
+    ["Potencial H2 Rota A — Otimista", m.h2_potencial.rotaA_gasificacao.max_mwh_ano.toString(), "MWh PCI/ano", "IEA Task 33 / Maggio et al. (2024)"],
+    ["Massa H2 Rota A — Típico", m.h2_potencial.rotaA_gasificacao.massa_h2_tipico_t_ano.toString(), "t/ano", "IEA Task 33 / Maggio et al. (2024)"],
+    ["Demanda Mín. Água H2 — Típico", m.h2_potencial.rotaA_gasificacao.demanda_agua_tipico_m3_ano.toString(), "m³/ano", "Balanço estequiométrico elementar WGS"],
+    ["Potencial H2 Rota B (Biogás)", m.h2_potencial.rotaB_biogas ? (m.h2_potencial.rotaB_biogas.tipico_mwh_ano?.toString() ?? "Dados indisponíveis") : "Dados indisponíveis (sem biodigestores cadastrados)", "MWh PCI/ano", "Alves et al. (2013) / Regra 2c"],
   ];
 
   const csv  = rows.map((r) => r.map((c) => `"${c.replace(/"/g, '""')}"`).join(",")).join("\n");

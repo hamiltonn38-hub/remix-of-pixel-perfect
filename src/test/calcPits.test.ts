@@ -11,6 +11,7 @@ import {
   classifyIVS,
   getIVSBarColor,
 } from "../lib/calcPits";
+import { municipiosReais } from "../data/municipiosData";
 
 describe("Módulo de Cálculo PITS — calcPits.ts", () => {
   describe("1. Direção e Comportamento do IVS (Eq. 4)", () => {
@@ -145,4 +146,29 @@ describe("Módulo de Cálculo PITS — calcPits.ts", () => {
       expect(norm).toEqual([1.0, 1.0, 1.0]);
     });
   });
+
+  describe("6. Integração H2 e Blindagem do IPSE (ΔIPSE = 0)", () => {
+    it("deve conter h2_potencial estruturado para todos os municípios reais", () => {
+      expect(municipiosReais.length).toBeGreaterThan(0);
+      for (const m of municipiosReais) {
+        expect(m.h2_potencial).toBeDefined();
+        expect(m.h2_potencial.rotaA_gasificacao).toBeDefined();
+        expect(m.h2_potencial.rotaA_gasificacao.tipico_mwh_ano).toBeGreaterThan(0);
+        expect(m.h2_potencial.rotaA_gasificacao.min_mwh_ano).toBeLessThanOrEqual(m.h2_potencial.rotaA_gasificacao.tipico_mwh_ano);
+        expect(m.h2_potencial.rotaA_gasificacao.tipico_mwh_ano).toBeLessThanOrEqual(m.h2_potencial.rotaA_gasificacao.max_mwh_ano);
+        // Rota B deve ser null na ausência de biogás auditado
+        expect(m.h2_potencial.rotaB_biogas).toBeNull();
+      }
+    });
+
+    it("o cálculo do IPSE municipal deve permanecer estritamente inalterado (ΔIPSE = 0)", () => {
+      for (const m of municipiosReais) {
+        const ipseEsperado = calcIPSE(m.PEL, m.IVS_star);
+        expect(m.IPSE).toBe(ipseEsperado);
+        expect(m.IPSE_norm).toBeGreaterThanOrEqual(0);
+        expect(m.IPSE_norm).toBeLessThanOrEqual(1);
+      }
+    });
+  });
 });
+

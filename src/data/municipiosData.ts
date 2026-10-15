@@ -27,6 +27,24 @@ import {
   LiteraturaParams,
   DEFAULT_LITERATURA_PARAMS,
 } from "@/lib/calcPits";
+import { calcRotaA, calcRotaB } from "@/lib/calcH2";
+
+export interface H2PotencialMunicipio {
+  rotaA_gasificacao: {
+    min_mwh_ano: number;
+    tipico_mwh_ano: number;
+    max_mwh_ano: number;
+    massa_h2_tipico_t_ano: number;
+    demanda_agua_tipico_m3_ano: number;
+  };
+  rotaB_biogas: {
+    min_mwh_ano: number | null;
+    tipico_mwh_ano: number | null;
+    max_mwh_ano: number | null;
+    massa_h2_tipico_t_ano: number | null;
+    demanda_agua_tipico_m3_ano: number | null;
+  } | null;
+}
 
 export interface EstacaoInmetInfo {
   codigo: string;
@@ -93,6 +111,9 @@ export interface MunicipioPits {
   demanda_lenha_sem_manejo_m3_ano: number;
   taxa_regeneracao_pct_ano: number | null;
   eficiencia_conversao_energetica_pct: number;
+
+  // Potencial independente de H2 de Biomassa (não afeta IPSE)
+  h2_potencial: H2PotencialMunicipio;
 }
 
 export function buildMunicipiosList(
@@ -215,6 +236,22 @@ export function buildMunicipiosList(
       demanda_lenha_sem_manejo_m3_ano: lenha,
       taxa_regeneracao_pct_ano: null,
       eficiencia_conversao_energetica_pct: Math.round((litParams.eta ?? DEFAULT_LITERATURA_PARAMS.eta) * 100),
+
+      // Potencial independente de H2 de Biomassa (Rota A sob manejo sustentável f_i = 0.20)
+      h2_potencial: {
+        rotaA_gasificacao: {
+          min_mwh_ano: calcRotaA(nativaHa, litParams.Y_i ?? DEFAULT_LITERATURA_PARAMS.Y_i, 0.20, 0, 0.050, litParams.PCI ?? DEFAULT_LITERATURA_PARAMS.PCI)?.pel_h2_mwh_ano ?? 0,
+          tipico_mwh_ano: calcRotaA(nativaHa, litParams.Y_i ?? DEFAULT_LITERATURA_PARAMS.Y_i, 0.20, 0, 0.085, litParams.PCI ?? DEFAULT_LITERATURA_PARAMS.PCI)?.pel_h2_mwh_ano ?? 0,
+          max_mwh_ano: calcRotaA(nativaHa, litParams.Y_i ?? DEFAULT_LITERATURA_PARAMS.Y_i, 0.20, 0, 0.140, litParams.PCI ?? DEFAULT_LITERATURA_PARAMS.PCI)?.pel_h2_mwh_ano ?? 0,
+          massa_h2_tipico_t_ano: (() => {
+            const tip = calcRotaA(nativaHa, litParams.Y_i ?? DEFAULT_LITERATURA_PARAMS.Y_i, 0.20, 0, 0.085, litParams.PCI ?? DEFAULT_LITERATURA_PARAMS.PCI);
+            return tip ? Number((tip.massa_h2_kg_ano / 1000).toFixed(1)) : 0;
+          })(),
+          demanda_agua_tipico_m3_ano: calcRotaA(nativaHa, litParams.Y_i ?? DEFAULT_LITERATURA_PARAMS.Y_i, 0.20, 0, 0.085, litParams.PCI ?? DEFAULT_LITERATURA_PARAMS.PCI)?.demanda_agua_m3_ano ?? 0,
+        },
+        // Rota B: null por ausência de dados empíricos de biogás (Regra 2c)
+        rotaB_biogas: null,
+      },
     };
   });
 
