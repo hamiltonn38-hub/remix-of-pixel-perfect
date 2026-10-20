@@ -22,7 +22,6 @@ import {
   Zap,
   Info,
   ExternalLink,
-  ShieldCheck,
   AlertTriangle,
   Layers,
   Activity,
@@ -108,10 +107,7 @@ export default function H2SimuladorCard() {
               </p>
             </div>
           </div>
-          <span className="text-xs px-2.5 py-1 rounded-full bg-secondary/15 text-secondary font-semibold border border-secondary/30 flex items-center gap-1.5 self-start sm:self-auto">
-            <ShieldCheck size={14} />
-            Sem inventar dados / Modelo auditado
-          </span>
+
         </div>
 
         {/* Banner Fixo Obrigatório */}
