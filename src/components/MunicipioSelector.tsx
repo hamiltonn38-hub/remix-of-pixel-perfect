@@ -15,7 +15,7 @@ export default function MunicipioSelector() {
           if (m) setSelectedMunicipio(m);
         }}
       >
-        <SelectTrigger className="w-[200px] bg-card border-border">
+        <SelectTrigger className="w-[140px] sm:w-[200px] bg-card border-border">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

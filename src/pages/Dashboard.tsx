@@ -89,7 +89,7 @@ export default function Dashboard() {
           <h1 className="text-2xl font-bold">Dashboard — {m.municipio}</h1>
           <p className="text-sm text-muted-foreground">
             {m.estado}{ibge?.mesorregiao ? ` • ${ibge.mesorregiao}` : ""} • {area.toLocaleString("pt-BR")} km² • {pop.toLocaleString("pt-BR")} hab.
-            {ibgeLoading && <span className="ml-2 text-xs text-accent animate-pulse">Consultando IBGE...</span>}
+            {ibgeLoading && <span className="ml-2 text-xs text-accent-readable animate-pulse">Consultando IBGE...</span>}
             {ibgeError && <span className="ml-2 text-xs text-destructive">⚠️ Falha na API IBGE ({ibgeError})</span>}
             {!ibgeError && ibge && <span className="ml-2 text-xs text-success font-medium">✓ IBGE Censo 2022</span>}
             {mb && <span className="ml-1 text-xs text-success font-medium">✓ MapBiomas Col. 11</span>}
@@ -144,6 +144,7 @@ export default function Dashboard() {
               icon={Leaf}
               tooltip="Proporção da área territorial em formações nativas da Caatinga. Fonte: MapBiomas Coleção 11 (2025)."
               variavelManifest="cobertura_vegetal_nativa_2025"
+              codigoIBGE={m.codigoIBGE}
             />
             <SubIndexCard
               label="Vulnerabilidade Social"
@@ -153,6 +154,7 @@ export default function Dashboard() {
               inverted={true}
               tooltip="Média das carências domiciliares em água, esgoto, lixo e energia (Eq. 4). DIREÇÃO: menor valor indica menor vulnerabilidade."
               variavelManifest="ivs_proprio_censo2022"
+              codigoIBGE={m.codigoIBGE}
             />
             <SubIndexCard
               label="Infraestrutura Energética"
@@ -161,6 +163,7 @@ export default function Dashboard() {
               icon={Zap}
               tooltip="Adoção rural de práticas conservacionistas, SAFs e fontes renováveis descentralizadas."
               variavelManifest="safs_censoagro2017"
+              codigoIBGE={m.codigoIBGE}
             />
             <SubIndexCard
               label="Governança Local e Resíduos"
@@ -169,6 +172,7 @@ export default function Dashboard() {
               icon={Shield}
               tooltip="Gestão socioambiental municipal medida pela cota-parte do IQM (resíduos sólidos) e associativismo rural."
               variavelManifest="iqm_residuos_solidos"
+              codigoIBGE={m.codigoIBGE}
             />
           </div>
         </div>
@@ -177,16 +181,16 @@ export default function Dashboard() {
       {/* Chart + Alerts */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Série Real de Vegetação Nativa */}
-        <div className="pits-card lg:col-span-2">
+        <div tabIndex={0} className="group pits-card lg:col-span-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <div className="flex items-center justify-between mb-2">
             <div>
               <h2 className="pits-section-title">Evolução Histórica da Vegetação Nativa (2018–2025)</h2>
-              <p className="text-xs text-muted-foreground">
+              <p className="pits-reveal text-xs text-muted-foreground">
                 Dados anuais auditados da Coleção 11 do MapBiomas Brasil (classes nativas: florestal, savânica e campestre)
               </p>
             </div>
-            <span className="text-xs px-2 py-1 bg-secondary/10 text-secondary rounded font-medium">
-              MapBiomas Col. 11
+            <span className="text-xs px-2.5 py-1 bg-secondary/15 text-secondary border border-secondary/25 rounded-full font-semibold">
+              Atual: {m.cobertura_nativa_pct}%
             </span>
           </div>
 
@@ -220,18 +224,37 @@ export default function Dashboard() {
         {/* Alertas e Recomendações */}
         <div className="pits-card flex flex-col justify-between">
           <div>
-            <h2 className="pits-section-title mb-3 flex items-center gap-2">
-              <AlertTriangle size={18} className="text-accent" />
-              Alertas e Recomendações
-            </h2>
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="pits-section-title flex items-center gap-2">
+                <AlertTriangle size={18} className="text-accent-readable" />
+                Alertas e Recomendações
+              </h2>
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-accent/20 text-accent-readable border border-accent/30">
+                {alerts.length} {alerts.length === 1 ? "item" : "itens"}
+              </span>
+            </div>
             <div className="space-y-3">
               {alerts.length > 0 ? (
-                alerts.map((alert, i) => (
-                  <div key={i} className="flex gap-2 text-sm p-3 bg-accent/10 rounded-lg border border-accent/20">
-                    <AlertTriangle size={14} className="text-accent shrink-0 mt-0.5" />
-                    <p className="leading-snug">{alert}</p>
-                  </div>
-                ))
+                alerts.map((alert, i) => {
+                  const dotIdx = alert.indexOf(". ");
+                  const headline = dotIdx > 0 ? alert.slice(0, dotIdx + 1) : alert;
+                  const detail = dotIdx > 0 ? alert.slice(dotIdx + 2) : "";
+                  return (
+                    <div
+                      key={i}
+                      tabIndex={0}
+                      className="group flex gap-2 text-sm p-3 bg-accent/10 rounded-lg border border-accent/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <AlertTriangle size={14} className="text-accent-readable shrink-0 mt-0.5" />
+                      <div className="leading-snug">
+                        <p className="font-semibold text-foreground text-xs sm:text-sm">{headline}</p>
+                        {detail && (
+                          <p className="pits-reveal text-xs text-muted-foreground mt-1">{detail}</p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })
               ) : (
                 <p className="text-xs text-muted-foreground italic">Nenhum alerta crítico ativo no momento.</p>
               )}
@@ -285,14 +308,18 @@ export default function Dashboard() {
             value: getAlertasDisplay(),
             sub: alertasError ? "Falha na API SAD" : `${m.area_desmatamento_alertas_ha.toFixed(1)} ha validados`,
             variavel: "alertas_desmatamento_mapbiomas",
-            color: (m.alertas_desmatamento > 0 && !alertasError) ? "text-pits-alerta" : "",
+            color: (m.alertas_desmatamento > 0 && !alertasError) ? "text-destructive" : "",
           },
         ].map((stat) => (
-          <div key={stat.label} className="pits-card flex flex-col justify-between text-center">
+          <div
+            key={stat.label}
+            tabIndex={0}
+            className="group pits-card flex flex-col justify-between text-center last:col-span-2 md:last:col-span-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
             <div>
               <p className="pits-label text-[11px]">{stat.label}</p>
-              <p className={`pits-metric text-xl mt-1 ${stat.color}`}>{stat.value}</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5">{stat.sub}</p>
+              <p className={`pits-metric text-xl sm:text-2xl mt-1 ${stat.color}`}>{stat.value}</p>
+              <p className="pits-reveal text-[11px] text-muted-foreground mt-1">{stat.sub}</p>
             </div>
             <FonteInfo variavel={stat.variavel} codigoIBGE={m.codigoIBGE} />
           </div>

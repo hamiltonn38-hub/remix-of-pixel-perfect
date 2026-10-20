@@ -4,6 +4,7 @@ import { getMapBiomasMunicipio } from "@/data/mapbiomas";
 import { Satellite, AlertTriangle, Loader2, TreePine, Flame } from "lucide-react";
 import { DESMAT_SEVERITY } from "@/lib/constants";
 import FonteInfo from "./FonteInfo";
+import Detalhes from "./Detalhes";
 
 export default function AlertasDesmatamento() {
   const { selectedMunicipio } = usePits();
@@ -31,9 +32,9 @@ export default function AlertasDesmatamento() {
   });
 
   const severidade = (ha: number) => {
-    if (ha >= DESMAT_SEVERITY.high) return { label: "Alta", class: "bg-pits-alerta/20 text-pits-alerta font-semibold px-2 py-0.5 rounded text-[10px]" };
-    if (ha >= DESMAT_SEVERITY.medium) return { label: "Média", class: "bg-pits-seco/20 text-pits-terra font-semibold px-2 py-0.5 rounded text-[10px]" };
-    return { label: "Baixa", class: "bg-pits-caatinga/20 text-pits-caatinga font-semibold px-2 py-0.5 rounded text-[10px]" };
+    if (ha >= DESMAT_SEVERITY.high) return { label: "Alta", class: "bg-destructive/15 text-destructive border border-destructive/25 font-semibold px-2 py-0.5 rounded text-[10px]" };
+    if (ha >= DESMAT_SEVERITY.medium) return { label: "Média", class: "bg-accent/20 text-accent-readable border border-accent/30 font-semibold px-2 py-0.5 rounded text-[10px]" };
+    return { label: "Baixa", class: "bg-secondary/15 text-secondary border border-secondary/25 font-semibold px-2 py-0.5 rounded text-[10px]" };
   };
 
   return (
@@ -41,7 +42,7 @@ export default function AlertasDesmatamento() {
       {/* Header */}
       <div className="pits-card">
         <div className="flex items-center gap-2 mb-4">
-          <Satellite size={18} className="text-pits-alerta" />
+          <Satellite size={18} className="text-destructive" />
           <h2 className="pits-section-title">
             Alertas de Desmatamento — MapBiomas Alerta (SAD-Caatinga)
           </h2>
@@ -57,7 +58,7 @@ export default function AlertasDesmatamento() {
 
         {/* Error — Regra G8 / D11: exibir "Dados indisponíveis", nunca "0 alertas" */}
         {isError && (
-          <div className="p-4 bg-destructive/10 rounded-lg border border-destructive/20 text-sm text-destructive space-y-1 my-3">
+          <div className="p-4 bg-destructive/10 rounded-lg border border-destructive/25 text-sm text-destructive space-y-1 my-3">
             <div className="flex items-center gap-2 font-medium">
               <AlertTriangle size={16} className="shrink-0" />
               <span>Falha na consulta ao MapBiomas Alerta — Dados indisponíveis</span>
@@ -72,23 +73,23 @@ export default function AlertasDesmatamento() {
         {hasLoadedAlerts && (
           <>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-              <div className="p-3 bg-pits-alerta/10 rounded-lg text-center">
+              <div className="p-3 bg-destructive/10 rounded-lg text-center border border-destructive/25">
                 <p className="text-[11px] text-muted-foreground font-medium">Total de Alertas</p>
-                <p className="text-lg font-bold text-pits-alerta">{alerts.length}</p>
+                <p className="text-xl font-extrabold text-destructive mt-0.5">{alerts.length}</p>
               </div>
-              <div className="p-3 bg-pits-alerta/10 rounded-lg text-center">
+              <div className="p-3 bg-destructive/10 rounded-lg text-center border border-destructive/25">
                 <p className="text-[11px] text-muted-foreground font-medium">Área Desmatada</p>
-                <p className="text-lg font-bold text-pits-alerta">
+                <p className="text-xl font-extrabold text-destructive mt-0.5">
                   {totalHa.toLocaleString("pt-BR", { maximumFractionDigits: 1 })} ha
                 </p>
               </div>
-              <div className="p-3 bg-pits-seco/10 rounded-lg text-center">
+              <div className="p-3 bg-accent/15 rounded-lg text-center border border-accent/30">
                 <p className="text-[11px] text-muted-foreground font-medium">Últimos 30 dias</p>
-                <p className="text-lg font-bold text-pits-terra">{recentes30d.length}</p>
+                <p className="text-xl font-extrabold text-accent-readable mt-0.5">{recentes30d.length}</p>
               </div>
-              <div className="p-3 bg-pits-agua/10 rounded-lg text-center">
+              <div className="p-3 bg-hydro/10 rounded-lg text-center border border-hydro/25">
                 <p className="text-[11px] text-muted-foreground font-medium">Bioma</p>
-                <p className="text-sm font-semibold text-pits-agua">
+                <p className="text-base font-bold text-hydro mt-0.5">
                   {alerts[0]?.biome ?? "Caatinga"}
                 </p>
               </div>
@@ -96,6 +97,7 @@ export default function AlertasDesmatamento() {
 
             {/* Alert table */}
             {alerts.length > 0 ? (
+              <Detalhes titulo={`Ver lista de alertas (${alerts.length})`}>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
@@ -116,7 +118,7 @@ export default function AlertasDesmatamento() {
                         <tr key={a.alertCode} className="border-b border-border/40 hover:bg-muted/30 transition-colors">
                           <td className="py-2 px-2 font-mono text-[11px]">
                             <div className="flex items-center gap-1.5">
-                              <Flame size={12} className="text-pits-alerta shrink-0" />
+                              <Flame size={12} className="text-destructive shrink-0" />
                               {a.alertCode}
                             </div>
                           </td>
@@ -143,8 +145,9 @@ export default function AlertasDesmatamento() {
                   </tbody>
                 </table>
               </div>
+              </Detalhes>
             ) : (
-              <div className="flex items-center justify-center gap-2 py-6 text-muted-foreground bg-muted/20 rounded-lg">
+              <div className="flex items-center justify-center gap-2 py-6 text-muted-foreground bg-muted/20 rounded-lg border border-border/60">
                 <TreePine size={18} className="text-secondary" />
                 <span className="text-sm">Nenhum alerta de desmatamento validado registrado para este município no período.</span>
               </div>

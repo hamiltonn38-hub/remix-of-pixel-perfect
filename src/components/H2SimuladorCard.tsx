@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import FonteInfo from "@/components/FonteInfo";
+import Detalhes from "@/components/Detalhes";
 
 export default function H2SimuladorCard() {
   const { selectedMunicipio: m } = usePits();
@@ -148,9 +149,9 @@ export default function H2SimuladorCard() {
         {/* -------------------- CONTEÚDO ROTA A -------------------- */}
         <TabsContent value="ROTA_A" className="space-y-4 mt-4">
           {/* Controles de Entrada */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-3.5 bg-muted/30 rounded-lg border border-border/50">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-3.5 bg-muted/30 rounded-lg border border-border/60">
             {/* Seletor de Tecnologia */}
-            <div className="space-y-1.5">
+            <div tabIndex={0} className="group space-y-1.5 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <label className="text-xs font-semibold text-foreground flex items-center justify-between">
                 <span>Tecnologia de Conversão</span>
                 <span className="text-[10px] px-1.5 py-0.2 rounded bg-primary/10 text-primary font-mono">
@@ -169,13 +170,13 @@ export default function H2SimuladorCard() {
                   ))}
                 </SelectContent>
               </Select>
-              <p className="text-[10px] text-muted-foreground line-clamp-1">
+              <p className="pits-reveal text-[10px] text-muted-foreground line-clamp-1">
                 {tecnologiaAtual.condicoes}
               </p>
             </div>
 
             {/* Seletor de Espécie Florestal / Resíduo */}
-            <div className="space-y-1.5">
+            <div tabIndex={0} className="group space-y-1.5 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <label className="text-xs font-semibold text-foreground flex items-center justify-between">
                 <span>Espécie / Matéria-Prima</span>
                 <span className="text-[10px] text-muted-foreground font-mono">
@@ -194,13 +195,13 @@ export default function H2SimuladorCard() {
                   ))}
                 </SelectContent>
               </Select>
-              <p className="text-[10px] text-muted-foreground">
+              <p className="pits-reveal text-[10px] text-muted-foreground">
                 Base seca: C {especieAtual.carbono_pct}%, H {especieAtual.hidrogenio_pct}%, O {especieAtual.oxigenio_pct}%
               </p>
             </div>
 
             {/* Slider de Fração Sustentável de Manejo (f_i) */}
-            <div className="space-y-1.5">
+            <div tabIndex={0} className="group space-y-1.5 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <div className="flex justify-between items-center text-xs font-semibold">
                 <span>Fração sob Manejo Sustentável (fᵢ)</span>
                 <span className="text-primary font-mono">{(fracaoManejo * 100).toFixed(0)}% da área</span>
@@ -213,14 +214,14 @@ export default function H2SimuladorCard() {
                 onValueChange={(val) => setFracaoManejo(val[0] / 100)}
                 className="mt-2"
               />
-              <p className="text-[10px] text-muted-foreground">
+              <p className="pits-reveal text-[10px] text-muted-foreground">
                 Padrão Caatinga: 20% (corte seletivo rotativo em talhões)
               </p>
             </div>
           </div>
 
           {/* Dados Territoriais Aplicados */}
-          <div className="p-3 bg-secondary/5 rounded-lg border border-secondary/20 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="p-3 bg-secondary/5 rounded-lg border border-secondary/25 flex flex-wrap items-center justify-between gap-2 text-xs">
             <div>
               <span className="text-muted-foreground">Vegetação Nativa Elegível (MapBiomas Col. 11): </span>
               <strong className="text-foreground">{m.area_nativa_ha.toLocaleString("pt-BR")} ha</strong>
@@ -260,7 +261,8 @@ export default function H2SimuladorCard() {
               ].map((card, i) => (
                 <div
                   key={i}
-                  className={`p-3.5 rounded-lg border flex flex-col justify-between space-y-3 ${
+                  tabIndex={0}
+                  className={`group p-3.5 rounded-lg border flex flex-col justify-between space-y-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     card.destaque
                       ? "border-primary/50 bg-primary/5 shadow-sm"
                       : "border-border/60 bg-muted/20"
@@ -275,33 +277,33 @@ export default function H2SimuladorCard() {
                         </span>
                       )}
                     </div>
-                    <p className="text-[10px] text-muted-foreground mt-0.5">{card.sub}</p>
+                    <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">{card.sub}</p>
                   </div>
 
                   <div className="space-y-2 text-xs">
                     <div>
                       <p className="text-[11px] text-muted-foreground">Potencial Energético (MWh PCI/ano)</p>
-                      <p className="text-lg font-bold text-foreground">
+                      <p className="text-xl font-extrabold text-primary">
                         {card.data ? card.data.pel_h2_mwh_ano.toLocaleString("pt-BR") : "—"}
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 pt-1 border-t border-border/30 text-[11px]">
+                    <div className="grid grid-cols-2 gap-2 pt-1 border-t border-border/40 text-[11px]">
                       <div>
                         <p className="text-[10px] text-muted-foreground">Produção H₂</p>
-                        <p className="font-semibold text-foreground">
+                        <p className="font-bold text-foreground">
                           {card.data ? (card.data.massa_h2_kg_ano / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) : "—"} t/ano
                         </p>
                       </div>
                       <div>
                         <p className="text-[10px] text-muted-foreground">Eficiência Térmica</p>
-                        <p className="font-semibold text-foreground">
+                        <p className="font-bold text-foreground">
                           {card.data ? `${card.data.eficiencia_conversao_pct}%` : "—"}
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-1 border-t border-border/30">
+                    <div className="pits-reveal pt-1 border-t border-border/30">
                       <p className="text-[10px] text-muted-foreground flex items-center gap-1">
                         <Droplets size={12} className="text-hydro shrink-0" />
                         Demanda Mín. Água Reação
@@ -317,6 +319,7 @@ export default function H2SimuladorCard() {
           </div>
 
           {/* Proveniência e Fontes */}
+          <Detalhes titulo="Ver fontes e referências">
           <div className="pt-2 border-t border-border/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px]">
             <div className="flex items-center gap-2">
               <span className="text-muted-foreground">Fonte do Rendimento:</span>
@@ -343,6 +346,7 @@ export default function H2SimuladorCard() {
               </a>
             </div>
           </div>
+          </Detalhes>
         </TabsContent>
 
         {/* -------------------- CONTEÚDO ROTA B -------------------- */}
@@ -353,9 +357,11 @@ export default function H2SimuladorCard() {
               <Info size={16} />
               <span>Status dos Dados Oficiais de Biogás em {m.municipio}</span>
             </div>
+            <Detalhes titulo="Ver explicação">
             <p className="text-muted-foreground leading-relaxed">
               Conforme a <strong>Regra 2c da Plataforma PITS</strong>, não havendo dados abertos auditados de biodigestores instalados ou volume de biogás no Censo Agropecuário para este município, o indicador municipal oficial é registrado como <em>"Dados indisponíveis"</em>.
             </p>
+            </Detalhes>
             <p className="text-foreground font-medium">
               Abaixo disponibilizamos uma simulação paramétrica interativa caso haja projeto de biodigestão anaeróbia planejado:
             </p>
@@ -426,7 +432,8 @@ export default function H2SimuladorCard() {
               ].map((card, i) => (
                 <div
                   key={i}
-                  className={`p-3.5 rounded-lg border flex flex-col justify-between space-y-3 ${
+                  tabIndex={0}
+                  className={`group p-3.5 rounded-lg border flex flex-col justify-between space-y-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     card.destaque
                       ? "border-hydro/50 bg-hydro/5 shadow-sm"
                       : "border-border/60 bg-muted/20"
@@ -441,33 +448,33 @@ export default function H2SimuladorCard() {
                         </span>
                       )}
                     </div>
-                    <p className="text-[10px] text-muted-foreground mt-0.5">{card.sub}</p>
+                    <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">{card.sub}</p>
                   </div>
 
                   <div className="space-y-2 text-xs">
                     <div>
                       <p className="text-[11px] text-muted-foreground">Potencial Energético (MWh PCI/ano)</p>
-                      <p className="text-lg font-bold text-foreground">
+                      <p className="text-xl font-extrabold text-hydro">
                         {card.data ? card.data.pel_h2_mwh_ano.toLocaleString("pt-BR") : "—"}
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 pt-1 border-t border-border/30 text-[11px]">
+                    <div className="grid grid-cols-2 gap-2 pt-1 border-t border-border/40 text-[11px]">
                       <div>
                         <p className="text-[10px] text-muted-foreground">Massa H₂ Líquida</p>
-                        <p className="font-semibold text-foreground">
+                        <p className="font-bold text-foreground">
                           {card.data ? (card.data.massa_h2_kg_ano / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 2 }) : "—"} t/ano
                         </p>
                       </div>
                       <div>
                         <p className="text-[10px] text-muted-foreground">Eficiência Térmica</p>
-                        <p className="font-semibold text-foreground">
+                        <p className="font-bold text-foreground">
                           {card.data ? `${card.data.eficiencia_conversao_pct}%` : "—"}
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-1 border-t border-border/30">
+                    <div className="pits-reveal pt-1 border-t border-border/30">
                       <p className="text-[10px] text-muted-foreground flex items-center gap-1">
                         <Droplets size={12} className="text-hydro shrink-0" />
                         Demanda Mín. Água Reação
@@ -483,6 +490,7 @@ export default function H2SimuladorCard() {
           </div>
 
           {/* Proveniência Rota B */}
+          <Detalhes titulo="Ver fontes e referências">
           <div className="pt-2 border-t border-border/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px]">
             <div className="flex items-center gap-2">
               <span className="text-muted-foreground">Literatura Técnica (BSR):</span>
@@ -509,6 +517,7 @@ export default function H2SimuladorCard() {
               </a>
             </div>
           </div>
+          </Detalhes>
         </TabsContent>
       </Tabs>
     </div>

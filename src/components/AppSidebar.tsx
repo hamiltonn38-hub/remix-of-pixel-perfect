@@ -49,7 +49,7 @@ export default function AppSidebar() {
             <Droplets className="text-sidebar-primary" size={28} />
             <div>
               <h1 className="text-lg font-bold text-sidebar-foreground">PITS</h1>
-              <p className="text-[10px] text-sidebar-foreground/60 leading-tight">
+              <p className="text-[10px] text-sidebar-foreground/75 leading-tight">
                 Plataforma de Inteligência<br />Territorial Socioenergética
               </p>
             </div>
@@ -67,8 +67,8 @@ export default function AppSidebar() {
                 onClick={() => setOpen(false)}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                   isActive
-                    ? "bg-sidebar-accent text-sidebar-primary font-medium"
-                    : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground"
+                    ? "bg-sidebar-accent text-sidebar-primary font-semibold border border-sidebar-primary/30"
+                    : "text-sidebar-foreground/80 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground"
                 }`}
               >
                 <item.icon size={18} />
@@ -81,7 +81,7 @@ export default function AppSidebar() {
         {/* Footer */}
         <div className="p-4 border-t border-sidebar-border">
           <SobreModal />
-          <p className="text-[10px] text-sidebar-foreground/30 mt-2">Framework HAMILTON • FUNDECI/2025.0016</p>
+          <p className="text-[10px] text-sidebar-foreground/60 mt-2">Framework HAMILTON • FUNDECI/2025.0016</p>
         </div>
       </aside>
     </>

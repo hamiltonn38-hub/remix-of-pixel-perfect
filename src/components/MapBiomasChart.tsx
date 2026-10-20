@@ -6,10 +6,11 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
 } from "recharts";
 import FonteInfo from "./FonteInfo";
+import Detalhes from "./Detalhes";
 
 export default function MapBiomasChart() {
   const { selectedMunicipio } = usePits();
-  const mb = getMapBiomasMunicipio(selectedMunicipio.municipio);
+  const mb = getMapBiomasMunicipio(selectedMunicipio.codigoIBGE || selectedMunicipio.municipio);
 
   if (!mb) {
     return (
@@ -32,23 +33,27 @@ export default function MapBiomasChart() {
           </h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-          <div className="p-3 bg-muted/40 rounded-lg text-center">
+          <div tabIndex={0} className="group pits-block p-3 text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <p className="text-[11px] text-muted-foreground font-medium">Vegetação Nativa</p>
-            <p className="text-lg font-bold text-secondary">{mb.vegetacao_nativa_pct}%</p>
+            <p className="text-xl font-extrabold text-secondary mt-0.5">{mb.vegetacao_nativa_pct}%</p>
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">Remanescentes florestais e savânicos</p>
           </div>
-          <div className="p-3 bg-muted/40 rounded-lg text-center">
+          <div tabIndex={0} className="group pits-block p-3 text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <p className="text-[11px] text-muted-foreground font-medium">Área Mapeada</p>
-            <p className="text-lg font-bold">{mb.area_total_ha.toLocaleString("pt-BR")} ha</p>
+            <p className="text-xl font-extrabold text-foreground mt-0.5">{mb.area_total_ha.toLocaleString("pt-BR")} ha</p>
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">Superfície territorial auditada</p>
           </div>
-          <div className="p-3 bg-muted/40 rounded-lg text-center">
+          <div tabIndex={0} className="group pits-block p-3 text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <p className="text-[11px] text-muted-foreground font-medium">Alertas Validados (SAD)</p>
-            <p className="text-lg font-bold text-destructive">
+            <p className="text-xl font-extrabold text-destructive mt-0.5">
               {mb.desmatamento_2022_2023_ha > 0 ? `${mb.desmatamento_2022_2023_ha} ha` : "Sem alertas"}
             </p>
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">Supressão detectada por satélite</p>
           </div>
-          <div className="p-3 bg-muted/40 rounded-lg text-center">
+          <div tabIndex={0} className="group pits-block p-3 text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <p className="text-[11px] text-muted-foreground font-medium">Fonte Auditada</p>
-            <p className="text-sm font-semibold text-secondary">MapBiomas Col. {mb.colecao}</p>
+            <p className="text-base font-bold text-secondary mt-0.5">MapBiomas Col. {mb.colecao}</p>
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">Ano base {mb.anoReferencia}</p>
           </div>
         </div>
 
@@ -70,7 +75,7 @@ export default function MapBiomasChart() {
                   outerRadius={100}
                   innerRadius={45}
                   paddingAngle={1}
-                  label={({ classe, percentual }) =>
+                  label={({ percentual }) =>
                     percentual > 5 ? `${percentual}%` : ""
                   }
                   labelLine={false}
@@ -83,10 +88,13 @@ export default function MapBiomasChart() {
                   formatter={(value: number, name: string) => [`${value}%`, name]}
                   contentStyle={{
                     background: "hsl(var(--card))",
+                    color: "hsl(var(--foreground))",
                     border: "1px solid hsl(var(--border))",
                     borderRadius: "8px",
                     fontSize: "12px",
                   }}
+                  itemStyle={{ color: "hsl(var(--foreground))" }}
+                  labelStyle={{ color: "hsl(var(--foreground))", fontWeight: 600 }}
                 />
                 <Legend
                   wrapperStyle={{ fontSize: "11px" }}
@@ -97,8 +105,13 @@ export default function MapBiomasChart() {
           </div>
 
           {/* Tabela de classes */}
-          <div className="overflow-x-auto">
-            <h3 className="text-sm font-semibold mb-2">Classes de Cobertura da Terra</h3>
+          <div className="space-y-2">
+            <h3 className="text-sm font-semibold">Classes de Cobertura da Terra</h3>
+            <p className="text-xs text-foreground">
+              Predominante: <strong>{coberturaOrdenada[0].classe}</strong> — {coberturaOrdenada[0].percentual}% ({coberturaOrdenada[0].area_ha.toLocaleString("pt-BR")} ha)
+            </p>
+            <Detalhes titulo="Ver todas as classes">
+            <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-border">
@@ -123,6 +136,8 @@ export default function MapBiomasChart() {
                 ))}
               </tbody>
             </table>
+            </div>
+            </Detalhes>
           </div>
         </div>
 
@@ -134,11 +149,21 @@ export default function MapBiomasChart() {
       </div>
 
       {/* Série temporal real de vegetação nativa */}
-      <div className="pits-card">
-        <h3 className="text-sm font-semibold mb-3 flex items-center gap-1.5">
-          <TrendingDown size={14} className="text-secondary" />
-          Evolução Histórica da Vegetação Nativa (2018–2025)
-        </h3>
+      <div tabIndex={0} className="group pits-card focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h3 className="text-sm font-semibold flex items-center gap-1.5">
+              <TrendingDown size={14} className="text-secondary" />
+              Evolução Histórica da Vegetação Nativa (2018–2025)
+            </h3>
+            <p className="pits-reveal text-xs text-muted-foreground mt-0.5">
+              Série histórica auditada de cobertura vegetal nativa (MapBiomas Coleção {mb.colecao})
+            </p>
+          </div>
+          <span className="text-xs px-2.5 py-0.5 rounded-full bg-secondary/15 text-secondary border border-secondary/25 font-semibold font-mono">
+            {mb.anoReferencia}: {mb.vegetacao_nativa_pct}%
+          </span>
+        </div>
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={mb.serie_vegetacao_nativa}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -148,9 +173,12 @@ export default function MapBiomasChart() {
               formatter={(value: number) => [`${value}%`, "Vegetação Nativa"]}
               contentStyle={{
                 background: "hsl(var(--card))",
+                color: "hsl(var(--foreground))",
                 border: "1px solid hsl(var(--border))",
                 borderRadius: "8px",
               }}
+              itemStyle={{ color: "hsl(var(--foreground))" }}
+              labelStyle={{ color: "hsl(var(--foreground))", fontWeight: 600 }}
             />
             <Line
               type="monotone"

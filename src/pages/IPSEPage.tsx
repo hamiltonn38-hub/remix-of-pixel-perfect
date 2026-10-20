@@ -17,6 +17,7 @@ import { PitsRadarChart } from "@/components/charts/PitsCharts";
 import { Info, Sliders, ShieldAlert, Award } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import FonteInfo from "@/components/FonteInfo";
+import Detalhes from "@/components/Detalhes";
 
 export default function IPSEPage() {
   const { selectedMunicipio: m, allMunicipios } = usePits();
@@ -125,7 +126,7 @@ export default function IPSEPage() {
             <span className="text-xs uppercase font-bold tracking-wider text-primary">
               Especificação Matemática Oficial (Seção 3.1)
             </span>
-            <div className="p-3 bg-muted/40 rounded-xl font-mono text-base md:text-lg font-bold text-foreground">
+            <div className="p-3 bg-muted/40 rounded-xl font-mono text-base md:text-lg font-bold text-foreground border border-border/60">
               IPSE = PEL / IVS*
             </div>
             <p className="text-xs text-muted-foreground max-w-xl">
@@ -149,21 +150,21 @@ export default function IPSEPage() {
 
         {/* Fórmulas componentes */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4 pt-4 border-t border-border/50 text-xs">
-          <div className="p-2 bg-muted/20 rounded">
+          <div tabIndex={0} className="group pits-block p-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <strong>Eq. 1 — PEL:</strong> A_i · Y_i · PCI · η
-            <p className="text-[11px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[11px] text-muted-foreground mt-0.5">
               Área elegível (MapBiomas) × Produtividade × Poder Calorífico × Eficiência.
             </p>
           </div>
-          <div className="p-2 bg-muted/20 rounded">
+          <div tabIndex={0} className="group pits-block p-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <strong>Eq. 4 — IVS:</strong> 1 − Σ w_k·X_k = Σ w_k·C_k
-            <p className="text-[11px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[11px] text-muted-foreground mt-0.5">
               Carências em água, esgoto, lixo e energia (Censo 2022). IVS alto = mais vulnerável.
             </p>
           </div>
-          <div className="p-2 bg-muted/20 rounded">
+          <div tabIndex={0} className="group pits-block p-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <strong>Eq. 5 — IVS*:</strong> max(IVS · (1 + δ_seca), {IVS_PARAMETRIC_FLOOR})
-            <p className="text-[11px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[11px] text-muted-foreground mt-0.5">
               Penalidade climática opcional com piso paramétrico ε_floor = {IVS_PARAMETRIC_FLOOR}.
             </p>
           </div>
@@ -194,11 +195,11 @@ export default function IPSEPage() {
           </div>
 
           <p className="text-xs text-muted-foreground">
-            Área elegível de Quixadá: <strong>{m.area_nativa_ha.toLocaleString("pt-BR")} ha</strong> (MapBiomas 2025)
+            Área elegível de {m.municipio}: <strong className="text-foreground">{m.area_nativa_ha.toLocaleString("pt-BR")} ha</strong> (MapBiomas 2025)
           </p>
 
           {/* Produtividade Y_i */}
-          <div>
+          <div tabIndex={0} className="group rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <div className="flex justify-between text-xs mb-1">
               <span>{FAIXA_LITERATURA.Y_i.label}</span>
               <span className="font-mono font-bold text-secondary">
@@ -212,13 +213,13 @@ export default function IPSEPage() {
               step={0.5}
               onValueChange={([v]) => setLitParams((p) => ({ ...p, Y_i: v }))}
             />
-            <span className="text-[10px] text-muted-foreground">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">
               Faixa da literatura: {FAIXA_LITERATURA.Y_i.min} a {FAIXA_LITERATURA.Y_i.max} t·ha⁻¹·ano⁻¹
-            </span>
+            </p>
           </div>
 
           {/* PCI */}
-          <div>
+          <div tabIndex={0} className="group rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <div className="flex justify-between text-xs mb-1">
               <span>{FAIXA_LITERATURA.PCI.label}</span>
               <span className="font-mono font-bold text-secondary">
@@ -232,13 +233,13 @@ export default function IPSEPage() {
               step={0.5}
               onValueChange={([v]) => setLitParams((p) => ({ ...p, PCI: v }))}
             />
-            <span className="text-[10px] text-muted-foreground">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">
               Faixa da literatura: {FAIXA_LITERATURA.PCI.min} a {FAIXA_LITERATURA.PCI.max} MJ·kg⁻¹
-            </span>
+            </p>
           </div>
 
           {/* Eficiência eta */}
-          <div>
+          <div tabIndex={0} className="group rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <div className="flex justify-between text-xs mb-1">
               <span>{FAIXA_LITERATURA.eta.label}</span>
               <span className="font-mono font-bold text-secondary">
@@ -252,13 +253,13 @@ export default function IPSEPage() {
               step={0.01}
               onValueChange={([v]) => setLitParams((p) => ({ ...p, eta: v }))}
             />
-            <span className="text-[10px] text-muted-foreground">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">
               Faixa da literatura: 20% a 30% (conversão termoquímica)
-            </span>
+            </p>
           </div>
 
           {/* Penalidade de Seca δ_seca */}
-          <div className="pt-2 border-t border-border/50">
+          <div tabIndex={0} className="group pt-2 border-t border-border/50 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <div className="flex justify-between text-xs mb-1">
               <span>Penalidade por Seca (δ_seca — Eq. 5)</span>
               <span className="font-mono font-bold text-destructive">
@@ -272,9 +273,9 @@ export default function IPSEPage() {
               step={0.05}
               onValueChange={([v]) => setDroughtPenalty(v)}
             />
-            <span className="text-[10px] text-muted-foreground">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">
               Agravamento da vulnerabilidade social por estresse hídrico
-            </span>
+            </p>
           </div>
         </div>
 
@@ -282,25 +283,27 @@ export default function IPSEPage() {
         <div className="pits-card space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="pits-section-title flex items-center gap-1.5">
-              <ShieldAlert size={16} className="text-accent" />
+              <ShieldAlert size={16} className="text-accent-readable" />
               Pesos das Carências do IVS (Censo 2022)
             </h2>
-            <span className="text-[10px] px-2 py-0.5 rounded bg-muted text-muted-foreground">
+            <span className="text-[10px] px-2 py-0.5 rounded bg-muted text-muted-foreground font-semibold">
               Soma = 100%
             </span>
           </div>
 
           {/* Aviso Metodológico Conforme Item 5 / I-2 */}
+          <Detalhes titulo="Nota metodológica (pesos padrão)">
           <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-800 dark:text-amber-300">
             <strong>Nota Metodológica (Item I-2):</strong> Os pesos padrão (30/25/25/20) constituem um <em>padrão ajustável, sem calibração empírica prévia</em>. Sugere-se a aplicação do método <strong>AHP (Analytic Hierarchy Process)</strong> em rodadas futuras com painel de especialistas regionais para calibração formal.
           </div>
+          </Detalhes>
 
           {ivsWeights.map((w, i) => (
-            <div key={i}>
+            <div key={i} tabIndex={0} className="group rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <div className="flex justify-between text-xs mb-1">
                 <div>
-                  <span className="font-medium">{ivsLabels[i].label}</span>
-                  <p className="text-[10px] text-muted-foreground">{ivsLabels[i].desc}</p>
+                  <span className="font-medium text-foreground">{ivsLabels[i].label}</span>
+                  <p className="pits-reveal text-[10px] text-muted-foreground">{ivsLabels[i].desc}</p>
                 </div>
                 <span className="font-mono font-bold text-foreground">
                   {(w * 100).toFixed(0)}%
@@ -340,8 +343,8 @@ export default function IPSEPage() {
       </div>
 
       {/* Ranking Oficial de Municípios */}
-      <div className="pits-card overflow-x-auto">
-        <div className="flex items-center justify-between mb-4">
+      <div className="pits-card space-y-3">
+        <div className="flex items-center justify-between">
           <div>
             <h2 className="pits-section-title flex items-center gap-2">
               <Award size={18} className="text-primary" />
@@ -353,6 +356,12 @@ export default function IPSEPage() {
           </div>
         </div>
 
+        <p className="text-sm font-bold text-foreground">
+          {m.municipio}: {ranking.findIndex((r) => r.codigoIBGE === m.codigoIBGE) + 1}º de {ranking.length} municípios · IPSE Norm {ipseNormSelecionado.toFixed(3)}
+        </p>
+
+        <Detalhes titulo="Ver ranking completo">
+        <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border text-xs text-muted-foreground">
@@ -413,7 +422,7 @@ export default function IPSEPage() {
                           : mu.ipseNorm! >= 0.6
                           ? "bg-success/20 text-success"
                           : mu.ipseNorm! >= 0.3
-                          ? "bg-accent/20 text-accent"
+                          ? "bg-accent/20 text-accent-readable"
                           : "bg-destructive/20 text-destructive"
                       }`}
                     >
@@ -425,6 +434,8 @@ export default function IPSEPage() {
             })}
           </tbody>
         </table>
+        </div>
+        </Detalhes>
         <FonteInfo
           instituicao="PITS / IBGE Censo 2022 e MapBiomas Col. 11"
           ano={2026}

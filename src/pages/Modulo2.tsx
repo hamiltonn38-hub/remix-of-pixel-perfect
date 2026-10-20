@@ -2,6 +2,7 @@ import { usePits } from "@/context/PitsContext";
 import { Recycle, Zap, Flame, TreePine, ExternalLink, BookOpen, AlertTriangle } from "lucide-react";
 import { PitsBarChart } from "@/components/charts/PitsCharts";
 import FonteInfo from "@/components/FonteInfo";
+import Detalhes from "@/components/Detalhes";
 import H2SimuladorCard from "@/components/H2SimuladorCard";
 
 // Experimento de campo em Taperoá/PB (Martins et al., 2013, DOI: 10.1590/S1415-43662013000600002)
@@ -89,11 +90,15 @@ export default function Modulo2() {
             ano: 2026,
           },
         ].map((ind) => (
-          <div key={ind.label} className="pits-card flex flex-col justify-between text-center">
+          <div
+            key={ind.label}
+            tabIndex={0}
+            className="group pits-card flex flex-col justify-between text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
             <div>
               <p className="pits-label text-[11px]">{ind.label}</p>
-              <p className="pits-metric text-xl mt-1">{ind.value}</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5">{ind.sub}</p>
+              <p className="pits-metric text-xl sm:text-2xl mt-1">{ind.value}</p>
+              <p className="pits-reveal text-[10px] text-muted-foreground mt-1">{ind.sub}</p>
             </div>
             {ind.variavel ? (
               <FonteInfo variavel={ind.variavel} codigoIBGE={m.codigoIBGE} />
@@ -109,10 +114,10 @@ export default function Modulo2() {
         <h2 className="pits-section-title">Fluxos Circulares de Biomassa no Território Semiárido</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {fluxos.map((f, i) => (
-            <div key={i} className="flex items-center gap-3 p-3 bg-muted/40 rounded-lg border border-border/40">
-              <f.icon size={22} className={f.color} />
+            <div key={i} className="pits-block flex items-center gap-3 p-3 hover:border-primary/40 transition-colors">
+              <f.icon size={22} className={`${f.color} shrink-0`} />
               <div>
-                <p className="text-sm font-medium">{f.de}</p>
+                <p className="text-sm font-semibold text-foreground">{f.de}</p>
                 <p className="text-xs text-muted-foreground">→ {f.para}</p>
               </div>
             </div>
@@ -135,7 +140,7 @@ export default function Modulo2() {
               Estudo experimental auditado no Semiárido (Cariri Paraibano) — Martins et al. (2013)
             </p>
           </div>
-          <span className="text-xs px-2.5 py-0.5 rounded bg-secondary/15 text-secondary font-medium">
+          <span className="text-xs px-2.5 py-0.5 rounded-full bg-secondary/15 text-secondary border border-secondary/25 font-semibold">
             +260% de biomassa total
           </span>
         </div>
@@ -150,26 +155,28 @@ export default function Modulo2() {
         />
 
         {/* Ressalvas Metodológicas Obrigatórias do Estudo — M2-6 */}
-        <div className="p-3.5 bg-muted/30 rounded-lg text-xs text-muted-foreground space-y-2 border border-border/40">
-          <div className="flex items-center gap-2 font-semibold text-foreground">
-            <BookOpen size={16} className="text-primary shrink-0" />
-            <span>Referência Confirmada e Ressalvas Metodológicas Obrigatórias (M2-6)</span>
+        <Detalhes titulo="Ver citação oficial e ressalvas metodológicas (M2-6)">
+          <div className="pits-block p-3.5 text-xs text-muted-foreground space-y-2">
+            <div className="flex items-center gap-2 font-semibold text-foreground">
+              <BookOpen size={16} className="text-primary shrink-0" />
+              <span>Referência Confirmada e Ressalvas Metodológicas Obrigatórias (M2-6)</span>
+            </div>
+            <p className="leading-relaxed">
+              <strong>Citação Oficial:</strong> Martins, J.C.R., Menezes, R.S.C., Sampaio, E.V.S.B., Santos, A.F., Nagai, M.A. (2013). <em>Produtividade de biomassa em sistemas agroflorestais e tradicionais no Cariri Paraibano</em>. Revista Brasileira de Engenharia Agrícola e Ambiental (RBEAA), v. 17, n. 6, p. 581–587. DOI: 10.1590/S1415-43662013000600002.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 pt-1 text-[11px]">
+              <div className="p-2 bg-background/60 rounded border border-border/50">
+                <strong className="text-foreground">1. Biomassa Total:</strong> O incremento de 260% refere-se à biomassa total aérea (folhas, galhos e lenha podada de árvores somadas aos resíduos agrícolas).
+              </div>
+              <div className="p-2 bg-background/60 rounded border border-border/50">
+                <strong className="text-foreground">2. Cultivos Anuais:</strong> O sistema tradicional produziu maior volume de biomassa de grãos de milho e feijão do que o SAF durante o período monitorado.
+              </div>
+              <div className="p-2 bg-background/60 rounded border border-border/50">
+                <strong className="text-foreground">3. Espécies Utilizadas:</strong> O ensaio avaliou gliricídia (exótica) e maniçoba, que diferem das espécies arbóreas nativas prioritárias da Caatinga cearense.
+              </div>
+            </div>
           </div>
-          <p className="leading-relaxed">
-            <strong>Citação Oficial:</strong> Martins, J.C.R., Menezes, R.S.C., Sampaio, E.V.S.B., Santos, A.F., Nagai, M.A. (2013). <em>Produtividade de biomassa em sistemas agroflorestais e tradicionais no Cariri Paraibano</em>. Revista Brasileira de Engenharia Agrícola e Ambiental (RBEAA), v. 17, n. 6, p. 581–587. DOI: 10.1590/S1415-43662013000600002.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 pt-1 text-[11px]">
-            <div className="p-2 bg-background/50 rounded border border-border/30">
-              <strong>1. Biomassa Total:</strong> O incremento de 260% refere-se à biomassa total aérea (folhas, galhos e lenha podada de árvores somadas aos resíduos agrícolas).
-            </div>
-            <div className="p-2 bg-background/50 rounded border border-border/30">
-              <strong>2. Cultivos Anuais:</strong> O sistema tradicional produziu maior volume de biomassa de grãos de milho e feijão do que o SAF durante o período monitorado.
-            </div>
-            <div className="p-2 bg-background/50 rounded border border-border/30">
-              <strong>3. Espécies Utilizadas:</strong> O ensaio avaliou gliricídia (exótica) e maniçoba, que diferem das espécies arbóreas nativas prioritárias da Caatinga cearense.
-            </div>
-          </div>
-        </div>
+        </Detalhes>
 
         <FonteInfo
           instituicao="Revista Brasileira de Engenharia Agrícola e Ambiental (SciELO)"
@@ -192,6 +199,7 @@ export default function Modulo2() {
         <p className="text-sm text-muted-foreground leading-relaxed">
           O <strong>PNDBio</strong> (Decreto Federal nº 12.044/2024) prioriza a transição do extrativismo linear para cadeias agroindustriais de biomassa sustentável e bioinsumos:
         </p>
+        <Detalhes titulo="Ver eixos, missões e link">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {[
             {
@@ -205,7 +213,7 @@ export default function Modulo2() {
               desc: "Diversificação das fontes de biomassa renovável no Semiárido com manejo sustentável e rotação de culturas.",
             },
           ].map((item) => (
-            <div key={item.missao} className="p-3 bg-muted/40 rounded-lg space-y-1">
+            <div key={item.missao} className="pits-block p-3 space-y-1">
               <span className="text-[10px] uppercase font-bold text-secondary">{item.eixo}</span>
               <h4 className="text-xs font-semibold text-foreground">{item.missao}</h4>
               <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -222,6 +230,7 @@ export default function Modulo2() {
             <ExternalLink size={12} /> Portal Oficial PNDBio (gov.br/mma)
           </a>
         </div>
+        </Detalhes>
         <FonteInfo
           instituicao="Ministério do Meio Ambiente e Mudança do Clima (MMA)"
           ano={2026}
@@ -233,26 +242,30 @@ export default function Modulo2() {
 
       {/* Sistemas de Manejo e Ressalvas Botânicas (M2-9 e M2-10) */}
       <div className="pits-card space-y-3">
-        <h2 className="pits-section-title">Sistemas Produtivos e Tecnologias com Ressalvas Ecológicas</h2>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+          <h2 className="pits-section-title">Sistemas Produtivos e Tecnologias com Ressalvas Ecológicas</h2>
+          <span className="text-[11px] text-muted-foreground">Passe o mouse sobre os blocos para ver ressalvas e referências</span>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {sistemasManejo.map((s) => (
             <div
               key={s.nome}
-              className="p-3.5 rounded-lg border border-border/50 bg-muted/20 hover:bg-muted/40 transition-colors space-y-2"
+              tabIndex={0}
+              className="group pits-block p-3.5 hover:border-primary/40 transition-colors space-y-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <h3 className="text-sm font-semibold">{s.nome}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+              <div className="text-xs font-medium bg-secondary/10 p-2 rounded border border-secondary/25">
+                <span className="text-secondary font-bold">Impacto Estimado: </span>{s.beneficio}
+              </div>
+              <p className="pits-reveal text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
               
               {/* Alerta de espécies exóticas / invasoras (M2-9 / M2-10) */}
-              <div className="flex items-start gap-1.5 p-2 bg-amber-500/10 border border-amber-500/30 rounded text-[11px] text-amber-900 dark:text-amber-300">
+              <div className="pits-reveal flex items-start gap-1.5 p-2 bg-amber-500/10 border border-amber-500/30 rounded text-[11px] text-amber-900 dark:text-amber-300">
                 <AlertTriangle size={13} className="shrink-0 mt-0.5 text-amber-600" />
                 <span>{s.ressalvaBotanica}</span>
               </div>
 
-              <div className="text-[11px] font-medium bg-background/60 p-2 rounded border border-border/40">
-                <span className="text-secondary font-bold">Impacto Estimado: </span>{s.beneficio}
-              </div>
-              <p className="text-[10px] text-muted-foreground italic">Base: {s.referencia}</p>
+              <p className="pits-reveal text-[10px] text-muted-foreground italic">Base: {s.referencia}</p>
             </div>
           ))}
         </div>

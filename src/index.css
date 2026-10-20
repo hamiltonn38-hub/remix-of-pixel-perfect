@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
+    color-scheme: light;
     /* PITS Caatinga Design System */
     --background: 36 33% 93%; /* #F5F0E8 areia */
     --foreground: 30 30% 12%; /* #2C2416 terra escura */
@@ -22,7 +23,7 @@
     --secondary-foreground: 36 33% 96%;
 
     --muted: 36 20% 88%;
-    --muted-foreground: 30 15% 45%;
+    --muted-foreground: 30 15% 36%;
 
     --accent: 42 62% 55%; /* #D4A843 amarelo-seco */
     --accent-foreground: 30 30% 12%;
@@ -36,8 +37,8 @@
     --hydro: 199 50% 36%; /* #2E6B8A azul hídrico */
     --hydro-foreground: 0 0% 100%;
 
-    --border: 36 20% 82%;
-    --input: 36 20% 82%;
+    --border: 30 18% 74%;
+    --input: 30 18% 70%;
     --ring: 24 41% 39%;
 
     --radius: 0.75rem;
@@ -58,6 +59,16 @@
   }
 
   .dark {
+    color-scheme: dark;
+    --destructive: 4 80% 62%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 145 55% 50%;
+    --success-foreground: 30 30% 8%;
+    --hydro: 199 60% 62%;
+    --hydro-foreground: 30 30% 8%;
+    --gauge-red: 4 80% 62%;
+    --gauge-yellow: 42 70% 60%;
+    --gauge-green: 145 55% 50%;
     --background: 30 20% 8%; /* Very dark espresso/brown */
     --foreground: 36 33% 93%; /* Light areia */
 
@@ -75,13 +86,13 @@
     --secondary-foreground: 0 0% 100%;
 
     --muted: 30 20% 18%;
-    --muted-foreground: 36 20% 70%;
+    --muted-foreground: 36 20% 76%;
 
     --accent: 42 62% 55%; 
     --accent-foreground: 30 30% 12%; /* Keep dark text on bright yellow */
 
-    --border: 30 20% 20%;
-    --input: 30 20% 20%;
+    --border: 30 15% 30%;
+    --input: 30 15% 30%;
     --ring: 24 41% 45%;
 
     --sidebar-background: 30 20% 10%;
@@ -111,15 +122,15 @@
 
 @layer components {
   .pits-card {
-    @apply bg-card rounded-xl shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05),_0_2px_5px_-2px_rgba(0,0,0,0.02)] border border-border/40 p-5 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-0.5 hover:border-border/60;
+    @apply bg-card rounded-xl shadow-[0_2px_12px_-3px_rgba(0,0,0,0.06),_0_2px_6px_-2px_rgba(0,0,0,0.03)] border border-border/80 ring-1 ring-border/25 p-5 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.07)] hover:-translate-y-0.5 hover:border-primary/45;
   }
 
   .pits-metric {
-    @apply text-3xl font-bold tracking-tighter;
+    @apply text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground;
   }
 
   .pits-label {
-    @apply text-xs font-semibold text-muted-foreground uppercase tracking-widest opacity-80;
+    @apply text-xs font-semibold text-muted-foreground uppercase tracking-widest;
   }
 
   .pits-section-title {
@@ -132,18 +143,53 @@
   }
   
   .pits-badge-success {
-    @apply bg-success/15 text-success border border-success/20;
+    @apply bg-success/15 text-success border border-success/25;
   }
   
   .pits-badge-destructive {
-    @apply bg-destructive/15 text-destructive border border-destructive/20;
+    @apply bg-destructive/15 text-destructive border border-destructive/25;
   }
   
   .pits-badge-warning {
-    @apply bg-accent/20 text-accent-foreground border border-accent/30;
+    @apply bg-accent/20 text-accent-readable border border-accent/35;
   }
 
   .pits-badge-hydro {
-    @apply bg-hydro/15 text-hydro border border-hydro/20;
+    @apply bg-hydro/15 text-hydro border border-hydro/25;
   }
 }
+
+@layer utilities {
+  /* Amarelo-seco legível como texto (contraste >= 4.5:1) */
+  .text-accent-readable { color: hsl(42 80% 28%); }
+  .dark .text-accent-readable { color: hsl(42 70% 62%); }
+  /* Bloco interno com contorno suave */
+  .pits-block { @apply rounded-xl border border-border/70 bg-card/70 shadow-sm; }
+  /* Revela conteúdo secundário ao passar o mouse / focar sem vazar margens ou bordas quando recolhido */
+  .pits-reveal { @apply opacity-0 max-h-0 overflow-hidden pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:max-h-64 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:max-h-64 group-focus-within:pointer-events-auto; }
+}
+
+.group:not(:hover):not(:focus-within) .pits-reveal {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-top-width: 0 !important;
+  border-bottom-width: 0 !important;
+}
+
+/* Leaflet — modo escuro */
+.dark .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9) saturate(0.7); }
+.dark .leaflet-container { background: hsl(var(--background)); }
+.dark .leaflet-control-attribution { background: hsl(var(--card) / 0.85); color: hsl(var(--muted-foreground)); }
+.dark .leaflet-control-attribution a { color: hsl(var(--foreground)); }
+.dark .leaflet-bar a { background: hsl(var(--card)); color: hsl(var(--foreground)); border-bottom-color: hsl(var(--border)); }
+.dark .leaflet-bar a:hover { background: hsl(var(--muted)); }
+.dark .leaflet-popup-content-wrapper,
+.dark .leaflet-popup-tip,
+.dark .leaflet-tooltip { background: hsl(var(--popover)); color: hsl(var(--popover-foreground)); border-color: hsl(var(--border)); }
+.dark .leaflet-tooltip-top:before { border-top-color: hsl(var(--popover)); }
+.dark .leaflet-tooltip-bottom:before { border-bottom-color: hsl(var(--popover)); }
+.dark .leaflet-tooltip-left:before { border-left-color: hsl(var(--popover)); }
+.dark .leaflet-tooltip-right:before { border-right-color: hsl(var(--popover)); }
+.leaflet-container { font-family: inherit; }

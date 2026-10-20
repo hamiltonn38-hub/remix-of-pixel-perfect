@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import L from "leaflet";
+import type { GeoJsonObject } from "geojson";
 import "leaflet/dist/leaflet.css";
-import { MapPin, Satellite, Loader2, AlertTriangle, ShieldCheck } from "lucide-react";
+import { MapPin, Loader2, AlertTriangle } from "lucide-react";
 import { usePits } from "@/context/PitsContext";
 import { useAlertasData } from "@/hooks/useAlertas";
 import { useIbgeData } from "@/hooks/useIBGE";
 import FonteInfo from "./FonteInfo";
 
 // Cache em memória para GeoJSON das malhas do IBGE
-const malhasGeoJsonCache = new Map<string, any>();
+const malhasGeoJsonCache = new Map<string, GeoJsonObject>();
 
 export default function MapaCaatinga() {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -40,7 +41,7 @@ export default function MapaCaatinga() {
     if (!mapRef.current || mapInstance.current) return;
 
     const map = L.map(mapRef.current, {
-      center: [lat, lng],
+      center: [-5.5, -39.0],
       zoom: 9,
       zoomControl: true,
       scrollWheelZoom: true,
@@ -73,7 +74,7 @@ export default function MapaCaatinga() {
   const loadMunicipalBoundary = useCallback(async (code: string) => {
     if (!code) return null;
     if (malhasGeoJsonCache.has(code)) {
-      return malhasGeoJsonCache.get(code);
+      return malhasGeoJsonCache.get(code) ?? null;
     }
     setGeoJsonLoading(true);
     setGeoJsonError(null);
@@ -84,12 +85,12 @@ export default function MapaCaatinga() {
       if (!res.ok) {
         throw new Error(`Erro ${res.status} ao carregar malha territorial do IBGE`);
       }
-      const data = await res.json();
+      const data = (await res.json()) as GeoJsonObject;
       malhasGeoJsonCache.set(code, data);
       return data;
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.warn("[MapaCaatinga] Falha ao carregar limite do IBGE:", err);
-      setGeoJsonError(err.message || "Falha na malha");
+      setGeoJsonError(err instanceof Error ? err.message : "Falha na malha");
       return null;
     } finally {
       setGeoJsonLoading(false);
@@ -120,9 +121,9 @@ export default function MapaCaatinga() {
       if (geoJson && showBoundary) {
         const geoLayer = L.geoJSON(geoJson, {
           style: {
-            color: "#2d5a3a",
+            color: "hsl(var(--secondary))",
             weight: 2.5,
-            fillColor: "#4A7C59",
+            fillColor: "hsl(var(--secondary))",
             fillOpacity: 0.18,
           },
         });
@@ -147,8 +148,8 @@ export default function MapaCaatinga() {
       // Adiciona marcador de centróide municipal
       const marker = L.circleMarker([lat, lng], {
         radius: 6,
-        color: "#8B5E3C",
-        fillColor: "#8B5E3C",
+        color: "hsl(var(--primary))",
+        fillColor: "hsl(var(--primary))",
         fillOpacity: 0.9,
         weight: 2,
       });
@@ -186,8 +187,8 @@ export default function MapaCaatinga() {
 
       const marker = L.circleMarker([alerta.centroid.lat, alerta.centroid.lng], {
         radius: Math.min(Math.max(alerta.areaHa / 5, 5), 16),
-        color: "#C0392B",
-        fillColor: "#C0392B",
+        color: "hsl(var(--destructive))",
+        fillColor: "hsl(var(--destructive))",
         fillOpacity: 0.5,
         weight: 2,
       });
@@ -246,12 +247,17 @@ export default function MapaCaatinga() {
   };
 
   return (
-    <div className="pits-card space-y-3">
+    <div tabIndex={0} className="group pits-card space-y-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-        <h2 className="pits-section-title flex items-center gap-2">
-          <MapPin size={18} className="text-primary" />
-          Mapa Territorial Oficial — {selectedMunicipio.municipio}
-        </h2>
+        <div>
+          <h2 className="pits-section-title flex items-center gap-2">
+            <MapPin size={18} className="text-primary" />
+            Mapa Territorial Oficial — {selectedMunicipio.municipio}
+          </h2>
+          <p className="pits-reveal text-xs text-muted-foreground mt-0.5">
+            Código IBGE: {codigoIBGE} • Centroide geodésico: {lat.toFixed(4)}°, {lng.toFixed(4)}° • Malha oficial Censo 2022
+          </p>
+        </div>
         <div className="flex items-center gap-2">
           {geoJsonLoading && (
             <span className="text-[11px] text-muted-foreground flex items-center gap-1 animate-pulse">
@@ -274,7 +280,7 @@ export default function MapaCaatinga() {
             showBoundary ? "border-border bg-card shadow-sm" : "border-transparent bg-muted/50 opacity-60"
           }`}
         >
-          <span className="w-2.5 h-2.5 rounded-full shrink-0 bg-[#2d5a3a]" />
+          <span className="w-2.5 h-2.5 rounded-full shrink-0 bg-secondary" />
           Limite Municipal (IBGE Malhas 2022)
         </button>
 
@@ -284,7 +290,7 @@ export default function MapaCaatinga() {
             showAlerts ? "border-border bg-card shadow-sm" : "border-transparent bg-muted/50 opacity-60"
           }`}
         >
-          <span className="w-2.5 h-2.5 rounded-full shrink-0 bg-pits-alerta" />
+          <span className="w-2.5 h-2.5 rounded-full shrink-0 bg-destructive" />
           {getAlertsButtonLabel()}
         </button>
       </div>
@@ -292,7 +298,7 @@ export default function MapaCaatinga() {
       {/* Container do Mapa */}
       <div
         ref={mapRef}
-        className="w-full h-[380px] rounded-lg overflow-hidden border border-border bg-muted/20 relative z-0"
+        className="w-full h-[380px] rounded-lg overflow-hidden border border-border/60 shadow-sm bg-muted/20 relative z-0"
       />
 
       {/* Proveniência do Mapa */}

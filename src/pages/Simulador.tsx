@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { calcPEL, calcIVS, calcIVSStar, calcIPSE } from "@/lib/calcPits";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import FonteInfo from "@/components/FonteInfo";
+import Detalhes from "@/components/Detalhes";
+import type { MunicipioPits } from "@/data/municipiosData";
 
 interface CenarioVars {
   reflorestamento_ha_ano: number;  // ha/ano de recuperação da Caatinga
@@ -34,7 +36,7 @@ const META_FIXA_IPSE_NORM = 0.60;
 const CUSTO_PSA_POR_HA_ANO = 300;
 
 function calcProjecaoSimulada(
-  m: any,
+  m: MunicipioPits,
   vars: CenarioVars,
   horizonte: number,
   anoInicial: number
@@ -135,7 +137,9 @@ export default function Simulador() {
     try {
       const stored = localStorage.getItem("pits_cenariosSalvos");
       if (stored) return JSON.parse(stored);
-    } catch {}
+    } catch {
+      // ignore storage errors
+    }
     return [];
   });
   const [comparando, setComparando] = useState(false);
@@ -217,7 +221,7 @@ export default function Simulador() {
           </div>
 
           {/* Reflorestamento (ha/ano) — Item S-5 */}
-          <div>
+          <div tabIndex={0} className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
             <div className="flex justify-between text-xs mb-1">
               <span>Recuperação da Caatinga (ha/ano)</span>
               <span className="font-mono font-bold text-secondary">{vars.reflorestamento_ha_ano} ha/ano</span>
@@ -229,13 +233,13 @@ export default function Simulador() {
               step={10}
               onValueChange={([v]) => setVar("reflorestamento_ha_ano", v)}
             />
-            <p className="text-[10px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">
               Escala física: {vars.reflorestamento_ha_ano * horizonte} ha acumulados em {horizonte} anos (Sampaio & Silva, 2005)
             </p>
           </div>
 
           {/* SAFs (ha/ano) — Item S-1 */}
-          <div>
+          <div tabIndex={0} className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
             <div className="flex justify-between text-xs mb-1">
               <span>Expansão de SAFs (ha/ano)</span>
               <span className="font-mono font-bold text-secondary">{vars.safs_ha_ano} ha/ano</span>
@@ -247,13 +251,13 @@ export default function Simulador() {
               step={5}
               onValueChange={([v]) => setVar("safs_ha_ano", v)}
             />
-            <p className="text-[10px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">
               +260% de biomassa lenhosa vs convencional (Martins et al., 2013, SciELO)
             </p>
           </div>
 
           {/* Biodigestores Rurais (unidades) — Item S-5 */}
-          <div>
+          <div tabIndex={0} className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
             <div className="flex justify-between text-xs mb-1">
               <span>Biodigestores Rurais Instalados</span>
               <span className="font-mono font-bold text-foreground">{vars.biodigestores_unidades} unid.</span>
@@ -265,13 +269,13 @@ export default function Simulador() {
               step={5}
               onValueChange={([v]) => setVar("biodigestores_unidades", v)}
             />
-            <p className="text-[10px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">
               Premissa do modelo — sem calibração (reduz carência energética no IVS)
             </p>
           </div>
 
           {/* Recursos PSA (R$/ano) — Item S-6 */}
-          <div>
+          <div tabIndex={0} className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
             <div className="flex justify-between text-xs mb-1">
               <span>Fundo de PSA (R$/ano)</span>
               <span className="font-mono font-bold text-primary">
@@ -285,16 +289,16 @@ export default function Simulador() {
               step={25000}
               onValueChange={([v]) => setVar("psa_recursos_ano", v)}
             />
-            <p className="text-[10px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">
               Premissa do modelo — sem calibração (custo ref. R$ 300/ha/ano, Lei 14.119/2021)
             </p>
           </div>
 
           {/* Redução de Lenha sem Manejo (%) */}
-          <div>
+          <div tabIndex={0} className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
             <div className="flex justify-between text-xs mb-1">
               <span>Substituição de Lenha Predatória (%)</span>
-              <span className="font-mono font-bold text-accent">{vars.reducaoLenha_pct}%</span>
+              <span className="font-mono font-bold text-accent-readable">{vars.reducaoLenha_pct}%</span>
             </div>
             <Slider
               value={[vars.reducaoLenha_pct]}
@@ -303,7 +307,7 @@ export default function Simulador() {
               step={5}
               onValueChange={([v]) => setVar("reducaoLenha_pct", v)}
             />
-            <p className="text-[10px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-0.5">
               Transição para planos de manejo sustentável (PMFS)
             </p>
           </div>
@@ -368,12 +372,12 @@ export default function Simulador() {
             ]}
           />
 
-          <div className="p-3 bg-muted/30 rounded-lg text-xs text-muted-foreground flex items-start gap-2">
+          <Detalhes titulo="Fundamentação metodológica"><div className="pits-block p-3 text-xs text-muted-foreground flex items-start gap-2">
             <BookOpen size={16} className="text-primary shrink-0 mt-0.5" />
             <p>
               <strong>Fundamentação Metodológica:</strong> O simulador calcula o impacto cumulativo das intervenções nas variáveis físicas do modelo oficial: área elegível MapBiomas (Sampaio & Silva, 2005), rendimento agroflorestal (Martins et al., 2013) e alívio de carências rurais (Censo 2022). Coeficientes operacionais sem dados empíricos municipais constituem <em>premissas do modelo — sem calibração</em>.
             </p>
-          </div>
+          </div></Detalhes>
         </div>
       </div>
 
@@ -387,25 +391,29 @@ export default function Simulador() {
               const fin = proj[proj.length - 1];
               const d = (((fin.simulado - fin.base) / (fin.base || 0.001)) * 100).toFixed(1);
               return (
-                <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/20">
+                <div
+                  key={idx}
+                  tabIndex={0}
+                  className="group pits-block p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <div className="w-2.5 h-2.5 rounded-full" style={{ background: c.cor }} />
-                      <span className="font-semibold text-xs">{c.nome}</span>
+                      <span className="font-semibold text-xs text-foreground">{c.nome}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <button onClick={() => carregarCenario(c)} className="text-xs text-primary hover:underline">Carregar</button>
-                      <button onClick={() => removerCenario(idx)} className="text-xs text-destructive hover:underline ml-2">
+                      <button onClick={() => carregarCenario(c)} className="text-xs text-primary hover:underline font-medium">Carregar</button>
+                      <button onClick={() => removerCenario(idx)} className="text-xs text-destructive hover:underline ml-2" aria-label="Remover cenário">
                         <Trash2 size={12} />
                       </button>
                     </div>
                   </div>
-                  <div className="text-[11px] text-muted-foreground space-y-0.5">
+                  <div className="pits-reveal text-[11px] text-muted-foreground space-y-0.5 mb-2">
                     <p>Reflorestamento: {c.vars.reflorestamento_ha_ano} ha/ano</p>
                     <p>SAFs: {c.vars.safs_ha_ano} ha/ano</p>
                     <p>Biodigestores: {c.vars.biodigestores_unidades} unid.</p>
                   </div>
-                  <div className="mt-2 pt-2 border-t border-border/40 flex justify-between items-center text-xs">
+                  <div className="pt-2 border-t border-border/40 flex justify-between items-center text-xs">
                     <span>IPSE ({anoInicial + horizonte}):</span>
                     <span className="font-bold font-mono text-primary">
                       {fin.simulado.toFixed(3)} ({d}%)
@@ -450,15 +458,19 @@ export default function Simulador() {
             isUp: true,
           },
         ].map((card) => (
-          <div key={card.label} className="pits-card text-center flex flex-col justify-between">
+          <div
+            key={card.label}
+            tabIndex={0}
+            className="group pits-card text-center flex flex-col justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
             <div>
               <p className="pits-label text-[11px]">{card.label}</p>
-              <p className="pits-metric text-xl mt-1">{card.value}</p>
-              <div className={`flex items-center justify-center gap-1 text-xs mt-0.5 ${card.isUp ? "text-success" : "text-destructive"}`}>
+              <p className="pits-metric text-xl sm:text-2xl mt-1">{card.value}</p>
+              <div className={`flex items-center justify-center gap-1 text-xs font-semibold mt-0.5 ${card.isUp ? "text-success" : "text-destructive"}`}>
                 {card.isUp ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
                 <span>{card.delta}</span>
               </div>
-              <p className="text-[10px] text-muted-foreground mt-1">{card.sub}</p>
+              <p className="pits-reveal text-[10px] text-muted-foreground mt-1">{card.sub}</p>
             </div>
             <FonteInfo
               instituicao="Modelo Prospectivo PITS"

@@ -6,6 +6,7 @@ import { generateRelatorioPDF, exportCSV } from "@/lib/generatePDF";
 import { toast } from "sonner";
 import { classifyIPSENorm } from "@/lib/calcPits";
 import FonteInfo from "@/components/FonteInfo";
+import Detalhes from "@/components/Detalhes";
 
 interface RelatorioHistorico {
   id: string;
@@ -23,7 +24,9 @@ export default function Relatorios() {
     try {
       const stored = localStorage.getItem("pits_relatorios");
       if (stored) return JSON.parse(stored);
-    } catch {}
+    } catch {
+      // ignore storage errors
+    }
     return [];
   });
 
@@ -75,10 +78,10 @@ export default function Relatorios() {
             <h2 className="pits-section-title">Gerar Relatório — {m.municipio}</h2>
             <p className="text-xs text-muted-foreground flex items-center gap-1.5 mt-0.5">
               <Calendar size={13} className="text-primary" />
-              Período de Referência Atual: <strong>{periodoSemestralExtenso}</strong>
+              Período de Referência Atual: <strong className="text-foreground">{periodoSemestralExtenso}</strong>
             </p>
           </div>
-          <span className="text-xs font-mono px-2.5 py-1 rounded bg-primary/10 text-primary font-bold">
+          <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-primary/15 text-primary border border-primary/25 font-bold">
             {periodoSemestralCodigo}
           </span>
         </div>
@@ -116,15 +119,24 @@ export default function Relatorios() {
       <div className="pits-card space-y-4">
         <h2 className="pits-section-title">Prévia do Diagnóstico Territorial — {m.municipio}</h2>
         <div className="space-y-4 text-sm">
-          <div className="p-4 bg-muted/30 rounded-lg space-y-1">
+          <div className="pits-block p-4 space-y-2">
             <h3 className="font-semibold text-foreground">1. Diagnóstico do Índice IPSE (Modelo Oficial)</h3>
-            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-              O município de {m.municipio} ({m.estado}, código IBGE: {m.codigoIBGE}) possui área territorial oficial de {m.area_km2.toLocaleString("pt-BR")} km² e população de {m.populacao.toLocaleString("pt-BR")} habitantes (IBGE Censo 2022). O IPSE Normalizado é de <strong>{m.IPSE_norm.toFixed(3)}</strong> ({classifyIPSENorm(m.IPSE_norm).label}), com IPSE Bruto de <strong>{(m.IPSE / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k GJ/ano</strong> calculado pela especificação matemática oficial <em>IPSE = PEL / IVS*</em>.
+            <p className="text-xs md:text-sm text-foreground">
+              IPSE Norm <strong className="text-primary">{m.IPSE_norm.toFixed(3)}</strong> ({classifyIPSENorm(m.IPSE_norm).label}) · IPSE Bruto <strong>{(m.IPSE / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k GJ/ano</strong> · Pop. <strong>{m.populacao.toLocaleString("pt-BR")} hab.</strong> · Área <strong>{m.area_km2.toLocaleString("pt-BR")} km²</strong>
             </p>
+            <Detalhes titulo="Ver texto completo do diagnóstico">
+              <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                O município de {m.municipio} ({m.estado}, código IBGE: {m.codigoIBGE}) possui área territorial oficial de {m.area_km2.toLocaleString("pt-BR")} km² e população de {m.populacao.toLocaleString("pt-BR")} habitantes (IBGE Censo 2022). O IPSE Normalizado é de <strong>{m.IPSE_norm.toFixed(3)}</strong> ({classifyIPSENorm(m.IPSE_norm).label}), com IPSE Bruto de <strong>{(m.IPSE / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k GJ/ano</strong> calculado pela especificação matemática oficial <em>IPSE = PEL / IVS*</em>.
+              </p>
+            </Detalhes>
           </div>
 
-          <div className="p-4 bg-muted/30 rounded-lg space-y-1">
+          <div className="pits-block p-4 space-y-2">
             <h3 className="font-semibold text-foreground">2. Variáveis do Modelo e Indicadores Setoriais de Apoio</h3>
+            <p className="text-xs md:text-sm text-foreground">
+              PEL <strong>{(m.PEL / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k GJ/ano</strong> · IVS <strong>{m.IVS.toFixed(4)}</strong> · IB <strong>{m.IB.toFixed(2)}</strong> · IIE <strong>{m.IIE.toFixed(2)}</strong> · IGL <strong>{m.IGL.toFixed(2)}</strong>
+            </p>
+            <Detalhes titulo="Ver descrição das variáveis">
             <ul className="space-y-1.5 list-disc list-inside text-muted-foreground text-xs md:text-sm">
               <li><strong>PEL (Potencial Energético Local):</strong> {(m.PEL / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k GJ/ano (MapBiomas Col. 11 + Lit.)</li>
               <li><strong>IVS (Vulnerabilidade Social):</strong> {m.IVS.toFixed(4)} (IBGE Censo 2022; quanto maior, mais vulnerável)</li>
@@ -133,10 +145,15 @@ export default function Relatorios() {
               <li><strong>IGL (Governança e Resíduos):</strong> {m.IGL.toFixed(2)} (Cota ICMS IQM 2026: {m.iqm_residuos.toFixed(1)})</li>
               <li><strong>Lenha Extraída PEVS:</strong> {(m.lenha_pevs_m3_ano / 1000).toFixed(1)}k m³/ano (IBGE PEVS 2025)</li>
             </ul>
+            </Detalhes>
           </div>
 
-          <div className="p-4 bg-muted/30 rounded-lg space-y-1">
+          <div className="pits-block p-4 space-y-2">
             <h3 className="font-semibold text-foreground">3. Recomendações Estratégicas Baseadas em Evidências</h3>
+            <p className="text-xs md:text-sm text-foreground font-medium">
+              Diretrizes prioritárias para transição socioenergética e conservação da Caatinga em {m.municipio}
+            </p>
+            <Detalhes titulo="Ver recomendações detalhadas">
             <ul className="space-y-1.5 list-disc list-inside text-muted-foreground text-xs md:text-sm">
               {m.IVS >= 0.30 && (
                 <li>Priorizar políticas públicas de saneamento e infraestrutura social básica para redução da vulnerabilidade (IVS: {m.IVS.toFixed(2)}).</li>
@@ -152,6 +169,7 @@ export default function Relatorios() {
               )}
               <li>Consolidar monitoramento contínuo com imagens orbitais (MapBiomas Alerta) e protocolos participativos.</li>
             </ul>
+            </Detalhes>
           </div>
         </div>
 
@@ -164,8 +182,13 @@ export default function Relatorios() {
       </div>
 
       {/* History */}
-      <div className="pits-card overflow-x-auto space-y-3">
+      <div className="pits-card space-y-3">
         <h2 className="pits-section-title">Histórico de Relatórios Emitidos</h2>
+        <p className="text-sm font-bold text-foreground">
+          {historico.length > 0 ? `${historico.length} relatório(s) emitido(s) · último: ${historico[0].periodo} (${historico[0].municipio})` : "Nenhum relatório emitido nesta sessão"}
+        </p>
+        <Detalhes titulo="Ver histórico completo">
+        <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border text-xs text-muted-foreground">
@@ -209,6 +232,8 @@ export default function Relatorios() {
             )}
           </tbody>
         </table>
+        </div>
+        </Detalhes>
       </div>
     </div>
   );

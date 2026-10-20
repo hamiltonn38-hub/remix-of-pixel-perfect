@@ -52,19 +52,19 @@ export default function FonteInfo({
   const url = meta?.url ?? propUrl;
 
   // Regra 2: Selos "MapBiomas/INMET/ANA" só onde houver integração real. ANA é expressamente proibido pois não está integrada.
-  const podeExibirSelo = selo && selo !== ("ANA" as any) && integracaoReal;
+  const podeExibirSelo = selo && (selo as string) !== "ANA" && integracaoReal;
 
   return (
     <div
-      className={`text-[10px] text-muted-foreground flex flex-wrap items-center gap-1.5 ${
-        inline ? "inline-flex" : "mt-2 pt-1 border-t border-border/30"
+      className={`group/fonte text-[11px] text-muted-foreground flex flex-wrap items-center gap-1.5 ${
+        inline ? "inline-flex" : "mt-2 pt-1.5 border-t border-border/50"
       } ${className}`}
     >
       <span className="font-medium">
-        Fonte: <strong className="text-foreground/80">{instituicao}</strong> ({ano})
+        Fonte: <strong className="text-foreground">{instituicao}</strong> ({ano})
       </span>
-      <span className="text-muted-foreground/60">•</span>
-      <span>Consulta: {dataConsulta}</span>
+      <span className={inline ? "text-muted-foreground" : "text-muted-foreground hidden group-hover:inline group-focus-within:inline group-hover/fonte:inline group-focus-within/fonte:inline"}>•</span>
+      <span className={inline ? "" : "hidden group-hover:inline group-focus-within:inline group-hover/fonte:inline group-focus-within/fonte:inline"}>Consulta: {dataConsulta}</span>
 
       {tabela && (
         <TooltipProvider>
@@ -72,7 +72,7 @@ export default function FonteInfo({
             <TooltipTrigger asChild>
               <button
                 type="button"
-                className="text-muted-foreground/60 hover:text-foreground inline-flex items-center gap-0.5 ml-0.5"
+                className="text-muted-foreground hover:text-foreground inline-flex items-center gap-0.5 ml-0.5"
                 aria-label="Ver detalhes da fonte"
               >
                 <Info size={11} />

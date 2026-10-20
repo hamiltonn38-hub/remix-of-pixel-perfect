@@ -5,6 +5,7 @@ import AlertasDesmatamento from "@/components/AlertasDesmatamento";
 import { Leaf, TreePine, Droplets, Mountain, ExternalLink } from "lucide-react";
 import { PitsBarChart } from "@/components/charts/PitsCharts";
 import FonteInfo from "@/components/FonteInfo";
+import Detalhes from "@/components/Detalhes";
 import { especiesNativasCaatinga } from "@/data/municipiosData";
 
 /** Referência legal da Reserva Legal no Bioma Caatinga por imóvel (Lei 12.651/2012, Art. 12, II) */
@@ -79,12 +80,16 @@ export default function Modulo1() {
             variavel: "precipitacao_anual_2024",
           },
         ].map((ind) => (
-          <div key={ind.label} className="pits-card flex flex-col justify-between text-center">
+          <div
+            key={ind.label}
+            tabIndex={0}
+            className="group pits-card flex flex-col justify-between text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
             <div>
               <ind.icon size={24} className="text-secondary mx-auto mb-2" />
               <p className="pits-label text-[11px]">{ind.label}</p>
-              <p className="pits-metric text-xl mt-1">{ind.value}</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5">{ind.sub}</p>
+              <p className="pits-metric text-xl sm:text-2xl mt-1">{ind.value}</p>
+              <p className="pits-reveal text-[10px] text-muted-foreground mt-1">{ind.sub}</p>
             </div>
             <FonteInfo variavel={ind.variavel} codigoIBGE={m.codigoIBGE} />
           </div>
@@ -92,28 +97,28 @@ export default function Modulo1() {
       </div>
 
       {/* Referência Legal da Reserva Legal */}
-      <div className="pits-card">
+      <div tabIndex={0} className="group pits-card focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
           <h2 className="pits-section-title">
             Referência Legal: Reserva Legal no Bioma Caatinga por Imóvel (≥ {RESERVA_LEGAL_CAATINGA_PCT}%)
           </h2>
-          <span className={`text-xs px-2.5 py-0.5 rounded font-medium ${metaCumprida ? "bg-success/20 text-success" : "bg-destructive/20 text-destructive"}`}>
+          <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold border ${metaCumprida ? "bg-success/15 text-success border-success/30" : "bg-destructive/15 text-destructive border-destructive/30"}`}>
             {metaCumprida ? "Excedente de Vegetação Nativa" : "Déficit em Relação ao Patamar Legal"}
           </span>
         </div>
-        <p className="text-xs text-muted-foreground mb-3">
+        <p className="pits-reveal text-xs text-muted-foreground mb-3">
           Art. 12, II da Lei Federal nº 12.651/2012 (Código Florestal). O município possui {coberturaReal}% de remanescentes nativos mapeados pelo MapBiomas em 2025.
         </p>
         <div className="flex items-center gap-4">
           <div className="flex-1">
-            <div className="w-full h-3 bg-muted rounded-full overflow-hidden">
+            <div className="w-full h-3 bg-muted rounded-full overflow-hidden border border-border/50">
               <div
                 className="h-full rounded-full bg-secondary transition-all duration-700"
                 style={{ width: `${Math.min(100, (coberturaReal / 100) * 100)}%` }}
               />
             </div>
           </div>
-          <span className="text-xs font-mono font-semibold">{coberturaReal}% territorial</span>
+          <span className="text-sm font-mono font-extrabold text-secondary">{coberturaReal}% territorial</span>
         </div>
         <FonteInfo
           instituicao="Lei Federal nº 12.651/2012 / MapBiomas"
@@ -131,15 +136,17 @@ export default function Modulo1() {
       <AlertasDesmatamento />
 
       {/* Gráfico Alometria de Biomassa */}
-      <div className="pits-card">
+      <div tabIndex={0} className="group pits-card focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
         <div className="flex items-center justify-between mb-2">
           <div>
             <h2 className="pits-section-title">Estoque Médio de Biomassa Aérea por Faixa de Vegetação Nativa</h2>
-            <p className="text-xs text-muted-foreground">
+            <p className="pits-reveal text-xs text-muted-foreground">
               Alometria empírica para formações da Caatinga (Sampaio & Silva, 2005, Acta Bot. Bras. / IFN-CE)
             </p>
           </div>
-          <span className="text-xs text-muted-foreground font-mono">IFN-CE: 34,5 t/ha máx</span>
+          <span className="text-xs px-2.5 py-0.5 rounded-full bg-secondary/15 text-secondary border border-secondary/25 font-mono font-semibold">
+            IFN-CE: 34,5 t/ha máx
+          </span>
         </div>
         <PitsBarChart
           data={biomassaComparacao}
@@ -166,6 +173,7 @@ export default function Modulo1() {
         <p className="text-sm text-muted-foreground leading-relaxed">
           O <strong>Plano Nacional de Desenvolvimento da Bioeconomia (PNDBio)</strong>, instituído pelo Decreto Federal nº 12.044, de 5 de junho de 2024, e regulamentado pelas Resoluções CNBio nº 7/2025 e nº 8/2026, organiza a política federal de bioeconomia em <strong>3 eixos estruturantes e 8 missões estratégicas</strong>.
         </p>
+        <Detalhes titulo="Ver eixos, missões e links">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {[
             {
@@ -179,7 +187,7 @@ export default function Modulo1() {
               desc: "Planos de manejo florestal sustentável (PMFS), certificação de origem lenhosa e transição energética justa em paisagens semiáridas.",
             },
           ].map((item) => (
-            <div key={item.missao} className="p-3 bg-muted/40 rounded-lg space-y-1">
+            <div key={item.missao} className="pits-block p-3 space-y-1">
               <span className="text-[10px] uppercase font-bold text-secondary">{item.eixo}</span>
               <h4 className="text-xs font-semibold text-foreground">{item.missao}</h4>
               <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -204,6 +212,7 @@ export default function Modulo1() {
             <ExternalLink size={12} /> Estatísticas Municipais MapBiomas Brasil
           </a>
         </div>
+        </Detalhes>
         <FonteInfo
           instituicao="Ministério do Meio Ambiente e Mudança do Clima (MMA)"
           ano={2026}
@@ -226,9 +235,10 @@ export default function Modulo1() {
             Flora do Brasil 2020 / JBRJ
           </span>
         </div>
+        <Detalhes titulo={`Ver tabela de espécies (${especiesNativasCaatinga.length})`}>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border text-xs text-muted-foreground">
+            <tr className="border-b border-border text-xs text-foreground/80">
               <th className="text-left py-2 px-3">Espécie</th>
               <th className="text-left py-2 px-3">Nome Científico Aceito</th>
               <th className="text-left py-2 px-3">Família Botânica</th>
@@ -240,7 +250,7 @@ export default function Modulo1() {
             {especiesNativasCaatinga.map((e) => (
               <tr key={e.especie} className="border-b border-border/50 hover:bg-muted/50 transition-colors">
                 <td className="py-2.5 px-3 font-medium">{e.especie}</td>
-                <td className="py-2.5 px-3 italic font-mono text-xs text-foreground font-semibold">{e.nomeCientifico}</td>
+                <td className="py-2.5 px-3 italic text-xs text-foreground font-medium">{e.nomeCientifico}</td>
                 <td className="py-2.5 px-3 text-xs">{e.familia}</td>
                 <td className="py-2.5 px-3 text-xs">
                   <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-success/15 text-success">
@@ -252,6 +262,7 @@ export default function Modulo1() {
             ))}
           </tbody>
         </table>
+        </Detalhes>
         <FonteInfo
           instituicao="Jardim Botânico do Rio de Janeiro (Flora e Funga do Brasil)"
           ano={2026}

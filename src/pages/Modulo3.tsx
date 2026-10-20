@@ -3,11 +3,13 @@ import { usePits } from "@/context/PitsContext";
 import { Users, Coins, ExternalLink, ShieldCheck, Scale, Plus, Trash2, CheckCircle2 } from "lucide-react";
 import { PitsPieChart } from "@/components/charts/PitsCharts";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import FonteInfo from "@/components/FonteInfo";
+import Detalhes from "@/components/Detalhes";
 
 interface AcordoManejoItem {
   id: string;
@@ -87,7 +89,7 @@ export default function Modulo3() {
   // Estados do formulário de cadastro de acordos
   const [novoAcordoOpen, setNovoAcordoOpen] = useState(false);
   const [comunidadeForm, setComunidadeForm] = useState("");
-  const [modalidadeForm, setModalidadeForm] = useState("Manejo Florestal Sustentável");
+  const [modalidadeForm, setModalidadeForm] = useState("Plano de Manejo Florestal Sustentável (PMFS)");
   const [areaHaForm, setAreaHaForm] = useState("");
   const [responsavelForm, setResponsavelForm] = useState("");
 
@@ -172,31 +174,31 @@ export default function Modulo3() {
 
       {/* Indicadores Auditados de Governança */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="pits-card flex flex-col justify-between text-center">
+        <div tabIndex={0} className="group pits-card flex flex-col justify-between text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <div>
             <p className="pits-label text-[11px]">Índice de Governança (IGL)</p>
-            <p className="pits-metric text-xl mt-1">{m.IGL.toFixed(2)}</p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">IQM e Associativismo</p>
+            <p className="pits-metric text-xl sm:text-2xl mt-1">{m.IGL.toFixed(2)}</p>
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-1">IQM e Associativismo</p>
           </div>
           <FonteInfo variavel="iqm_residuos_solidos" codigoIBGE={m.codigoIBGE} />
         </div>
 
-        <div className="pits-card flex flex-col justify-between text-center">
+        <div tabIndex={0} className="group pits-card flex flex-col justify-between text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <div>
             <p className="pits-label text-[11px]">Cota ICMS Resíduos (IQM)</p>
-            <p className="pits-metric text-xl mt-1">IQM {m.iqm_residuos.toFixed(1)}</p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">Gestão Resíduos (SEMA/IPECE)</p>
+            <p className="pits-metric text-xl sm:text-2xl mt-1">IQM {m.iqm_residuos.toFixed(1)}</p>
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-1">Gestão Resíduos (SEMA/IPECE)</p>
           </div>
           <FonteInfo variavel="iqm_residuos_solidos" codigoIBGE={m.codigoIBGE} />
         </div>
 
-        <div className="pits-card flex flex-col justify-between text-center">
+        <div tabIndex={0} className="group pits-card flex flex-col justify-between text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <div>
             <p className="pits-label text-[11px]">Acordos de Manejo Cadastrados</p>
-            <p className="pits-metric text-xl mt-1 text-primary">
+            <p className="pits-metric text-xl sm:text-2xl mt-1 text-primary">
               {acordosMunicipio.length > 0 ? `${acordosMunicipio.length} ativos` : "Sem registros"}
             </p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-1">
               {acordosMunicipio.length > 0 ? "Registros validados de campo" : "Aguardando coleta de campo"}
             </p>
           </div>
@@ -208,11 +210,11 @@ export default function Modulo3() {
           />
         </div>
 
-        <div className="pits-card flex flex-col justify-between text-center">
+        <div tabIndex={0} className="group pits-card flex flex-col justify-between text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <div>
             <p className="pits-label text-[11px]">Associativismo Rural (Censo)</p>
-            <p className="pits-metric text-xl mt-1">{m.associativismo_pct}%</p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">Produtores associados</p>
+            <p className="pits-metric text-xl sm:text-2xl mt-1">{m.associativismo_pct}%</p>
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-1">Produtores associados</p>
           </div>
           <FonteInfo variavel="safs_censoagro2017" codigoIBGE={m.codigoIBGE} />
         </div>
@@ -259,17 +261,17 @@ export default function Modulo3() {
                 </div>
                 <div>
                   <Label htmlFor="modalidade" className="text-xs">Modalidade de Manejo Sustentável</Label>
-                  <select
-                    id="modalidade"
-                    value={modalidadeForm}
-                    onChange={(e) => setModalidadeForm(e.target.value)}
-                    className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs shadow-sm mt-1"
-                  >
-                    <option value="Plano de Manejo Florestal Sustentável (PMFS)">Plano de Manejo Florestal Sustentável (PMFS)</option>
-                    <option value="Regeneração Natural Assistida">Regeneração Natural Assistida</option>
-                    <option value="Agrofloresta Comunitária (SAF)">Agrofloresta Comunitária (SAF)</option>
-                    <option value="Proteção de Nascentes e Olhos d'Água">Proteção de Nascentes e Olhos d'Água</option>
-                  </select>
+                  <Select value={modalidadeForm} onValueChange={setModalidadeForm}>
+                    <SelectTrigger id="modalidade" className="w-full h-9 text-xs mt-1">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem className="text-xs" value="Plano de Manejo Florestal Sustentável (PMFS)">Plano de Manejo Florestal Sustentável (PMFS)</SelectItem>
+                      <SelectItem className="text-xs" value="Regeneração Natural Assistida">Regeneração Natural Assistida</SelectItem>
+                      <SelectItem className="text-xs" value="Agrofloresta Comunitária (SAF)">Agrofloresta Comunitária (SAF)</SelectItem>
+                      <SelectItem className="text-xs" value="Proteção de Nascentes e Olhos d'Água">Proteção de Nascentes e Olhos d'Água</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
@@ -310,7 +312,12 @@ export default function Modulo3() {
         </div>
 
         {acordosMunicipio.length > 0 ? (
-          <div className="overflow-x-auto">
+          <div className="space-y-2">
+            <p className="text-sm font-bold text-foreground">
+              {acordosMunicipio.length} acordo(s) · {acordosMunicipio.reduce((s, i) => s + i.areaHa, 0).toFixed(1)} ha sob manejo
+            </p>
+            <Detalhes titulo="Ver tabela de acordos">
+            <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
@@ -343,6 +350,8 @@ export default function Modulo3() {
                 ))}
               </tbody>
             </table>
+            </div>
+            </Detalhes>
           </div>
         ) : (
           <div className="p-8 border border-dashed border-border rounded-xl text-center bg-muted/10 space-y-2">
@@ -406,16 +415,16 @@ export default function Modulo3() {
                 </div>
                 <div>
                   <Label htmlFor="psa-modalidade" className="text-xs">Modalidade (Lei 14.119/2021)</Label>
-                  <select
-                    id="psa-modalidade"
-                    value={psaModalidadeForm}
-                    onChange={(e) => setPsaModalidadeForm(e.target.value)}
-                    className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs shadow-sm mt-1"
-                  >
-                    {psaTipologiaNormativa.map((t) => (
-                      <option key={t.nome} value={t.nome}>{t.nome}</option>
-                    ))}
-                  </select>
+                  <Select value={psaModalidadeForm} onValueChange={setPsaModalidadeForm}>
+                    <SelectTrigger id="psa-modalidade" className="w-full h-9 text-xs mt-1">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {psaTipologiaNormativa.map((t) => (
+                        <SelectItem key={t.nome} value={t.nome} className="text-xs">{t.nome}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div>
@@ -477,7 +486,7 @@ export default function Modulo3() {
           />
           <div className="space-y-2 text-xs">
             {psaTipologiaNormativa.map((item) => (
-              <div key={item.nome} className="p-2.5 bg-muted/30 rounded-lg flex items-center justify-between border border-border/40">
+              <div key={item.nome} className="pits-block p-2.5 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full shrink-0" style={{ background: item.cor }} />
                   <span className="font-medium text-foreground">{item.nome}</span>
@@ -490,8 +499,13 @@ export default function Modulo3() {
 
         {/* Tabela de contratos cadastrados pelo usuário */}
         {psaMunicipio.length > 0 ? (
-          <div className="overflow-x-auto pt-2 border-t border-border/40">
-            <h4 className="text-xs font-semibold mb-2">Projetos de PSA Cadastrados em {m.municipio}</h4>
+          <div className="pt-2 border-t border-border/40 space-y-2">
+            <h4 className="text-xs font-semibold">Projetos de PSA Cadastrados em {m.municipio}</h4>
+            <p className="text-sm font-bold text-foreground">
+              {psaMunicipio.length} projeto(s) · {psaMunicipio.reduce((s, i) => s + i.areaHa, 0).toFixed(1)} ha · R$ {psaMunicipio.reduce((s, i) => s + i.recursoAnual, 0).toLocaleString("pt-BR")}/ano
+            </p>
+            <Detalhes titulo="Ver tabela de projetos">
+            <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
@@ -512,7 +526,7 @@ export default function Modulo3() {
                     <td className="py-2 px-2 text-right font-mono text-primary">R$ {item.recursoAnual.toLocaleString("pt-BR")}</td>
                     <td className="py-2 px-2 text-right font-mono">{item.familias}</td>
                     <td className="py-2 px-2 text-right">
-                      <button onClick={() => handleRemoverPsa(item.id)} className="text-destructive hover:opacity-80 p-1">
+                      <button onClick={() => handleRemoverPsa(item.id)} className="text-destructive hover:opacity-80 p-1" title="Remover projeto" aria-label="Remover projeto">
                         <Trash2 size={12} />
                       </button>
                     </td>
@@ -520,6 +534,8 @@ export default function Modulo3() {
                 ))}
               </tbody>
             </table>
+            </div>
+            </Detalhes>
           </div>
         ) : (
           <div className="p-4 border border-dashed border-border rounded-lg text-center bg-muted/10 text-xs text-muted-foreground">
@@ -544,13 +560,18 @@ export default function Modulo3() {
             Princípios de Ostrom (1990) para Governança de Recursos de Uso Comum
           </h2>
         </div>
-        <p className="text-xs text-muted-foreground leading-relaxed">
-          Framework referencial de Elinor Ostrom (Prêmio Nobel de Economia de 2009) para a autogestão sustentável de recursos de uso comum (<em>common-pool resources</em>). Em estrita obediência à <strong>Regra 9</strong>, todos os princípios permanecem com status <strong>"Não avaliado"</strong> até que diagnósticos participativos formais sejam concluídos no território.
+        <p className="text-xs text-foreground/80">
+          Todos os princípios permanecem com status <strong>"Não avaliado"</strong> até a conclusão de diagnósticos participativos no território.
         </p>
+        <Detalhes titulo="Sobre o framework">
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Framework referencial de Elinor Ostrom (Prêmio Nobel de Economia de 2009) para a autogestão sustentável de recursos de uso comum (<em>common-pool resources</em>). Em estrita obediência à <strong>Regra 9</strong>, todos os princípios permanecem com status <strong>"Não avaliado"</strong> até que diagnósticos participativos formais sejam concluídos no território.
+          </p>
+        </Detalhes>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {ostromPrincipios.map((p) => (
-            <div key={p.numero} className="p-3 bg-muted/30 rounded-lg border border-border/40 space-y-1.5">
+            <div key={p.numero} tabIndex={0} className="group pits-block p-3 space-y-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-mono font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary">
@@ -562,7 +583,7 @@ export default function Modulo3() {
                   Não avaliado
                 </span>
               </div>
-              <p className="text-[11px] text-muted-foreground pl-7 leading-relaxed">{p.foco}</p>
+              <p className="pits-reveal text-[11px] text-muted-foreground pl-7 leading-relaxed">{p.foco}</p>
             </div>
           ))}
         </div>
@@ -585,6 +606,7 @@ export default function Modulo3() {
         <p className="text-sm text-muted-foreground leading-relaxed">
           O <strong>PNDBio</strong> (Decreto Federal nº 12.044/2024, Eixo 1: <em>Sociobioeconomia e Ativos Ambientais</em>, Missão 1: <em>Negócios da Sociobioeconomia</em>) determina o protagonismo de agricultores familiares e comunidades tradicionais na gestão e partilha de benefícios dos ativos ecossistêmicos.
         </p>
+        <Detalhes titulo="Ver links oficiais">
         <div className="flex flex-wrap gap-3 pt-2">
           <a
             href="https://www.gov.br/mma/pt-br/assuntos/bioeconomia"
@@ -603,6 +625,7 @@ export default function Modulo3() {
             <ExternalLink size={12} /> Lei Federal nº 14.119/2021 (PNPSA)
           </a>
         </div>
+        </Detalhes>
         <FonteInfo
           instituicao="Ministério do Meio Ambiente e Mudança do Clima (MMA)"
           ano={2026}

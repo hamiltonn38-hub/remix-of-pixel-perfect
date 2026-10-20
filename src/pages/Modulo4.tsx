@@ -5,11 +5,13 @@ import { PitsLineChart, PitsBarChart } from "@/components/charts/PitsCharts";
 import { getMapBiomasMunicipio } from "@/data/mapbiomas";
 import { getConectoresManifest } from "@/lib/provenance";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import FonteInfo from "@/components/FonteInfo";
+import Detalhes from "@/components/Detalhes";
 
 interface RegistroCampoItem {
   id: string;
@@ -128,7 +130,7 @@ export default function Modulo4() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {conectoresDinamicos.map((f) => (
-            <div key={f.id} className="pits-card flex flex-col justify-between space-y-2">
+            <div key={f.id} tabIndex={0} className="group pits-card flex flex-col justify-between space-y-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -145,15 +147,15 @@ export default function Modulo4() {
                     <CheckCircle size={10} /> {f.status}
                   </span>
                 </div>
-                <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">{f.desc}</p>
+                <p className="pits-reveal text-xs text-muted-foreground mt-1.5 leading-relaxed">{f.desc}</p>
               </div>
 
               <div className="pt-2 border-t border-border/40 text-[11px] text-muted-foreground font-mono space-y-1">
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <span>Variáveis auditadas:</span>
-                  <strong className="text-foreground">{f.totalVariaveis} variáveis</strong>
+                  <strong className="text-primary text-xs font-bold">{f.totalVariaveis} variáveis</strong>
                 </div>
-                <div className="flex justify-between">
+                <div className="pits-reveal flex justify-between">
                   <span>Última consulta:</span>
                   <span className="text-foreground">{f.dataConsulta}</span>
                 </div>
@@ -166,16 +168,16 @@ export default function Modulo4() {
       {/* Item 5 / M4-2: Séries Históricas com Eixos Separados */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Gráfico 1: Vegetação Nativa (0–100%) */}
-        <div className="pits-card space-y-3">
+        <div tabIndex={0} className="group pits-card space-y-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="pits-section-title">Série Histórica de Vegetação Nativa (2018–2025)</h2>
-              <p className="text-xs text-muted-foreground">
+              <p className="pits-reveal text-xs text-muted-foreground">
                 Classes florestal, savânica e campestre mapeadas anualmente pelo MapBiomas Col. 11
               </p>
             </div>
-            <span className="text-xs px-2 py-0.5 rounded bg-secondary/10 text-secondary font-medium font-mono">
-              Unidade: %
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-secondary/15 text-secondary border border-secondary/25 font-semibold font-mono">
+              2025: {m.cobertura_nativa_pct}%
             </span>
           </div>
 
@@ -209,16 +211,16 @@ export default function Modulo4() {
         </div>
 
         {/* Gráfico 2: Densidade de Biomassa Aérea (t/ha) */}
-        <div className="pits-card space-y-3">
+        <div tabIndex={0} className="group pits-card space-y-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="pits-section-title">Evolução do Estoque de Biomassa (2018–2025)</h2>
-              <p className="text-xs text-muted-foreground">
+              <p className="pits-reveal text-xs text-muted-foreground">
                 Biomassa territorial ponderada (SFB / IFN-CE e Sampaio & Silva, 2005)
               </p>
             </div>
-            <span className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary font-medium font-mono">
-              Unidade: t/ha
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/25 font-semibold font-mono">
+              2025: {m.estoque_biomassa_t_ha} t/ha
             </span>
           </div>
 
@@ -264,36 +266,37 @@ export default function Modulo4() {
             </div>
           </div>
           {estacaoInfo && (
-            <span className="text-xs px-2.5 py-1 rounded bg-hydro/10 text-hydro font-medium font-mono">
+            <span className="text-xs px-2.5 py-1 rounded-full bg-hydro/15 text-hydro border border-hydro/25 font-semibold font-mono">
               Estação {estacaoInfo.codigo} ({estacaoInfo.nome}) a {estacaoInfo.distanciaKm} km
             </span>
           )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div className="p-3 bg-muted/30 rounded-lg">
-            <p className="text-[11px] text-muted-foreground">Precipitação Acumulada (2024)</p>
-            <p className="text-xl font-bold text-foreground mt-1">
+          <div tabIndex={0} className="group pits-block p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <p className="text-[11px] text-muted-foreground font-medium">Precipitação Acumulada (2024)</p>
+            <p className="text-xl font-extrabold text-hydro mt-1">
               {temChuvaValida ? `${m.precipitacao_anual_mm} mm` : "Dados indisponíveis"}
             </p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-1">
               {temChuvaValida ? `${m.precipitacao_registros_horarios} registros horários auditados` : "Estação meteorológica inoperante em 2024"}
             </p>
           </div>
 
-          <div className="p-3 bg-muted/30 rounded-lg">
-            <p className="text-[11px] text-muted-foreground">Estação de Referência</p>
-            <p className="text-sm font-semibold text-foreground mt-1">
+          <div tabIndex={0} className="group pits-block p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <p className="text-[11px] text-muted-foreground font-medium">Estação de Referência</p>
+            <p className="text-sm font-bold text-foreground mt-1">
               {estacaoInfo ? `${estacaoInfo.codigo} — ${estacaoInfo.nome}` : "Não identificada"}
             </p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-1">
               {estacaoInfo ? `Distância geodésica ao centroide: ${estacaoInfo.distanciaKm} km` : "—"}
             </p>
           </div>
 
-          <div className="p-3 bg-muted/30 rounded-lg">
-            <p className="text-[11px] text-muted-foreground">Série Plurianual</p>
-            <p className="text-xs font-medium text-muted-foreground mt-2 italic">
+          <div tabIndex={0} className="group pits-block p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <p className="text-[11px] text-muted-foreground font-medium">Série Plurianual</p>
+            <p className="text-sm font-bold text-foreground mt-1">Ano Base: 2024</p>
+            <p className="pits-reveal text-[10px] text-muted-foreground mt-1 italic">
               Histórico plurianual indisponível via API viva — exibindo ano auditado 2024
             </p>
           </div>
@@ -363,17 +366,17 @@ export default function Modulo4() {
                   </div>
                   <div>
                     <Label htmlFor="campo-tipo" className="text-xs">Tipo de Vistoria</Label>
-                    <select
-                      id="campo-tipo"
-                      value={tipoForm}
-                      onChange={(e) => setTipoForm(e.target.value)}
-                      className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs shadow-sm mt-1"
-                    >
-                      <option value="Regeneração Natural">Regeneração Natural</option>
-                      <option value="Foco de Corte / Queimada">Foco de Corte / Queimada</option>
-                      <option value="Uso da Biomassa e Forragem">Uso da Biomassa e Forragem</option>
-                      <option value="Recursos Hídricos e Nascentes">Recursos Hídricos e Nascentes</option>
-                    </select>
+                    <Select value={tipoForm} onValueChange={setTipoForm}>
+                      <SelectTrigger id="campo-tipo" className="w-full h-9 text-xs mt-1">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem className="text-xs" value="Regeneração Natural">Regeneração Natural</SelectItem>
+                        <SelectItem className="text-xs" value="Foco de Corte / Queimada">Foco de Corte / Queimada</SelectItem>
+                        <SelectItem className="text-xs" value="Uso da Biomassa e Forragem">Uso da Biomassa e Forragem</SelectItem>
+                        <SelectItem className="text-xs" value="Recursos Hídricos e Nascentes">Recursos Hídricos e Nascentes</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
                 <div>
@@ -400,7 +403,10 @@ export default function Modulo4() {
         </div>
 
         {registrosMunicipio.length > 0 ? (
-          <div className="overflow-x-auto">
+          <div className="space-y-2">
+            <p className="text-sm font-bold text-foreground">{registrosMunicipio.length} registro(s) de campo · último em {registrosMunicipio[0].data}</p>
+            <Detalhes titulo="Ver tabela de registros">
+            <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
@@ -419,9 +425,9 @@ export default function Modulo4() {
                     <td className="py-2 px-3">{r.tipo}</td>
                     <td className="py-2 px-3 text-muted-foreground">{r.responsavel}</td>
                     <td className="py-2 px-3 text-muted-foreground">{r.data}</td>
-                    <td className="py-2 px-3 text-xs text-muted-foreground max-w-xs truncate">{r.detalhes}</td>
+                    <td className="py-2 px-3 text-xs text-muted-foreground max-w-xs truncate" title={r.detalhes}>{r.detalhes}</td>
                     <td className="py-2 px-3 text-right">
-                      <button onClick={() => handleRemoverRegistro(r.id)} className="text-destructive hover:opacity-80 p-1">
+                      <button onClick={() => handleRemoverRegistro(r.id)} className="text-destructive hover:opacity-80 p-1" title="Remover registro" aria-label="Remover registro">
                         <Trash2 size={13} />
                       </button>
                     </td>
@@ -429,6 +435,8 @@ export default function Modulo4() {
                 ))}
               </tbody>
             </table>
+            </div>
+            </Detalhes>
           </div>
         ) : (
           <div className="p-8 border border-dashed border-border rounded-xl text-center bg-muted/10 space-y-2">
@@ -459,6 +467,7 @@ export default function Modulo4() {
         <p className="text-sm text-muted-foreground leading-relaxed">
           O <strong>PNDBio</strong> (Decreto Federal nº 12.044/2024, Missão 8: <em>Bioeconomia dos Ecossistemas Terrestres e Aquáticos</em>) preconiza o desenvolvimento de sistemas integrados de monitoramento ambiental, rastreabilidade e geração de evidências territoriais para sustentação de políticas públicas baseadas em dados abertos.
         </p>
+        <Detalhes titulo="Ver links oficiais">
         <div className="flex gap-3 pt-2">
           <a
             href="https://www.gov.br/mma/pt-br/assuntos/bioeconomia"
@@ -477,6 +486,7 @@ export default function Modulo4() {
             <ExternalLink size={12} /> Estatísticas Municipais MapBiomas Brasil
           </a>
         </div>
+        </Detalhes>
         <FonteInfo
           instituicao="Ministério do Meio Ambiente e Mudança do Clima (MMA)"
           ano={2026}

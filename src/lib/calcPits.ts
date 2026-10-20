@@ -234,7 +234,7 @@ export function classifyIVS(ivs: number | null | undefined): {
     return { label: "Baixa vulnerabilidade", variant: "success", colorClass: "text-success" };
   }
   if (ivs <= 0.45) {
-    return { label: "Vulnerabilidade moderada", variant: "warning", colorClass: "text-accent" };
+    return { label: "Vulnerabilidade moderada", variant: "warning", colorClass: "text-accent-readable" };
   }
   return { label: "Alta vulnerabilidade", variant: "destructive", colorClass: "text-destructive" };
 }

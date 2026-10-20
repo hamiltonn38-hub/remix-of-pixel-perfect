@@ -34,6 +34,7 @@ function PitsTooltip({ active, payload, label }: TooltipProps<number, string>) {
     <div
       style={{
         background: "hsl(var(--card))",
+        color: "hsl(var(--foreground))",
         border: "1px solid hsl(var(--border))",
         borderRadius: 8,
         padding: "8px 12px",
@@ -69,6 +70,7 @@ export interface LineConfig {
   name: string;
   color?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
   dotRadius?: number;
   yAxisId?: "left" | "right";
 }
@@ -106,6 +108,7 @@ export function PitsLineChart({
             name={l.name}
             stroke={l.color ?? "hsl(var(--primary))"}
             strokeWidth={l.strokeWidth ?? 2}
+            strokeDasharray={l.strokeDasharray}
             dot={{ r: l.dotRadius ?? 3, fill: l.color ?? "hsl(var(--primary))" }}
             yAxisId={l.yAxisId ?? "left"}
           />
@@ -188,6 +191,8 @@ export interface PieSlice {
 
 interface PitsPieChartProps {
   data: PieSlice[];
+  dataKey?: string;
+  nameKey?: string;
   height?: number;
   innerRadius?: number;
   outerRadius?: number;
@@ -196,6 +201,8 @@ interface PitsPieChartProps {
 
 export function PitsPieChart({
   data,
+  dataKey = "valor",
+  nameKey = "nome",
   height = 220,
   innerRadius = 50,
   outerRadius = 80,
@@ -207,8 +214,8 @@ export function PitsPieChart({
         <PieChart>
           <Pie
             data={data}
-            dataKey="valor"
-            nameKey="nome"
+            dataKey={dataKey}
+            nameKey={nameKey}
             cx="50%"
             cy="50%"
             innerRadius={innerRadius}
@@ -296,6 +303,7 @@ export function PitsComposedChart({
             name={l.name}
             stroke={l.color ?? "hsl(var(--primary))"}
             strokeWidth={l.strokeWidth ?? 2}
+            strokeDasharray={l.strokeDasharray}
             dot={{ r: l.dotRadius ?? 3 }}
             yAxisId={l.yAxisId ?? "left"}
           />
@@ -332,7 +340,7 @@ export function PitsRadarChart({
           dataKey={angleKey}
           tick={{ fontSize: 12, fill: "hsl(var(--foreground))" }}
         />
-        <PolarRadiusAxis domain={domain} tick={{ fontSize: 10 }} />
+        <PolarRadiusAxis domain={domain} tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} />
         <Radar
           dataKey={dataKey}
           stroke={color}

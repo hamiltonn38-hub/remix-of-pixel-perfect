@@ -12,6 +12,7 @@ interface SubIndexCardProps {
   tooltip?: string;
   fonte?: string;
   variavelManifest?: string;
+  codigoIBGE?: string;
   ano?: number | string;
   dataConsulta?: string;
   tabela?: string;
@@ -26,6 +27,7 @@ export default function SubIndexCard({
   tooltip,
   fonte,
   variavelManifest,
+  codigoIBGE,
   ano,
   dataConsulta = "11/10/2026",
   tabela,
@@ -47,20 +49,20 @@ export default function SubIndexCard({
   };
 
   return (
-    <div className="pits-card flex flex-col justify-between gap-3">
+    <div tabIndex={0} className="group pits-card flex flex-col justify-between gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-2">
-          <div className="p-2 rounded-lg bg-primary/10">
+          <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
             <Icon size={18} className="text-primary" />
           </div>
           <div>
             <div className="flex items-center gap-1">
-              <p className="text-xs font-bold text-muted-foreground">{acronym}</p>
+              <p className="text-xs font-bold text-foreground/80">{acronym}</p>
               {tooltip && (
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button className="text-muted-foreground/60 hover:text-foreground inline-flex">
+                      <button type="button" className="text-muted-foreground hover:text-foreground inline-flex" aria-label={`Informações sobre ${acronym}`}>
                         <Info size={12} />
                       </button>
                     </TooltipTrigger>
@@ -72,7 +74,10 @@ export default function SubIndexCard({
                 </TooltipProvider>
               )}
             </div>
-            <p className="text-sm font-medium leading-tight">{label}</p>
+            <p className="text-sm font-semibold leading-tight">{label}</p>
+            {tooltip && (
+              <p className="pits-reveal text-[10px] text-muted-foreground mt-1 leading-snug">{tooltip}</p>
+            )}
           </div>
         </div>
       </div>
@@ -91,7 +96,7 @@ export default function SubIndexCard({
           )}
         </div>
 
-        <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+        <div className="w-full h-2 bg-muted rounded-full overflow-hidden border border-border/40">
           {isAvailable && (
             <div
               className={`h-full rounded-full transition-all duration-700 ${getBarColor(value)}`}
@@ -102,7 +107,7 @@ export default function SubIndexCard({
 
         {/* Proveniência do MANIFEST (Regra 2) */}
         {variavelManifest ? (
-          <FonteInfo variavel={variavelManifest} />
+          <FonteInfo variavel={variavelManifest} codigoIBGE={codigoIBGE} />
         ) : fonte ? (
           <FonteInfo instituicao={fonte} ano={ano ?? 2025} dataConsulta={dataConsulta} tabela={tabela} />
         ) : null}

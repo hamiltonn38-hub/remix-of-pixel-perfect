@@ -6,9 +6,9 @@ interface IPSEGaugeProps {
   size?: number;
 }
 
-export default function IPSEGauge({ value, rawIpse, size = 200 }: IPSEGaugeProps) {
+export default function IPSEGauge({ value, rawIpse, size = 180 }: IPSEGaugeProps) {
   const isAvailable = value !== null && value !== undefined && !isNaN(value);
-  const radius = 45;
+  const radius = 42;
   const circumference = 2 * Math.PI * radius;
   const progress = isAvailable ? Math.min(Math.max(value, 0), 1) : 0;
   const offset = circumference * (1 - progress * 0.75); // 270 deg arc
@@ -39,44 +39,63 @@ export default function IPSEGauge({ value, rawIpse, size = 200 }: IPSEGaugeProps
 
   return (
     <div className="flex flex-col items-center text-center">
-      <svg width={size} height={size * 0.7} viewBox="0 0 100 75" className="overflow-visible">
+      <svg
+        width={size}
+        height={Math.round(size * 0.84)}
+        viewBox="0 0 100 84"
+        className="block"
+      >
         {/* Background arc */}
         <circle
-          cx="50" cy="55" r={radius}
+          cx="50"
+          cy="46"
+          r={radius}
           fill="none"
           stroke="hsl(var(--border))"
           strokeWidth="8"
           strokeDasharray={circumference}
           strokeDashoffset={circumference * 0.25}
           strokeLinecap="round"
-          transform="rotate(135 50 55)"
+          transform="rotate(135 50 46)"
         />
         {/* Value arc */}
         {isAvailable && (
           <circle
-            cx="50" cy="55" r={radius}
+            cx="50"
+            cy="46"
+            r={radius}
             fill="none"
             stroke={getColor(value)}
             strokeWidth="8"
             strokeDasharray={circumference}
             strokeDashoffset={offset}
             strokeLinecap="round"
-            transform="rotate(135 50 55)"
+            transform="rotate(135 50 46)"
             className="transition-all duration-1000 ease-out"
           />
         )}
         {/* Value text */}
-        <text x="50" y="52" textAnchor="middle" className="fill-foreground text-[18px] font-bold">
+        <text
+          x="50"
+          y="43"
+          textAnchor="middle"
+          className="fill-foreground text-[19px] font-bold tracking-tight"
+        >
           {isAvailable ? value.toFixed(2) : "N/C"}
         </text>
-        <text x="50" y="64" textAnchor="middle" className="fill-muted-foreground text-[7px] font-medium">
+        <text
+          x="50"
+          y="56"
+          textAnchor="middle"
+          className="fill-muted-foreground text-[8px] font-semibold uppercase tracking-wider"
+        >
           {label}
         </text>
       </svg>
-      <div className="mt-1">
-        <p className="text-xs font-semibold text-foreground">IPSE Normalizado (0–1)</p>
+      <div className="mt-2 text-center">
+        <p className="text-xs font-semibold text-foreground tracking-tight">IPSE Normalizado (0–1)</p>
         {rawIpse !== undefined && rawIpse !== null && (
-          <p className="text-[10px] text-muted-foreground mt-0.5">
+          <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">
             Bruto: {formatRaw(rawIpse)} (PEL / IVS*)
           </p>
         )}
